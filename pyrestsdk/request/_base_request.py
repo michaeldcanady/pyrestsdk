@@ -1,0 +1,185 @@
+from __future__ import annotations
+from typing import (
+    TYPE_CHECKING,
+    Dict,
+    TypeVar,
+    Callable,
+    List,
+    Union,
+    Type,
+    Optional,
+    Iterable,
+)
+
+import logging
+from urllib.parse import urlparse
+import json
+import typing
+
+
+# Internal Imports
+from pyrestsdk import AbstractServiceClient
+from pyrestsdk.request._abstract_request import AbstractRequest
+from pyrestsdk.type.enum import HttpsMethod
+from pyrestsdk.type.model import BaseEntity, QueryOption, HeaderOption, Option
+
+Logger = logging.getLogger(__name__)
+
+S = TypeVar("S", bound="AbstractServiceClient")
+T = TypeVar("T", bound="BaseEntity")
+B = TypeVar("B", bound="BaseRequest")
+O = TypeVar("O", bound=Option)
+H = TypeVar("H", bound=HeaderOption)
+Q = TypeVar("Q", bound=QueryOption)
+
+
+class BaseRequest(AbstractRequest):
+
+    _headers: List[HeaderOption] = []
+    _method: HttpsMethod
+    _request_url: str
+    _query_options: List[QueryOption] = []
+    _client: S
+
+    def __init__(self: B, request_url: str, client: S, options: Iterable[O]) -> None:
+
+        super().__init__(request_url, client)
+
+        self._method = HttpsMethod.GET
+        self._request_url = self._initializeUrl(request_url)
+        self._parseOptions(options)
+
+    @property
+    def Headers(self: B) -> List[HeaderOption]:
+        return self._headers
+
+    @property
+    def Method(self: B) -> HttpsMethod:
+        return self._method
+
+    @Method.setter
+    def Method(self: B, value: HttpsMethod) -> None:
+        self._method = value
+        Logger.info(f"{type(self).__name__}.Method: _method set to {value}")
+
+    @property
+    def QueryOptions(self: B) -> List[QueryOption]:
+        """Gets the query options
+
+        Returns:
+            List[QueryOption]: The query options
+        """
+
+        return self._query_options
+
+    def _parseOptions(self: B, options: Iterable[O]) -> None:
+
+        if options is None:
+            return None
+
+        for option in options:
+            if issubclass(type(option), HeaderOption):
+                self._headers.append(option)
+            elif issubclass(type(option), QueryOption):
+                self._headers.append(option)
+            else:
+                raise Exception(f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption")
+
+    def _initializeUrl(self: B, request_url: str) -> str:
+        """Parses the query parameters from URL
+
+        Args:
+            request_url (str): Raw URL
+
+        Returns:
+            str: URL path
+        """
+
+        if not request_url:
+            pass
+
+        url = urlparse(request_url)
+
+        if url.query:
+            queryString = url.query
+            query_options = queryString.split("&")
+            for option in query_options:
+                query_parameter, value = option.split("=")
+                _query_parameter = QueryOption(query_parameter, value)
+                self.QueryOptions.append(_query_parameter)
+
+        return url._replace(query="").geturl()
+
+    def Send(self: B, obj_type: Type[T], object: T) -> Optional[Union[List[T], T]]:
+
+        Logger.info(f"{type(self).__name__}.Send: method called")
+
+        return self.SendRequest(obj_type, object)
+
+    def SendRequest(
+        self: B, obj_type: Type[T], value: Optional[T]
+    ) -> Optional[Union[List[T], T]]:
+
+        Logger.info(f"{type(self).__name__}.SendRequest: method called")
+
+        _response = self._sendRequest(value)
+
+        if _response is None:
+            return None
+
+        result = _response["result"]
+
+        _type_return = {dict: parse_result, list: parse_result_list}
+
+        _func = _type_return.get(type(result), None)
+
+        if _func is None:
+            raise Exception(f"Unexcepted result type: {type(result)}")
+
+        return _func(obj_type, result, self.Client)
+
+    def _sendRequest(
+        self: B, value: Optional[T]
+    ) -> Optional[Dict[str, Union[List, Dict]]]:
+
+        _request_dict: Dict[HttpsMethod, Callable] = {
+            HttpsMethod.GET: self._client.get,
+            HttpsMethod.POST: self._client.post,
+            HttpsMethod.DELETE: self._client.delete,
+            HttpsMethod.PUT: self._client.put,
+        }
+
+        Logger.info(
+            f"{type(self).__name__}._sendRequest: {self.Method.name} request made"
+        )
+
+        _func = _request_dict.get(self.Method, None)
+
+        if _func is None:
+            raise Exception(f"Unknown HTTPS method {self.Method.name}")
+
+        _response = _func(
+            url=self.RequestUrl,
+            params=self._query_options,
+            data=json.dumps(value.Json()) if value is not None else None,
+        )
+
+        if self.Method == HttpsMethod.DELETE:
+            return None
+
+        return _response.json()
+
+
+def parse_result(obj_type: Type[T], result: Dict, client) -> T:
+    return obj_type().fromJson(result)
+
+
+def parse_result_list(obj_type: Type[T], results: List, client) -> List[T]:
+    _results: List[T] = []
+
+    for raw_result in results:
+        _entry = obj_type().fromJson(raw_result)
+        _entry.__client = client
+        _results.append(_entry)
+
+    return _results

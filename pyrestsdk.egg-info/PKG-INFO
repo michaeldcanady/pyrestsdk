@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: pyrestsdk
+Version: 0.1.0
+Summary: base set to make a REST Api wrapper/sdk
+Author: michaeldcanady
+License: MIT

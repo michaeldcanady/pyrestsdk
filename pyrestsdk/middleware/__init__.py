@@ -1,4 +1,6 @@
-from ._authorization_handler import AuthorizationHandler
-from ._base_middleware import BaseMiddleware
+from pyrestsdk.middleware._base_authorization_handler import BaseAuthorizationHandler
+from pyrestsdk.middleware._basic_authorization_handler import BasicAuthorizationHandler
+from pyrestsdk.middleware._token_authorization_handler import TokenAuthorizationHandler
+from pyrestsdk.middleware._base_middleware import BaseMiddleware
 
-__all__ = ["AuthorizationHandler", "BaseMiddleware"]
+__all__ = ["BaseAuthorizationHandler", "BaseMiddleware", "BasicAuthorizationHandler", "TokenAuthorizationHandler"]

@@ -1,13 +1,15 @@
 from abc import abstractmethod
-from typing import Tuple, Any
+from typing import TypeVar
 
 # internal imports
-from ._abstract_credential import AbstractCredential
+from pyrestsdk.credential._abstract_credential import AbstractCredential
+from pyrestsdk.type.model.token import AccessToken
 
+A = TypeVar('A', bound=AccessToken)
 
 class AbstractTokenCredential(AbstractCredential):
     """The base for token credentials
     """
 
     @abstractmethod
-    def get_token(self, *args, **kwargs) -> Tuple[str, Any]: ...
+    def get_token(self, *args, **kwargs) -> A: ...

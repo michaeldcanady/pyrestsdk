@@ -1,5 +1,5 @@
-from ._abstract_service_client import AbstractServiceClient
-from ._feature_usage_flag import FeatureUsageFlag
+from pyrestsdk._abstract_service_client import AbstractServiceClient
+from pyrestsdk.type.enum._feature_usage_flag import FeatureUsageFlag
 
 __all__ = ["AbstractServiceClient","FeatureUsageFlag"]
 
