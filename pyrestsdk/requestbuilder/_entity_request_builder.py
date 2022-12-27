@@ -7,7 +7,7 @@ from abc import abstractmethod
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.requestbuilder._base_request_builder import BaseRequestBuilder
 from pyrestsdk.request._base_request import BaseRequest
-from pyrestsdk.type.model import Option
+from pyrestsdk.type.model import Option, BaseEntity
 
 S = TypeVar("S", bound="AbstractServiceClient")
 B = TypeVar("B", bound="BaseRequestBuilder")
@@ -20,10 +20,8 @@ class EntityRequestBuilder(BaseRequestBuilder):
         super().__init__(request_url, client)
 
     @property
-    def request(self: B) -> R:
+    @abstractmethod
+    def request(self: B) -> R:...
 
-        return self.Request(None)
-
-    def Request(self: B, options: Iterable[O]) -> R:
-
-        return BaseRequest(self.RequestUrl, self.Client, options)
+    @abstractmethod
+    def Request(self: B, options: Iterable[O]) -> R:...

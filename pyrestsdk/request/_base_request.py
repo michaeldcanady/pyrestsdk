@@ -14,8 +14,6 @@ from typing import (
 import logging
 from urllib.parse import urlparse
 import json
-import typing
-
 
 # Internal Imports
 from pyrestsdk import AbstractServiceClient
@@ -32,20 +30,21 @@ O = TypeVar("O", bound=Option)
 H = TypeVar("H", bound=HeaderOption)
 Q = TypeVar("Q", bound=QueryOption)
 
-
 class BaseRequest(AbstractRequest):
 
-    _headers: List[HeaderOption] = []
+    _headers: Dict[HeaderOption] = {}
     _method: HttpsMethod
     _request_url: str
-    _query_options: List[QueryOption] = []
+    _query_options: Dict[QueryOption] = {}
     _client: S
+    _return_type: T
 
-    def __init__(self: B, request_url: str, client: S, options: Iterable[O]) -> None:
+    def __init__(self: B, _return_type: Type[T], request_url: str, client: S, options: Iterable[O]) -> None:
 
         super().__init__(request_url, client)
 
         self._method = HttpsMethod.GET
+        self._return_type = _return_type
         self._request_url = self._initializeUrl(request_url)
         self._parseOptions(options)
 
@@ -79,9 +78,9 @@ class BaseRequest(AbstractRequest):
 
         for option in options:
             if issubclass(type(option), HeaderOption):
-                self._headers.append(option)
+                self._headers.update(option)
             elif issubclass(type(option), QueryOption):
-                self._headers.append(option)
+                self._query_options.update(option)
             else:
                 raise Exception(f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption")
 
@@ -110,15 +109,13 @@ class BaseRequest(AbstractRequest):
 
         return url._replace(query="").geturl()
 
-    def Send(self: B, obj_type: Type[T], object: T) -> Optional[Union[List[T], T]]:
+    def Send(self: B, object: T) -> Optional[Union[List[T], T]]:
 
         Logger.info(f"{type(self).__name__}.Send: method called")
 
-        return self.SendRequest(obj_type, object)
+        return self.SendRequest(object)
 
-    def SendRequest(
-        self: B, obj_type: Type[T], value: Optional[T]
-    ) -> Optional[Union[List[T], T]]:
+    def SendRequest(self: B, value: Optional[T]) -> Optional[Union[List[T], T]]:
 
         Logger.info(f"{type(self).__name__}.SendRequest: method called")
 
@@ -136,7 +133,7 @@ class BaseRequest(AbstractRequest):
         if _func is None:
             raise Exception(f"Unexcepted result type: {type(result)}")
 
-        return _func(obj_type, result, self.Client)
+        return _func(self._return_type, result, self.Client)
 
     def _sendRequest(
         self: B, value: Optional[T]
