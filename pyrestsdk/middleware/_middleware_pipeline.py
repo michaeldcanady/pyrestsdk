@@ -19,9 +19,6 @@ class MiddlewarePipeline(HTTPAdapter):
     it here https://buffered.dev/middleware-python-requests/
     """
 
-    _current_middleware: Optional[B] = None
-    _first_middleware: Optional[B] = None
-
     def __init__(self) -> None:
         super().__init__()
         self._current_middleware = None
@@ -29,6 +26,9 @@ class MiddlewarePipeline(HTTPAdapter):
         self.poolmanager = PoolManager(ssl_version=ssl.PROTOCOL_TLSv1_2)
 
     def add_middleware(self, middleware: B) -> None:
+        """Adds middleware to the pipeline
+        """
+
         if self._current_middleware is not None:
             self._current_middleware.next = middleware
             self._current_middleware = middleware
@@ -37,6 +37,9 @@ class MiddlewarePipeline(HTTPAdapter):
             self._current_middleware = self._first_middleware
 
     def send(self, request: PreparedRequest, **kwargs) -> Response:
+        """Sends the prepared request through the middleware pipeline
+        """
+
         middleware_control_json = request.headers.pop('middleware_control', None)
         if middleware_control_json:
             middleware_control = json.loads(middleware_control_json)
