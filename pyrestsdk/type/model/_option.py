@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Dict
 
 class Option(ABC):
 
@@ -17,3 +18,8 @@ class Option(ABC):
     @property
     def Value(self) -> str:
         return self._value
+
+    def asDict(self) -> Dict:
+        return {
+            self.Name: self.Value
+        }

@@ -14,10 +14,13 @@ pyrestsdk/middleware/__init__.py
 pyrestsdk/middleware/_base_authorization_handler.py
 pyrestsdk/middleware/_base_middleware.py
 pyrestsdk/middleware/_basic_authorization_handler.py
+pyrestsdk/middleware/_middleware_pipeline.py
+pyrestsdk/middleware/_request_context.py
 pyrestsdk/middleware/_token_authorization_handler.py
 pyrestsdk/request/__init__.py
 pyrestsdk/request/_abstract_request.py
 pyrestsdk/request/_base_request.py
+pyrestsdk/request/_invokeable_request.py
 pyrestsdk/requestbuilder/__init__.py
 pyrestsdk/requestbuilder/_base_request_builder.py
 pyrestsdk/requestbuilder/_entity_request_builder.py
@@ -29,6 +32,7 @@ pyrestsdk/type/model/__init__.py
 pyrestsdk/type/model/_base_entity.py
 pyrestsdk/type/model/_header_option.py
 pyrestsdk/type/model/_option.py
+pyrestsdk/type/model/_options_collection.py
 pyrestsdk/type/model/_query_option.py
 pyrestsdk/type/model/token/__init__.py
 pyrestsdk/type/model/token/_access_token.py

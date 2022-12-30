@@ -19,7 +19,7 @@ import json
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.type.model import BaseEntity, QueryOption, HeaderOption, Option
+from pyrestsdk.type.model import BaseEntity, QueryOption, HeaderOption, Option, OptionsCollection
 
 Logger = logging.getLogger(__name__)
 
@@ -32,10 +32,10 @@ Q = TypeVar("Q", bound=QueryOption)
 
 class BaseRequest(AbstractRequest):
 
-    _headers: Dict[HeaderOption] = {}
+    _headers: OptionsCollection = OptionsCollection()
     _method: HttpsMethod
     _request_url: str
-    _query_options: Dict[QueryOption] = {}
+    _query_options: OptionsCollection = OptionsCollection()
     _client: S
     _return_type: T
 
@@ -49,20 +49,20 @@ class BaseRequest(AbstractRequest):
         self._parseOptions(options)
 
     @property
-    def Headers(self: B) -> List[HeaderOption]:
+    def Headers(self) -> OptionsCollection:
         return self._headers
 
     @property
-    def Method(self: B) -> HttpsMethod:
+    def Method(self) -> HttpsMethod:
         return self._method
 
     @Method.setter
-    def Method(self: B, value: HttpsMethod) -> None:
+    def Method(self, value: HttpsMethod) -> None:
         self._method = value
         Logger.info(f"{type(self).__name__}.Method: _method set to {value}")
 
     @property
-    def QueryOptions(self: B) -> List[QueryOption]:
+    def QueryOptions(self) -> OptionsCollection:
         """Gets the query options
 
         Returns:
@@ -71,20 +71,20 @@ class BaseRequest(AbstractRequest):
 
         return self._query_options
 
-    def _parseOptions(self: B, options: Iterable[O]) -> None:
+    def _parseOptions(self, options: Iterable[O]) -> None:
 
         if options is None:
             return None
 
         for option in options:
             if issubclass(type(option), HeaderOption):
-                self._headers.update(option)
+                self._headers.append(option)
             elif issubclass(type(option), QueryOption):
-                self._query_options.update(option)
+                self._query_options.append(option)
             else:
                 raise Exception(f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption")
 
-    def _initializeUrl(self: B, request_url: str) -> str:
+    def _initializeUrl(self, request_url: str) -> str:
         """Parses the query parameters from URL
 
         Args:
@@ -109,13 +109,13 @@ class BaseRequest(AbstractRequest):
 
         return url._replace(query="").geturl()
 
-    def Send(self: B, object: T) -> Optional[Union[List[T], T]]:
+    def Send(self, object: T) -> Optional[Union[List[T], T]]:
 
         Logger.info(f"{type(self).__name__}.Send: method called")
 
         return self.SendRequest(object)
 
-    def SendRequest(self: B, value: Optional[T]) -> Optional[Union[List[T], T]]:
+    def SendRequest(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
 
         Logger.info(f"{type(self).__name__}.SendRequest: method called")
 
@@ -135,8 +135,20 @@ class BaseRequest(AbstractRequest):
 
         return _func(self._return_type, result, self.Client)
 
+    def parse_response(self, _response) -> Optional[Union[List[T], T]]:
+        result = _response["result"]
+
+        _type_return = {dict: parse_result, list: parse_result_list}
+
+        _func = _type_return.get(type(result), None)
+
+        if _func is None:
+            raise Exception(f"Unexcepted result type: {type(result)}")
+
+        return _func(self._return_type, result, self.Client)
+
     def _sendRequest(
-        self: B, value: Optional[T]
+        self, value: Optional[T]
     ) -> Optional[Dict[str, Union[List, Dict]]]:
 
         _request_dict: Dict[HttpsMethod, Callable] = {
@@ -157,7 +169,7 @@ class BaseRequest(AbstractRequest):
 
         _response = _func(
             url=self.RequestUrl,
-            params=self._query_options,
+            params=str(self._query_options),
             data=json.dumps(value.Json()) if value is not None else None,
         )
 
