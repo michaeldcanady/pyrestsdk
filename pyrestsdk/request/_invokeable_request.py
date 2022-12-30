@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Type, Iterable, TypeVar
+from typing import Type, Iterable, TypeVar, Optional, Union, List
 from abc import abstractmethod
 
 # internal imports
@@ -24,4 +24,6 @@ class InvokableRequest(BaseRequest):
         super().__init__(_return_type, request_url, client, options)
 
     @abstractmethod
-    def Invoke(self):...
+    def Invoke(self) -> Optional[Union[List[T], T]]:
+        """Invokes the prepared request
+        """

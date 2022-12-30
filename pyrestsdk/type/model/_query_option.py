@@ -1,17 +1,9 @@
-from typing import Dict, Iterable
+from typing import Any
 
 # internal imports
 from pyrestsdk.type.model._option import Option
 
 class QueryOption(Option):
 
-    def __init__(self, name: str, value: str) -> None:
+    def __init__(self, name: str, value: Any) -> None:
         super().__init__(name, value)
-
-    def __iter__(self) -> Iterable:
-        return iter(self.asDict().items())
-
-    def asDict(self) -> Dict:
-        return {
-            self.Name: self.Value
-        }

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, TypeVar, Type
+from typing import TYPE_CHECKING, Dict, TypeVar, Type, Optional
 from abc import abstractmethod
 
 if TYPE_CHECKING:
@@ -11,15 +11,32 @@ A = TypeVar('A', bound='AbstractServiceClient')
 
 class BaseEntity(object):
 
-    __client: A
+    def __init__(self, client: A) -> None:
+        self.__client: A = client
 
     @property
     @abstractmethod
-    def Json(self: S) -> Dict: ...
+    def Json(self: S) -> Dict:
+        """Gets the object as it's dict representation
+        """
 
     @property
     @abstractmethod
-    def Client(self: S) -> A: ...
+    def asDict(self) -> Dict:
+        """Gets the object as it's dict representation
+        """
+    
+    @property
+    @abstractmethod
+    def __json__(self) -> str:
+        """Gest the object's json representation
+        """
+
+    @property
+    def Client(self: S) -> A:
+        """Gets the client
+        """
+        return self.__client
 
     @classmethod
     @abstractmethod
