@@ -1,14 +1,16 @@
-from typing import Optional
+from typing import Optional, TypeVar
 from abc import ABC, abstractmethod
 from requests import Response, Session
 
 
+S = TypeVar('S', bound='AbstractServiceClient')
+
 class AbstractServiceClient(ABC):
 
-    __instance: Optional['AbstractServiceClient'] = None
+    __instance: Optional[S] = None
 
-    def __new__(cls, *args, **kwargs):
-        if not AbstractServiceClient.__instance:
+    def __new__(cls, *args, **kwargs) -> S:
+        if AbstractServiceClient.__instance is None:
             AbstractServiceClient.__instance = object.__new__(cls)
         return AbstractServiceClient.__instance
 

@@ -19,6 +19,8 @@ __pycache__/
 build/
 builds/
 
+dist/
+
 start.build/
 start.dist/
 start.onefile-build/

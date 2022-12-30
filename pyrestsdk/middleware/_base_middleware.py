@@ -1,6 +1,8 @@
-from typing import Optional
+from typing import Optional, TypeVar
 from requests import PreparedRequest, Response
 from requests.adapters import HTTPAdapter
+
+B = TypeVar('B', bound='BaseMiddleware')
 
 class BaseMiddleware(HTTPAdapter):
     """Base class for middleware
@@ -10,12 +12,12 @@ class BaseMiddleware(HTTPAdapter):
     makes a network request
     """
 
-    next: Optional['BaseMiddleware'] = None
+    next: Optional[B] = None
 
     def __init__(self):
         super().__init__()
 
-    def send(self, request: PreparedRequest, **kwargs) -> Response:
+    def send(self: B, request: PreparedRequest, **kwargs) -> Response:
         """Makes a network request if next is none, otherwise requests the next middleware to do so
 
         Args:
