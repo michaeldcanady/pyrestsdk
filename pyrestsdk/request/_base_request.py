@@ -127,7 +127,7 @@ class BaseRequest(AbstractRequest):
         return self.parse_response(_response)
 
     @abstractmethod
-    def parse_response(self, _response: Response) -> Optional[Union[List[T], T]]:
+    def parse_response(self, _response: Optional[Response]) -> Optional[Union[List[T], T]]:
         """Parses the response into the expected return
         """
 
