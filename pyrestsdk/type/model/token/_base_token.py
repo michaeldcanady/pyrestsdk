@@ -4,4 +4,4 @@ class BaseToken(NamedTuple):
 
     token: str
 
-BaseToken.token.__doc__ = """The token string."""
+#BaseToken.token.__doc__ = """The token string."""

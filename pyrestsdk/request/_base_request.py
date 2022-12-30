@@ -11,17 +11,19 @@ from typing import (
     Iterable,
 )
 
+from requests import Response
+
+from abc import abstractmethod
+
 import logging
 from urllib.parse import urlparse
 import json
-import typing
-
 
 # Internal Imports
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.type.model import BaseEntity, QueryOption, HeaderOption, Option
+from pyrestsdk.type.model import BaseEntity, QueryOption, HeaderOption, Option, HeaderOptionCollection, QueryOptionCollection
 
 Logger = logging.getLogger(__name__)
 
@@ -32,47 +34,48 @@ O = TypeVar("O", bound=Option)
 H = TypeVar("H", bound=HeaderOption)
 Q = TypeVar("Q", bound=QueryOption)
 
-
 class BaseRequest(AbstractRequest):
 
-    _headers: List[HeaderOption] = []
-    _method: HttpsMethod
-    _request_url: str
-    _query_options: List[QueryOption] = []
-    _client: S
-
-    def __init__(self: B, request_url: str, client: S, options: Iterable[O]) -> None:
+    def __init__(self: B, _return_type: Type[T], request_url: str, client: S, options: Iterable[O]) -> None:
 
         super().__init__(request_url, client)
 
-        self._method = HttpsMethod.GET
-        self._request_url = self._initializeUrl(request_url)
+        self._method: HttpsMethod = HttpsMethod.GET
+        self._return_type: T = _return_type
+        self._request_url: str = self._initializeUrl(request_url)
+        self._query_options: QueryOptionCollection = QueryOptionCollection()
+        self._headers: HeaderOptionCollection = HeaderOptionCollection()
         self._parseOptions(options)
 
     @property
-    def Headers(self: B) -> List[HeaderOption]:
+    def Headers(self) -> HeaderOptionCollection:
+        """Gets the headers
+        """
+
         return self._headers
 
     @property
-    def Method(self: B) -> HttpsMethod:
+    def Method(self) -> HttpsMethod:
+        """Gets/Sets the https method
+        """
+
         return self._method
 
     @Method.setter
-    def Method(self: B, value: HttpsMethod) -> None:
+    def Method(self, value: HttpsMethod) -> None:
         self._method = value
         Logger.info(f"{type(self).__name__}.Method: _method set to {value}")
 
     @property
-    def QueryOptions(self: B) -> List[QueryOption]:
+    def QueryOptions(self) -> QueryOptionCollection:
         """Gets the query options
-
-        Returns:
-            List[QueryOption]: The query options
         """
 
         return self._query_options
 
-    def _parseOptions(self: B, options: Iterable[O]) -> None:
+    def _parseOptions(self, options: Iterable[O]) -> None:
+        """Parses the provided options into either header or query options
+        """
 
         if options is None:
             return None
@@ -81,18 +84,12 @@ class BaseRequest(AbstractRequest):
             if issubclass(type(option), HeaderOption):
                 self._headers.append(option)
             elif issubclass(type(option), QueryOption):
-                self._headers.append(option)
+                self._query_options.append(option)
             else:
                 raise Exception(f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption")
 
-    def _initializeUrl(self: B, request_url: str) -> str:
+    def _initializeUrl(self, request_url: str) -> str:
         """Parses the query parameters from URL
-
-        Args:
-            request_url (str): Raw URL
-
-        Returns:
-            str: URL path
         """
 
         if not request_url:
@@ -110,15 +107,15 @@ class BaseRequest(AbstractRequest):
 
         return url._replace(query="").geturl()
 
-    def Send(self: B, obj_type: Type[T], object: T) -> Optional[Union[List[T], T]]:
+    def Send(self, object: T) -> Optional[Union[List[T], T]]:
 
         Logger.info(f"{type(self).__name__}.Send: method called")
 
-        return self.SendRequest(obj_type, object)
+        return self.SendRequest(object)
 
-    def SendRequest(
-        self: B, obj_type: Type[T], value: Optional[T]
-    ) -> Optional[Union[List[T], T]]:
+    def SendRequest(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
+        """Makes the desired request and returns the desired return type
+        """
 
         Logger.info(f"{type(self).__name__}.SendRequest: method called")
 
@@ -127,20 +124,14 @@ class BaseRequest(AbstractRequest):
         if _response is None:
             return None
 
-        result = _response["result"]
+        return self.parse_response(_response)
 
-        _type_return = {dict: parse_result, list: parse_result_list}
+    @abstractmethod
+    def parse_response(self, _response: Response) -> Optional[Union[List[T], T]]:
+        """Parses the response into the expected return
+        """
 
-        _func = _type_return.get(type(result), None)
-
-        if _func is None:
-            raise Exception(f"Unexcepted result type: {type(result)}")
-
-        return _func(obj_type, result, self.Client)
-
-    def _sendRequest(
-        self: B, value: Optional[T]
-    ) -> Optional[Dict[str, Union[List, Dict]]]:
+    def _sendRequest(self, value: Optional[T]) -> Optional[Response]:
 
         _request_dict: Dict[HttpsMethod, Callable] = {
             HttpsMethod.GET: self._client.get,
@@ -160,25 +151,25 @@ class BaseRequest(AbstractRequest):
 
         _response = _func(
             url=self.RequestUrl,
-            params=self._query_options,
-            data=json.dumps(value.Json()) if value is not None else None,
+            params=str(self._query_options),
+            data=json.dumps(value.Json) if value is not None else None,
         )
 
         if self.Method == HttpsMethod.DELETE:
             return None
 
-        return _response.json()
+        return _response
 
 
 def parse_result(obj_type: Type[T], result: Dict, client) -> T:
-    return obj_type().fromJson(result)
+    return obj_type(client).fromJson(result)
 
 
 def parse_result_list(obj_type: Type[T], results: List, client) -> List[T]:
     _results: List[T] = []
 
     for raw_result in results:
-        _entry = obj_type().fromJson(raw_result)
+        _entry = obj_type(client).fromJson(raw_result)
         _entry.__client = client
         _results.append(_entry)
 
