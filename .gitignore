@@ -6,6 +6,7 @@
 *.pkg
 *.toc
 *.zip
+*.egg-info/
 
 venv/
 
@@ -27,3 +28,5 @@ start.onefile-build/
 start.exe
 
 testing.py
+
+.pypirc
