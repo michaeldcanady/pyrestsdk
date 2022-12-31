@@ -1,4 +1,4 @@
-from typing import Dict, Any, Iterable
+from typing import Dict, Any, Iterable, Tuple
 
 class Option(object):
 
@@ -6,6 +6,9 @@ class Option(object):
     _value: Any
 
     def __init__(self, name: str, value: Any) -> None:
+        """Initalize new option
+        """
+        
         super().__init__()
         self._name = name
         self._value = value
@@ -41,5 +44,5 @@ class Option(object):
             self.Name: self.Value
         }
 
-    def __iter__(self) -> Iterable:
+    def __iter__(self) -> Iterable[Tuple[str, Any]]:
         return iter(self.asDict().items())

@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 from typing import List
 from pyrestsdk import __version__, __module_name__
 import os
@@ -16,7 +16,7 @@ setup(
     author="michaeldcanady",
     description=("base set to make a REST Api wrapper/sdk"),
     license="MIT",
-    packages=get_packages(os.path.join(".", "pyrestsdk")),
+    packages=find_packages(),
     install_requires=[
         "black==22.12.0",
         "certifi==2022.12.7",
