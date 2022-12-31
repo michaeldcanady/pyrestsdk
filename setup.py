@@ -17,7 +17,7 @@ setup(
     author="michaeldcanady",
     description=("base set to make a REST Api wrapper/sdk"),
     license="MIT",
-    packages=get_packages(os.path.join(".", "pyrestsdk")),
+    packages=find_packages(),
     install_requires=[
         "black==22.12.0",
         "certifi==2022.12.7",
