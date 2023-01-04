@@ -1,8 +1,10 @@
 from strenum import LowercaseStrEnum
 from enum import auto
+from typing import final, List, overload
+
 
 class MediaTypeType(LowercaseStrEnum):
-    
+
     Application = auto()
     Audio = auto()
     Image = auto()
@@ -10,51 +12,172 @@ class MediaTypeType(LowercaseStrEnum):
     Video = auto()
     Font = auto()
 
+
 class MediaTypeObject(object):
     
-    def __init__(self, _type: MediaTypeType, _subtype: str) -> None:
+    @overload
+    def __init__(self) -> None:...
+    
+    @overload
+    def __init__(self, _type: MediaTypeType, _subtype: str) -> None:...
+    
+    def __init__(self, *args, **kwargs) -> None:
         
+        _type = kwargs.get("_type")
+        _subtype = kwargs.get("_subtype")
+
         self._type = _type
         self._subtype = _subtype
-        
+        self._extensions = []
+
+    def __eq__(self, __o: "MediaTypeType") -> bool:
+
+        return str(self).lower() == str(__o).lower()
+
     def __str__(self) -> str:
         return f"{self._type}/{self._subtype}"
-    
+
+
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
 class MediaType:
     class Audio:
-        Aac = MediaTypeObject(MediaTypeType.Audio, "aac")
-        Midi = MediaTypeObject(MediaTypeType.Audio, "midi")
-        XMidi = MediaTypeObject(MediaTypeType.Audio, "x-midi")
-        Mpeg = MediaTypeObject(MediaTypeType.Audio, "mpeg")
-        Ogg = MediaTypeObject(MediaTypeType.Audio, "ogg")
-        Opus = MediaTypeObject(MediaTypeType.Audio, "opus")
-        Wav = MediaTypeObject(MediaTypeType.Audio, "wav")
-        Webm = MediaTypeObject(MediaTypeType.Audio, "webm")
-        A3gpp = MediaTypeObject(MediaTypeType.Audio, "3gpp")
-        A3gpp2 = MediaTypeObject(MediaTypeType.Audio, "3gpp2")
+
+        __attr__ = ["Aac", "Midi", "XMidi", "Mpeg", "Ogg", "Opus"]
+
+        @property
+        @final
+        def Aac(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "aac")
+
+        @property
+        @final
+        def Midi(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "midi")
+
+        @property
+        @final
+        def XMidi(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "x-midi")
+
+        @property
+        @final
+        def Mpeg(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "mpeg")
+
+        @property
+        @final
+        def Ogg(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "ogg")
+
+        @property
+        @final
+        def Opus(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "opus")
+
+        @property
+        @final
+        def Wav(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "wav")
+
+        @property
+        @final
+        def Webm(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "webm")
+
+        @property
+        @final
+        def A3gpp(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "3gpp")
+
+        @property
+        @final
+        def A3gpp2(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Audio, "3gpp2")
 
     class Application:
         class Vnd:
             class OpenxmlformatsOfficedocument:
-                WordprocessingmlDocument = MediaTypeObject(MediaTypeType.Application, "vnd.openxmlformats-officedocument.wordprocessingml.document")
-                PresentationmlPresentation = MediaTypeObject(MediaTypeType.Application, "vnd.openxmlformats-officedocument.presentationml.presentation")
-                SpreadsheetmlSheet = MediaTypeObject(MediaTypeType.Application, "vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                @property
+                @final
+                def WordprocessingmlDocument(self) -> MediaTypeObject:
+                    return MediaTypeObject(
+                        MediaTypeType.Application,
+                        "vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    )
+
+                @property
+                @final
+                def PresentationmlPresentation(self) -> MediaTypeObject:
+                    return MediaTypeObject(
+                        MediaTypeType.Application,
+                        "vnd.openxmlformats-officedocument.presentationml.presentation",
+                    )
+
+                @property
+                @final
+                def SpreadsheetmlSheet(self) -> MediaTypeObject:
+                    return MediaTypeObject(
+                        MediaTypeType.Application,
+                        "vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    )
+
             class Apple:
-                InstallerXml = MediaTypeObject(MediaTypeType.Application, "vnd.apple.installer+xml")
+                @property
+                @final
+                def InstallerXml(self) -> MediaTypeObject:
+                    return MediaTypeObject(
+                        MediaTypeType.Application, "vnd.apple.installer+xml"
+                    )
+
             class Oasis:
-                OpendocumentPresentation = MediaTypeObject(MediaTypeType.Application, "vnd.oasis.opendocument.presentation")
+                @property
+                @final
+                def OpendocumentPresentation(self) -> MediaTypeObject:
+                    return MediaTypeObject(
+                        MediaTypeType.Application, "vnd.oasis.opendocument.presentation"
+                    )
+
             class Mozilla:
-                XulXml = MediaTypeObject(MediaTypeType.Application, "vnd.mozilla.xul+xml")  
+                @property
+                @final
+                def XulXml(self) -> MediaTypeObject:
+                    return MediaTypeObject(
+                        MediaTypeType.Application, "vnd.mozilla.xul+xml"
+                    )
+
             class Amazon:
-                Ebook = MediaTypeObject(MediaTypeType.Application, "vnd.amazon.ebook")
-            
-            MsPowerpoint = MediaTypeObject(MediaTypeType.Application, "vnd.ms-powerpoint")
-            MsExcel =  MediaTypeObject(MediaTypeType.Application, "vnd.ms-excel")
-            MsFontobject = MediaTypeObject(MediaTypeType.Application, "vnd.ms-fontobject")
-            Rar = MediaTypeObject(MediaTypeType.Application, "vnd.rar")
-            Visio = MediaTypeObject(MediaTypeType.Application, "vnd.visio")
-        
+                @property
+                @final
+                def Ebook(self) -> MediaTypeObject:
+                    return MediaTypeObject(
+                        MediaTypeType.Application, "vnd.amazon.ebook"
+                    )
+
+            @property
+            @final
+            def MsPowerpoint(self) -> MediaTypeObject:
+                return MediaTypeObject(MediaTypeType.Application, "vnd.ms-powerpoint")
+
+            @property
+            @final
+            def MsExcel(self) -> MediaTypeObject:
+                return MediaTypeObject(MediaTypeType.Application, "vnd.ms-excel")
+
+            @property
+            @final
+            def MsFontobject(self) -> MediaTypeObject:
+                return MediaTypeObject(MediaTypeType.Application, "vnd.ms-fontobject")
+
+            @property
+            @final
+            def Rar(self) -> MediaTypeObject:
+                return MediaTypeObject(MediaTypeType.Application, "vnd.rar")
+
+            @property
+            @final
+            def Visio(self) -> MediaTypeObject:
+                return MediaTypeObject(MediaTypeType.Application, "vnd.visio")
+
         XAbiword = MediaTypeObject(MediaTypeType.Application, "x-abiword")
         XFreearc = MediaTypeObject(MediaTypeType.Application, "x-freearc")
         OctetStream = MediaTypeObject(MediaTypeType.Application, "octet-stream")
@@ -80,8 +203,12 @@ class MediaType:
 
     class Image:
         class Vnd:
-            MicrosoftIcon = MediaTypeObject(MediaTypeType.Image, "vnd.microsoft.icon")
-            
+            class Microsoft:
+                @property
+                @final
+                def Icon(self) -> MediaTypeObject:
+                    return MediaTypeObject(MediaTypeType.Image, "vnd.microsoft.icon")
+
         Avif = MediaTypeObject(MediaTypeType.Image, "avif")
         Bmp = MediaTypeObject(MediaTypeType.Image, "bmp")
         Gif = MediaTypeObject(MediaTypeType.Image, "gif")
@@ -109,9 +236,43 @@ class MediaType:
         Javascript = MediaTypeObject(MediaTypeType.Text, "javascript")
         Plain = MediaTypeObject(MediaTypeType.Text, "plain")
         Xml = MediaTypeObject(MediaTypeType.Text, "xml")
-    
+
     class Font:
-        Otf = MediaTypeObject(MediaTypeType.Font, "otf")
-        Ttf = MediaTypeObject(MediaTypeType.Font, "ttf")
-        Woff = MediaTypeObject(MediaTypeType.Font, "woff")
-        Woff2 = MediaTypeObject(MediaTypeType.Font, "woff2")
+        @property
+        @final
+        def Otf(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Font, "otf")
+
+        @property
+        @final
+        def Ttf(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Font, "ttf")
+
+        @property
+        @final
+        def Woff(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Font, "woff")
+
+        @property
+        @final
+        def Woff2(self) -> MediaTypeObject:
+            return MediaTypeObject(MediaTypeType.Font, "woff2")
+
+    @classmethod
+    def FromExtensions(cls, ext: str) -> "MediaTypeObject":
+
+        ext = ext.replace(".", "")
+
+        for _type in __types__:
+            if ext.casefold() in _type._extensions:
+                return _type
+        
+        return MediaTypeObject()
+
+
+__types__: List[MediaTypeObject] = [
+    MediaType.Audio.A3gpp,
+    MediaType.Audio.A3gpp2,
+    MediaType.Audio.Aac,
+    MediaType.Audio.Midi,
+]
