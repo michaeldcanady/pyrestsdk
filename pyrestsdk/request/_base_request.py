@@ -23,7 +23,14 @@ import json
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.type.model import BaseEntity, QueryOption, HeaderOption, Option, HeaderOptionCollection, QueryOptionCollection
+from pyrestsdk.type.model import (
+    BaseEntity,
+    QueryOption,
+    HeaderOption,
+    Option,
+    HeaderOptionCollection,
+    QueryOptionCollection,
+)
 
 Logger = logging.getLogger(__name__)
 
@@ -34,14 +41,15 @@ O = TypeVar("O", bound=Option)
 H = TypeVar("H", bound=HeaderOption)
 Q = TypeVar("Q", bound=QueryOption)
 
-class BaseRequest(AbstractRequest):
 
-    def __init__(self: B, _return_type: Type[T], request_url: str, client: S, options: Iterable[O]) -> None:
+class BaseRequest(AbstractRequest[T]):
+    def __init__(
+        self: B, request_url: str, client: S, options: Optional[Iterable[O]]
+    ) -> None:
 
         super().__init__(request_url, client)
 
         self._method: HttpsMethod = HttpsMethod.GET
-        self._return_type: T = _return_type
         self._request_url: str = self._initializeUrl(request_url)
         self._query_options: QueryOptionCollection = QueryOptionCollection()
         self._headers: HeaderOptionCollection = HeaderOptionCollection()
@@ -49,15 +57,13 @@ class BaseRequest(AbstractRequest):
 
     @property
     def Headers(self) -> HeaderOptionCollection:
-        """Gets the headers
-        """
+        """Gets the headers"""
 
         return self._headers
 
     @property
     def Method(self) -> HttpsMethod:
-        """Gets/Sets the https method
-        """
+        """Gets/Sets the https method"""
 
         return self._method
 
@@ -68,14 +74,12 @@ class BaseRequest(AbstractRequest):
 
     @property
     def QueryOptions(self) -> QueryOptionCollection:
-        """Gets the query options
-        """
+        """Gets the query options"""
 
         return self._query_options
 
-    def _parseOptions(self, options: Iterable[O]) -> None:
-        """Parses the provided options into either header or query options
-        """
+    def _parseOptions(self, options: Optional[Iterable[O]]) -> None:
+        """Parses the provided options into either header or query options"""
 
         if options is None:
             return None
@@ -86,11 +90,12 @@ class BaseRequest(AbstractRequest):
             elif issubclass(type(option), QueryOption):
                 self._query_options.append(option)
             else:
-                raise Exception(f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption")
+                raise Exception(
+                    f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption"
+                )
 
     def _initializeUrl(self, request_url: str) -> str:
-        """Parses the query parameters from URL
-        """
+        """Parses the query parameters from URL"""
 
         if not request_url:
             pass
@@ -107,15 +112,14 @@ class BaseRequest(AbstractRequest):
 
         return url._replace(query="").geturl()
 
-    def Send(self, object: T) -> Optional[Union[List[T], T]]:
+    def Send(self, object: Optional[T]) -> Optional[Union[List[T], T]]:
 
         Logger.info(f"{type(self).__name__}.Send: method called")
 
         return self.SendRequest(object)
 
     def SendRequest(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
-        """Makes the desired request and returns the desired return type
-        """
+        """Makes the desired request and returns the desired return type"""
 
         Logger.info(f"{type(self).__name__}.SendRequest: method called")
 
@@ -127,9 +131,10 @@ class BaseRequest(AbstractRequest):
         return self.parse_response(_response)
 
     @abstractmethod
-    def parse_response(self, _response: Optional[Response]) -> Optional[Union[List[T], T]]:
-        """Parses the response into the expected return
-        """
+    def parse_response(
+        self, _response: Optional[Response]
+    ) -> Optional[Union[List[T], T]]:
+        """Parses the response into the expected return"""
 
     def _sendRequest(self, value: Optional[T]) -> Optional[Response]:
 
