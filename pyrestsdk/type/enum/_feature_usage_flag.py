@@ -1,3 +1,5 @@
+"""Houses Feature Usage Flag Enum"""
+
 from enum import IntEnum
 
 class FeatureUsageFlag(IntEnum):

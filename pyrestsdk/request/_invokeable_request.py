@@ -4,12 +4,12 @@ from abc import abstractmethod
 
 # internal imports
 from pyrestsdk import AbstractServiceClient
-from pyrestsdk.type.model import BaseEntity, Option
+from pyrestsdk.type.model import BaseEntity, HeaderOption, QueryOption
 from pyrestsdk.request import BaseRequest
 
 T = TypeVar("T", bound="BaseEntity")
 B = TypeVar("B", bound="BaseRequest")
-O = TypeVar("O", bound=Option)
+O = TypeVar("O", HeaderOption, QueryOption)
 S = TypeVar("S", bound="AbstractServiceClient")
 
 
@@ -23,6 +23,6 @@ class InvokableRequest(BaseRequest[T]):
         super().__init__(request_url, client, options)
 
     @abstractmethod
-    def Invoke(self) -> Optional[Union[List[T], T]]:
+    def invoke_request(self) -> Optional[Union[List[T], T]]:
         """Invokes the prepared request
         """

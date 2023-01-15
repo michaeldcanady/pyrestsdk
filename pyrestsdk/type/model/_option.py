@@ -1,6 +1,9 @@
+"""Houses Option"""
+
 from typing import Dict, Any, Iterable
 
 class Option(object):
+    """Object Type"""
 
     _name: str
     _value: Any
@@ -33,7 +36,7 @@ class Option(object):
         
         self._value = value
 
-    def asDict(self) -> Dict:
+    def asDict(self) -> Dict[str, Any]:
         """Gets the object as it's dict representation
         """
 
