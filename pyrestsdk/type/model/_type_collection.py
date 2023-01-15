@@ -60,26 +60,26 @@ class TypeCollection(MutableSequence[T]):
 
         self._internal_list.append(__option)
 
-    def insert(self, i: int, item: T) -> None:
+    def insert(self, index: int, value: T) -> None:
         """Insert object before index."""
-        self._internal_list.insert(i, item)
+        self._internal_list.insert(index, value)
 
-    def remove(self, item: T) -> None:
+    def remove(self, value: T) -> None:
         """Remove first occurrence of value.
 
         Raises ValueError if the value is not present.
         """
 
-        self._internal_list.remove(item)
+        self._internal_list.remove(value)
 
     def clear(self) -> None:
         """Clears the collection"""
         self._internal_list.clear()
 
-    def count(self, item: T) -> int:
+    def count(self, value: T) -> int:
         """Return number of occurrences of value."""
 
-        return self._internal_list.count(item)
+        return self._internal_list.count(value)
 
     def index(self, item, *args) -> int:
         """Return first index of value.

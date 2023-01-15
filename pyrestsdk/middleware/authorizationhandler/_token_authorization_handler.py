@@ -22,7 +22,7 @@ class TokenAuthorizationHandler(BaseAuthorizationHandler):
         self: A,
         request: PreparedRequest,
         stream: bool = False,
-        timeout: Optional[float | Tuple[float, float] | Tuple[float, None]] = None,
+        timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None,
         verify: bool = True,
         cert: Optional[
             Union[bytes, str, Tuple[Union[bytes, str], Union[bytes, str]]]

@@ -9,6 +9,7 @@ from typing import (
     Type,
     Optional,
     Iterable,
+    Callable,
 )
 from abc import abstractmethod
 import logging
@@ -119,6 +120,30 @@ class BaseRequest(AbstractRequest[T]):
     ) -> Optional[Union[List[T], T]]:
         """Parses the response into the expected return"""
 
+
+
+if version_info >= (3, 10):
+
+    def _parse_options(self, options: Optional[Iterable[O]]) -> None:
+        """Parses the provided options into either header or query options"""
+
+        Logger.info("%s._parse_options: function called", type(self).__name__)
+
+        if options is None:
+            return None
+
+        for option in options:
+            match type(option):
+                case n if issubclass(n, HeaderOption):
+                    self._header_options.append(option)
+                case n if issubclass(n, QueryOption):
+                    self._query_options.append(option)
+                case other:
+                    raise Exception(
+                        "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
+                        type(option),
+                    )
+                    
     def _send_request(self, value: Optional[T]) -> Optional[Response]:
         """Makes the desired request and returns Response or None"""
 
@@ -154,29 +179,6 @@ class BaseRequest(AbstractRequest[T]):
             case other:
                 raise Exception(f"Unknown HTTPS method {self.request_method.name}")
 
-
-if version_info >= (3, 10):
-
-    def _parse_options(self, options: Optional[Iterable[O]]) -> None:
-        """Parses the provided options into either header or query options"""
-
-        Logger.info("%s._parse_options: function called", type(self).__name__)
-
-        if options is None:
-            return None
-
-        for option in options:
-            match type(option):
-                case n if issubclass(n, HeaderOption):
-                    self._header_options.append(option)
-                case n if issubclass(n, QueryOption):
-                    self._query_options.append(option)
-                case other:
-                    raise Exception(
-                        "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
-                        type(option),
-                    )
-
 else:
 
     def _parse_options(self, options: Optional[Iterable[O]]) -> None:
@@ -195,9 +197,37 @@ else:
                     "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
                     type(option),
                 )
+                
+    def _send_request(self, value: Optional[T]) -> Optional[Response]:
+        _request_dict: Dict[HttpsMethod, Callable] = {
+            HttpsMethod.GET: self._client.get,
+            HttpsMethod.POST: self._client.post,
+            HttpsMethod.DELETE: self._client.delete,
+            HttpsMethod.PUT: self._client.put,
+        }
 
+        Logger.info(
+            f"{type(self).__name__}._sendRequest: {self.Method.name} request made"
+        )
+
+        _func = _request_dict.get(self.Method, None)
+
+        if _func is None:
+            raise Exception(f"Unknown HTTPS method {self.Method.name}")
+
+        _response = _func(
+            url=self.RequestUrl,
+            params=str(self._query_options),
+            data=json.dumps(value.Json) if value is not None else None,
+        )
+
+        if self.Method == HttpsMethod.DELETE:
+            return None
+
+        return _response
 
 BaseRequest._parse_options = _parse_options
+BaseRequest._send_request = _send_request
 
 
 def parse_result(obj_type: Type[T], result: Dict, client) -> T:
