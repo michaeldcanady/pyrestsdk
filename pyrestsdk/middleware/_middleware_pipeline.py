@@ -49,7 +49,7 @@ class MiddlewarePipeline(HTTPAdapter):
         if middleware_control_json:
             middleware_control = json.loads(middleware_control_json)
         else:
-            middleware_control = dict()
+            middleware_control = {}
 
         # Set Context
         request.context = RequestContext(middleware_control, request.headers)

@@ -8,10 +8,11 @@ from pyrestsdk.requestbuilder._base_request_builder import BaseRequestBuilder
 from pyrestsdk.request._base_request import BaseRequest
 from pyrestsdk.type.model import Option
 
-S = TypeVar("S", bound="AbstractServiceClient")
-B = TypeVar("B", bound="BaseRequestBuilder")
+S = TypeVar("S", bound=AbstractServiceClient)
+B = TypeVar("B", bound=BaseRequestBuilder)
 R = TypeVar("R", bound=BaseRequest)
 O = TypeVar("O", bound=Option)
+
 
 class EntityRequestBuilder(BaseRequestBuilder):
     """Entity Request Builder Type"""

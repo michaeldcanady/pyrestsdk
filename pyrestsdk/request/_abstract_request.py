@@ -31,7 +31,7 @@ T = TypeVar("T")
 
 class AbstractRequest(Generic[T]):
     """Abstract Request Type"""
-    
+
     def __init__(self: B, request_url: str, client: S) -> None:
 
         super().__init__()
@@ -56,19 +56,24 @@ class AbstractRequest(Generic[T]):
 
     @property
     def Client(self: B) -> S:
+        """Gets the Client"""
+        
         return self._client
 
     @property
     @final
-    def generic_type(self: B) -> Type[S]:
+    def generic_type(self: B) -> Type[T]:
         """Gets the the type argument provided"""
 
-        orig_classes = getattr(self, "__orig_class__", None)
+        # used if type arg is provided in constructor
+        orig_value = getattr(self, "__orig_class__", None)
 
-        if orig_classes:
-            return get_args(orig_classes)[0]
-
-        _type: Type[S] = get_args(self.__orig_bases__[0])[0]  # type: ignore
+        if orig_value is None:
+            # used if typ arg is provided when subclassing
+            orig_bases = getattr(self, "__orig_bases__")
+            orig_value = orig_bases[0]
+        
+        _type: Type[T] = get_args(orig_value)[0]
 
         return _type
 
@@ -113,8 +118,6 @@ class AbstractRequest(Generic[T]):
         """
 
         if not url_segment.startswith("/"):
-            # Checks if url segment starts with /
-            # Appends it if it does not
-            url_segment = "/{0}".format(url_segment)
+            url_segment = f"/{url_segment}"
 
-        return "{0}{1}".format(self.request_url, url_segment)
+        return f"{self.request_url}{url_segment}"

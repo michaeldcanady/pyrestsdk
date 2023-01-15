@@ -7,40 +7,37 @@ from abc import abstractmethod
 if TYPE_CHECKING:
     from pyrestsdk import AbstractServiceClient
 
-S = TypeVar('S', bound='BaseEntity')
-A = TypeVar('A', bound='AbstractServiceClient')
+S = TypeVar("S", bound="BaseEntity")
+A = TypeVar("A", bound="AbstractServiceClient")
 
 
-class BaseEntity(object):
+class BaseEntity:
     """Base Entity Type"""
 
-    def __init__(self, client: A) -> None:
+    def __init__(self: S, client: A) -> None:
         self.__client: A = client
 
     @property
     @abstractmethod
     def Json(self: S) -> Dict:
-        """Gets the object as it's dict representation
-        """
+        """Gets the object as it's dict representation"""
 
     @property
     @abstractmethod
-    def asDict(self) -> Dict:
-        """Gets the object as it's dict representation
-        """
-    
+    def as_dict(self) -> Dict:
+        """Gets the object as it's dict representation"""
+
     @property
     @abstractmethod
     def __json__(self) -> str:
-        """Gest the object's json representation
-        """
+        """Gest the object's json representation"""
 
     @property
     def Client(self: S) -> A:
-        """Gets the client
-        """
+        """Gets the client"""
         return self.__client
 
     @classmethod
     @abstractmethod
-    def fromJson(cls: Type[S], entry: Dict) -> S: ...
+    def from_json(cls: Type[S], entry: Dict) -> S:
+        """Converts Json to class type"""

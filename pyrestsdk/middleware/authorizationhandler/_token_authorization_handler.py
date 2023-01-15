@@ -41,7 +41,7 @@ class TokenAuthorizationHandler(BaseAuthorizationHandler):
         context = request.context  # type: ignore
 
         request.headers.update(
-            {"Authorization": "Bearer {}".format(self._get_access_token(context))}
+            {"Authorization": f"Bearer {self._get_access_token(context)}"}
         )
 
         context.set_feature_usage = FeatureUsageFlag.AUTH_HANDLER_ENABLED

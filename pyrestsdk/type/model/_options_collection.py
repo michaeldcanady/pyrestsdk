@@ -6,6 +6,7 @@ from pyrestsdk.type.model._option import Option
 
 O = TypeVar("O", bound=Option)
 
+
 class OptionsCollection(TypeCollection[O]):
     """Option Collection Type"""
 
@@ -21,19 +22,17 @@ class OptionsCollection(TypeCollection[O]):
     def __setitem__(self, index: int, value: O) -> None:
         self._internal_list[index] = value
 
-    def asDict(self) -> Dict[str, Any]:
-        """Gets the object as it's dict representation
-        """
+    def as_dict(self) -> Dict[str, Any]:
+        """Gets the object as it's dict representation"""
 
         _return: Dict = {}
 
         for value in self._internal_list:
-            _return.update(value.asDict())
+            _return.update(value.as_dict())
 
         return _return
 
-    def asList(self) -> List[O]:
-        """Gets the object as it's list representation
-        """
+    def as_list(self) -> List[O]:
+        """Gets the object as it's list representation"""
 
-        return [_option for _option in self._internal_list]
+        return self._internal_list

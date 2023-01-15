@@ -41,7 +41,7 @@ class BasicAuthorizationHandler(BaseAuthorizationHandler):
         context = request.context  # type: ignore
 
         request.headers.update(
-            {"Authorization": "Basic {}".format(self._get_basic_auth())}
+            {"Authorization": f"Basic {self._get_basic_auth()}"}
         )
 
         context.set_feature_usage = FeatureUsageFlag.AUTH_HANDLER_ENABLED

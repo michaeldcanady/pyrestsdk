@@ -5,6 +5,3 @@ from pyrestsdk.type.model._query_option import QueryOption
 
 class QueryOptionCollection(OptionsCollection[QueryOption]):
     """Query Option Collection Type"""
-
-    def __init__(self) -> None:
-        super().__init__()
