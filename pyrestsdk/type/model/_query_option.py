@@ -1,9 +1,10 @@
-from typing import Any
+"""Houses Query Option Type"""
 
-# internal imports
+from typing import Any
 from pyrestsdk.type.model._option import Option
 
 class QueryOption(Option):
+    """Query Option Type"""
 
     def __init__(self, name: str, value: Any) -> None:
         super().__init__(name, value)

@@ -1,5 +1,7 @@
+"""Houses Base Entity"""
+
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, TypeVar, Type, Optional
+from typing import TYPE_CHECKING, Dict, TypeVar, Type
 from abc import abstractmethod
 
 if TYPE_CHECKING:
@@ -10,6 +12,7 @@ A = TypeVar('A', bound='AbstractServiceClient')
 
 
 class BaseEntity(object):
+    """Base Entity Type"""
 
     def __init__(self, client: A) -> None:
         self.__client: A = client
