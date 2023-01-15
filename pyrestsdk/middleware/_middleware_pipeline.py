@@ -1,9 +1,9 @@
 """Houses Middleware Pipeline"""
 
 from typing import TypeVar
-from requests import PreparedRequest, Response
 import json
 import ssl
+from requests import PreparedRequest, Response
 from requests.adapters import HTTPAdapter
 from urllib3 import PoolManager
 from pyrestsdk.middleware import BaseMiddleware

@@ -4,8 +4,9 @@ from typing import TypeVar
 from pyrestsdk.credential import AbstractCredential
 from pyrestsdk.middleware._base_middleware import BaseMiddleware
 
-C = TypeVar('C', bound=AbstractCredential)
-A = TypeVar('A', bound='BaseAuthorizationHandler')
+C = TypeVar("C", bound=AbstractCredential)
+A = TypeVar("A", bound="BaseAuthorizationHandler")
+
 
 class BaseAuthorizationHandler(BaseMiddleware):
     """Base Authorization Handler Type"""

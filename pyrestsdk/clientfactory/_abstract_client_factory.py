@@ -40,7 +40,7 @@ class AbstractHTTPClientFactory(ABC):
         Helper method that constructs a middleware_pipeline with the specified middleware
         """
 
-        Logger.info(f"{type(self)}._register: method called")
+        Logger.info("%s._register: method called", type(self))
 
         if middleware:
             middleware_pipeline = MiddlewarePipeline()

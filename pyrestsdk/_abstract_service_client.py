@@ -5,12 +5,13 @@ from abc import ABC, abstractmethod
 from requests import Response, Session
 
 
-S = TypeVar('S', bound='AbstractServiceClient')
+S = TypeVar("S", bound="AbstractServiceClient")
+
 
 class AbstractServiceClient(ABC):
     """Abstract Service Client Type"""
 
-    def __new__(cls: Type[S], *args, **kwargs) -> S:
+    def __new__(cls: Type[S], /) -> S:
         if getattr(AbstractServiceClient, "__instance", None) is None:
             AbstractServiceClient.__instance = object.__new__(cls)
         return AbstractServiceClient.__instance
@@ -30,7 +31,7 @@ class AbstractServiceClient(ABC):
         :param \*\*kwargs: Optional arguments that ``request`` takes.
         :rtype: requests.Response
         """
-    
+
     @abstractmethod
     def head(self, url: str, **kwargs) -> Response:
         r"""Sends a HEAD request. Returns :class:`Response` object.
