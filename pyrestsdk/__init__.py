@@ -1,3 +1,5 @@
+"""Py REST SDK"""
+
 from pyrestsdk._abstract_service_client import AbstractServiceClient
 from pyrestsdk.type.enum._feature_usage_flag import FeatureUsageFlag
 

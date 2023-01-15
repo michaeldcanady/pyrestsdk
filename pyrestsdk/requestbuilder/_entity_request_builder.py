@@ -1,3 +1,5 @@
+"""Houses Entity Request Builder"""
+
 from __future__ import annotations
 from typing import TypeVar, Iterable, Optional
 from abc import abstractmethod
@@ -13,9 +15,6 @@ O = TypeVar("O", bound=Option)
 
 class EntityRequestBuilder(BaseRequestBuilder):
     """Entity Request Builder Type"""
-
-    def __init__(self: B, request_url: str, client: S) -> None:
-        super().__init__(request_url, client)
 
     @property
     @abstractmethod

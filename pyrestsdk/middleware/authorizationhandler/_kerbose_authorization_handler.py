@@ -1,8 +1,8 @@
+"""Houses Kerbose Authorization Handler"""
+
 from typing import TypeVar
 from requests import PreparedRequest, Response
 from requests_kerberos import HTTPKerberosAuth, OPTIONAL
-
-# internal imports
 from pyrestsdk.middleware import BaseAuthorizationHandler
 from pyrestsdk.credential import AbstractKerbroseCredential
 from pyrestsdk.type.enum import FeatureUsageFlag
@@ -12,6 +12,7 @@ A = TypeVar("A", bound="KerboseAuthorizationHandler")
 
 
 class KerboseAuthorizationHandler(BaseAuthorizationHandler):
+    """Kerbose Authorization Handler Type"""
 
     credential: T
 

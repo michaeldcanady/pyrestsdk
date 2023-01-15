@@ -1,7 +1,9 @@
-from abc import ABC, abstractmethod
+"""Houses Abstract Credential"""
+
+from abc import ABC
+
 
 class AbstractCredential(ABC):
-    """The Base for credentials
-    """
+    """Abstract Credential Type"""
 
     pass

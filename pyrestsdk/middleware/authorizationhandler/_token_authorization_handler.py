@@ -1,7 +1,7 @@
+"""Houses Token Authorization Handler"""
+
 from typing import TypeVar
 from requests import PreparedRequest, Response
-
-# internal imports
 from pyrestsdk.middleware._base_authorization_handler import BaseAuthorizationHandler
 from pyrestsdk.credential import AbstractTokenCredential
 from pyrestsdk.type.enum import FeatureUsageFlag
@@ -11,6 +11,7 @@ A = TypeVar("A", bound="TokenAuthorizationHandler")
 
 
 class TokenAuthorizationHandler(BaseAuthorizationHandler):
+    """Token Authorization Handler Type"""
 
     credential: T
 

@@ -1,15 +1,15 @@
-from abc import abstractmethod
+"""Houses Abstract Kerbrose Credential"""
 
-# internal imports
+from abc import abstractmethod
 from pyrestsdk.credential._abstract_credential import AbstractCredential
 
 
 class AbstractKerbroseCredential(AbstractCredential):
+    """Abstract Kerbrose Credential Type"""
 
     def __init__(self) -> None:
         super().__init__()
 
     @abstractmethod
-    def get_principle(self) -> str:
-        """Gets the principle information for authing
-        """
+    def get_principle(self, /) -> str:
+        """Gets the principle information for authing"""

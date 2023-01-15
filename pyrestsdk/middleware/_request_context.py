@@ -1,3 +1,5 @@
+"""Houses Request Context"""
+
 import uuid
 from pyrestsdk import FeatureUsageFlag
 
@@ -8,6 +10,7 @@ class RequestContext:
     of middleware as well as a FeatureUsage  property to keep track of middleware used
     in making the request.
     """
+    
     def __init__(self, middleware_control, headers) -> None:
         """Constructor for request context instances
 
@@ -25,6 +28,8 @@ class RequestContext:
 
     @property
     def feature_usage(self) -> str:
+        """Gets/Sets feature usage flag"""
+        
         return hex(self._feature_usage)
 
     @feature_usage.setter

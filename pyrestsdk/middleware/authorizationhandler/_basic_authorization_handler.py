@@ -1,7 +1,7 @@
+"""Houses Basic Authorization Handler"""
+
 from typing import TypeVar
 from requests import PreparedRequest, Response
-
-# internal imports
 from pyrestsdk.middleware._base_authorization_handler import BaseAuthorizationHandler
 from pyrestsdk.credential import AbstractBasicCredential
 from pyrestsdk.type.enum import FeatureUsageFlag
@@ -11,6 +11,7 @@ A = TypeVar("A", bound="BasicAuthorizationHandler")
 
 
 class BasicAuthorizationHandler(BaseAuthorizationHandler):
+    """Basic Authoziation Handler Type"""
 
     credential: T
 
@@ -42,11 +43,11 @@ class BasicAuthorizationHandler(BaseAuthorizationHandler):
             return self.send(request, **kwargs)
         return response
 
-    def _get_basic_auth(self: A, *args, **kwargs) -> str:
+    def _get_basic_auth(self: A, /) -> str:
         """Gets the encoded string from the credential's get_basic() function
 
         Returns:
             str: The encoded string
         """
 
-        return self.credential.get_basic(*args, **kwargs)
+        return self.credential.get_basic()

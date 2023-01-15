@@ -1,4 +1,7 @@
+"""Houses Abstract Request"""
+
 from __future__ import annotations
+from abc import abstractmethod
 from typing import (
     List,
     Union,
@@ -11,7 +14,6 @@ from typing import (
     Iterable,
 )
 from requests import Response
-from abc import abstractmethod
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import (

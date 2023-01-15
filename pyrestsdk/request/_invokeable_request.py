@@ -1,5 +1,7 @@
+"""Houses Invokable Request"""
+
 from __future__ import annotations
-from typing import Type, Iterable, TypeVar, Optional, Union, List
+from typing import TypeVar, Optional, Union, List
 from abc import abstractmethod
 
 # internal imports
@@ -14,13 +16,7 @@ S = TypeVar("S", bound="AbstractServiceClient")
 
 
 class InvokableRequest(BaseRequest[T]):
-    def __init__(
-        self: B,
-        request_url: str,
-        client: S,
-        options: Optional[Iterable[O]],
-    ) -> None:
-        super().__init__(request_url, client, options)
+    """Invokable Request Type"""
 
     @abstractmethod
     def invoke_request(self) -> Optional[Union[List[T], T]]:

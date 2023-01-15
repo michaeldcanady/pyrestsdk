@@ -1,8 +1,11 @@
-from typing import Optional, TypeVar
+"""Houses base Middleware"""
+
+from typing import Optional, TypeVar, Union, Tuple, Mapping
 from requests import PreparedRequest, Response
 from requests.adapters import HTTPAdapter
 
-B = TypeVar('B', bound='BaseMiddleware')
+B = TypeVar("B", bound="BaseMiddleware")
+
 
 class BaseMiddleware(HTTPAdapter):
     """Base class for middleware
@@ -17,7 +20,17 @@ class BaseMiddleware(HTTPAdapter):
     def __init__(self):
         super().__init__()
 
-    def send(self: B, request: PreparedRequest, **kwargs) -> Response:
+    def send(
+        self: B,
+        request: PreparedRequest,
+        stream: bool = False,
+        timeout: Optional[float | Tuple[float, float] | Tuple[float, None]] = None,
+        verify: bool = True,
+        cert: Optional[
+            Union[bytes, str, Tuple[Union[bytes, str], Union[bytes, str]]]
+        ] = None,
+        proxies: Optional[Mapping[str, str]] = None,
+    ) -> Response:
         """Makes a network request if next is none, otherwise requests the next middleware to do so
 
         Args:
@@ -28,5 +41,5 @@ class BaseMiddleware(HTTPAdapter):
         """
 
         if self.next is None:
-            return super().send(request, **kwargs)
-        return self.next.send(request, **kwargs)
+            return super().send(request, stream, timeout, verify, cert, proxies)
+        return self.next.send(request, stream, timeout, verify, cert, proxies)

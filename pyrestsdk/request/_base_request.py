@@ -1,3 +1,5 @@
+"""Houses Base Request"""
+
 from __future__ import annotations
 from typing import (
     Dict,
@@ -8,16 +10,11 @@ from typing import (
     Optional,
     Iterable,
 )
-
-from requests import Response
-
 from abc import abstractmethod
-
 import logging
+from requests import Response
 from urllib.parse import urlparse
 import json
-
-# Internal Imports
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.type.enum import HttpsMethod
