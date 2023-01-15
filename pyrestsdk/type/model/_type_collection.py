@@ -8,7 +8,7 @@ OC = TypeVar("OC", bound="TypeCollection")
 
 class TypeCollection(MutableSequence[T]):
     """Type Collection Type"""
-    
+
     def __init__(self) -> None:
         super().__init__()
 

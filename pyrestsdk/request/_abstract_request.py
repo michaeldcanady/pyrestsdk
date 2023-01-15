@@ -24,7 +24,7 @@ from pyrestsdk.type.model import (
 )
 
 B = TypeVar("B", bound="AbstractRequest")
-S = TypeVar("S", bound="AbstractServiceClient")
+S = TypeVar("S", bound=AbstractServiceClient)
 O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
@@ -57,7 +57,7 @@ class AbstractRequest(Generic[T]):
     @property
     def Client(self: B) -> S:
         """Gets the Client"""
-        
+
         return self._client
 
     @property
@@ -72,7 +72,7 @@ class AbstractRequest(Generic[T]):
             # used if typ arg is provided when subclassing
             orig_bases = getattr(self, "__orig_bases__")
             orig_value = orig_bases[0]
-        
+
         _type: Type[T] = get_args(orig_value)[0]
 
         return _type

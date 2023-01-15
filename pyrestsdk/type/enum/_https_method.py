@@ -4,7 +4,7 @@ from enum import IntEnum, auto
 
 
 class HttpsMethod(IntEnum):
-    """HTTPS Method enum"""    
+    """HTTPS Method enum"""
 
     GET = auto()
     POST = auto()

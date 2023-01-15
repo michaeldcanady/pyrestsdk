@@ -85,8 +85,8 @@ class BaseRequest(AbstractRequest[T]):
         url = urlparse(request_url)
 
         if url.query:
-            queryString = url.query
-            query_options = queryString.split("&")
+            query_string = url.query
+            query_options = query_string.split("&")
             for option in query_options:
                 query_parameter, value = option.split("=")
                 _query_parameter = QueryOption(query_parameter, value)
@@ -94,11 +94,12 @@ class BaseRequest(AbstractRequest[T]):
 
         return url._replace(query="").geturl()
 
-    def Send(self, object: Optional[T]) -> Optional[Union[List[T], T]]:
+    def Send(self, __object: Optional[T]) -> Optional[Union[List[T], T]]:
+        """Submits the request and returns the expected return"""
 
         Logger.info("%s.Send: method called", type(self).__name__)
 
-        return self.send_request(object)
+        return self.send_request(__object)
 
     def send_request(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
         """Makes the desired request and returns the desired return type"""
@@ -159,7 +160,7 @@ if version_info >= (3, 10):
     def _parse_options(self, options: Optional[Iterable[O]]) -> None:
         """Parses the provided options into either header or query options"""
 
-        Logger.info(f"{type(self).__name__}._parse_options: function called")
+        Logger.info("%s._parse_options: function called", type(self).__name__)
 
         if options is None:
             return None
@@ -191,7 +192,8 @@ else:
                 self._query_options.append(option)
             else:
                 raise Exception(
-                    f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption"
+                    "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
+                    type(option),
                 )
 
 
