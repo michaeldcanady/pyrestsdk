@@ -96,18 +96,21 @@ class TypeCollection(MutableSequence[T]):
     def sort(self, /, *args, **kwds):
         """Sort the list in ascending order and return None.
 
-        The sort is in-place (i.e. the list itself is modified) and stable (i.e. the order of two equal elements is maintained).
+        The sort is in-place (i.e. the list itself is modified)
+        and stable (i.e. the order of two equal elements is maintained).
 
-        If a key function is given, apply it once to each list item and sort them, ascending or descending, according to their function values.
+        If a key function is given, apply it once to each list
+        item and sort them, ascending or descending, according to their
+        function values.
 
         The reverse flag can be set to sort in descending order.
         """
         self._internal_list.sort(*args, **kwds)
 
-    def extend(self: OC, other: Union[Iterable, OC]) -> None:
+    def extend(self: OC, values: Union[Iterable, OC]) -> None:
         """Extend list by appending elements from the iterable."""
 
-        if isinstance(other, TypeCollection) or issubclass(type(other), TypeCollection):
-            other = iter(other)
+        if isinstance(values, TypeCollection) or issubclass(type(values), TypeCollection):
+            other = iter(values)
 
-        self._internal_list.extend(other)
+        self._internal_list.extend(values)
