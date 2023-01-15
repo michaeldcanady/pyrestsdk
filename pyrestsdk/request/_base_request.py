@@ -26,6 +26,8 @@ from pyrestsdk.type.model import (
     QueryOptionCollection,
 )
 
+from sys import version_info
+
 Logger = logging.getLogger(__name__)
 
 S = TypeVar("S", bound="AbstractServiceClient")
@@ -38,7 +40,7 @@ Q = TypeVar("Q", bound=QueryOption)
 
 class BaseRequest(AbstractRequest[T]):
     """The Base Request Type"""
-    
+
     def __init__(
         self: B, request_url: str, client: S, options: Optional[Iterable[O]]
     ) -> None:
@@ -72,9 +74,12 @@ class BaseRequest(AbstractRequest[T]):
 
         return self._query_options
 
+
+if version_info >= (3, 10):
+
     def _parse_options(self, options: Optional[Iterable[O]]) -> None:
         """Parses the provided options into either header or query options"""
-        
+
         Logger.info(f"{type(self).__name__}._parse_options: function called")
 
         if options is None:
@@ -92,9 +97,27 @@ class BaseRequest(AbstractRequest[T]):
                         type(option),
                     )
 
+else:
+
+    def _parse_options(self, options: Optional[Iterable[O]]) -> None:
+        """Parses the provided options into either header or query options"""
+
+        if options is None:
+            return None
+
+        for option in options:
+            if issubclass(type(option), HeaderOption):
+                self._headers.append(option)
+            elif issubclass(type(option), QueryOption):
+                self._query_options.append(option)
+            else:
+                raise Exception(
+                    f"Unexpected type: {type(option)}, expected subtype of HeaderOption or QueryOption"
+                )
+
     def _initialize_url(self, request_url: str) -> str:
         """Parses the query parameters from URL"""
-        
+
         Logger.info(f"{type(self).__name__}._initialize_url: function called")
 
         if not request_url:
