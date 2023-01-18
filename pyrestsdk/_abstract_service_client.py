@@ -11,7 +11,7 @@ S = TypeVar("S", bound="AbstractServiceClient")
 class AbstractServiceClient(ABC):
     """Abstract Service Client Type"""
 
-    def __new__(cls: Type[S], /) -> S:
+    def __new__(cls: Type[S], *args, **kwargs) -> S:
         if getattr(AbstractServiceClient, "__instance", None) is None:
             AbstractServiceClient.__instance = object.__new__(cls)
         return AbstractServiceClient.__instance

@@ -13,9 +13,13 @@ A = TypeVar("A", bound="AbstractServiceClient")
 
 class BaseEntity:
     """Base Entity Type"""
+    
+    __slots__ = ["__client"]
+    
+    __client: A
 
     def __init__(self: S, client: A) -> None:
-        self.__client: A = client
+        self.__client = client
 
     @property
     @abstractmethod

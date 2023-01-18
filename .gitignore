@@ -30,3 +30,5 @@ start.exe
 testing.py
 
 .pypirc
+
+pyrestsdk.egg-info/
