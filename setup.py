@@ -1,7 +1,8 @@
-from setuptools import setup
-from typing import List
-from pyrestsdk import __version__, __module_name__
+"""Module Setup"""
 import os
+from typing import List
+from setuptools import setup
+from pyrestsdk import __version__, __module_name__
 
 
 def get_packages(directory: str) -> List[str]:

@@ -1,8 +1,7 @@
-from typing import Any
-# internal imports
+"""Houses Header Option"""
+
 from pyrestsdk.type.model._option import Option
 
-class HeaderOption(Option):
 
-    def __init__(self, name: str, value: Any) -> None:
-        super().__init__(name, value)
+class HeaderOption(Option):
+    """Header Option Type"""

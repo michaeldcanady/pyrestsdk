@@ -1,15 +1,16 @@
+"""Houses the Abstract Token Credential"""
+
 from abc import abstractmethod
 from typing import TypeVar
-
-# internal imports
 from pyrestsdk.credential._abstract_credential import AbstractCredential
 from pyrestsdk.type.model.token import AccessToken
 
-A = TypeVar('A', bound=AccessToken)
+A = TypeVar("A", bound=AccessToken)
+
 
 class AbstractTokenCredential(AbstractCredential):
-    """The base for token credentials
-    """
+    """Abstract Token Credential Type"""
 
     @abstractmethod
-    def get_token(self, *args, **kwargs) -> A: ...
+    def get_token(self, /) -> A:
+        """Gets the access token"""

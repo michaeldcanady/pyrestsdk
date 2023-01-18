@@ -1,17 +1,16 @@
+"""Houses Middleware Pipeline"""
+
+from typing import TypeVar
 import json
 import ssl
-from typing import Optional, TypeVar
 from requests import PreparedRequest, Response
-
 from requests.adapters import HTTPAdapter
 from urllib3 import PoolManager
-
 from pyrestsdk.middleware import BaseMiddleware
-
-# internal imports
 from pyrestsdk.middleware._request_context import RequestContext
 
 B = TypeVar("B", bound=BaseMiddleware)
+
 
 class MiddlewarePipeline(HTTPAdapter):
     """MiddlewarePipeline, entry point of middleware
@@ -26,8 +25,7 @@ class MiddlewarePipeline(HTTPAdapter):
         self.poolmanager = PoolManager(ssl_version=ssl.PROTOCOL_TLSv1_2)
 
     def add_middleware(self, middleware: B) -> None:
-        """Adds middleware to the pipeline
-        """
+        """Adds middleware to the pipeline"""
 
         if self._current_middleware is not None:
             self._current_middleware.next = middleware
@@ -36,20 +34,29 @@ class MiddlewarePipeline(HTTPAdapter):
             self._first_middleware = middleware
             self._current_middleware = self._first_middleware
 
-    def send(self, request: PreparedRequest, **kwargs) -> Response:
-        """Sends the prepared request through the middleware pipeline
-        """
+    def send(
+        self,
+        request: PreparedRequest,
+        stream: bool = False,
+        timeout=None,
+        verify: bool = True,
+        cert=None,
+        proxies=None,
+    ) -> Response:
+        """Sends the prepared request through the middleware pipeline"""
 
-        middleware_control_json = request.headers.pop('middleware_control', None)
+        middleware_control_json = request.headers.pop("middleware_control", None)
         if middleware_control_json:
             middleware_control = json.loads(middleware_control_json)
         else:
-            middleware_control = dict()
-        
+            middleware_control = {}
+
         # Set Context
         request.context = RequestContext(middleware_control, request.headers)
 
         if self._first_middleware is not None:
-            return self._first_middleware.send(request, **kwargs)
+            return self._first_middleware.send(
+                request, stream, timeout, verify, cert, proxies
+            )
         # No middleware in pipeline, call superclass' send
-        return super().send(request, **kwargs)
+        return super().send(request, stream, timeout, verify, cert, proxies)

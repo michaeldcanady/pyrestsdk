@@ -1,17 +1,14 @@
-from typing import MutableSequence, List, Dict, TypeVar
+"""Houses Options Collection"""
 
-# internal imports
+from typing import List, Dict, TypeVar, Any
+from pyrestsdk.type.model._type_collection import TypeCollection
 from pyrestsdk.type.model._option import Option
 
 O = TypeVar("O", bound=Option)
 
-class OptionsCollection(MutableSequence[O]):
-    def __init__(self) -> None:
-        super().__init__()
-        self._internal_list: List[O] = []
 
-    def append(self, __option: O) -> None:
-        self._internal_list.append(__option)
+class OptionsCollection(TypeCollection[O]):
+    """Option Collection Type"""
 
     def __getitem__(self, index: int) -> Option:
         return self._internal_list[index]
@@ -25,38 +22,17 @@ class OptionsCollection(MutableSequence[O]):
     def __setitem__(self, index: int, value: O) -> None:
         self._internal_list[index] = value
 
-    def insert(self, index: int, value: O) -> None:
-        return self._internal_list.insert(index, value)
-
-    def asDict(self) -> Dict:
-        """Gets the object as it's dict representation
-        """
+    def as_dict(self) -> Dict[str, Any]:
+        """Gets the object as it's dict representation"""
 
         _return: Dict = {}
 
         for value in self._internal_list:
-            _return.update(value.asDict())
+            _return.update(value.as_dict())
 
         return _return
 
-    def asList(self) -> List[O]:
-        """Gets the object as it's list representation
-        """
+    def as_list(self) -> List[O]:
+        """Gets the object as it's list representation"""
 
-        return [_option for _option in self._internal_list]
-
-    def __iter__(self):
-        for k, v in self.asDict().items():
-            if type(v) == list:
-                v = ",".join(v)
-            yield k, v
-
-    def __str__(self) -> str:
-        """Gets the object as it's string representation"""
-
-        _params = []
-
-        for k, v in iter(self):
-            _params.append("%s=%s" % (k, v))
-
-        return "&".join(_params)
+        return self._internal_list

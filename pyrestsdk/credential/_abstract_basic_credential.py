@@ -1,11 +1,12 @@
-from abc import abstractmethod
+"""House Abstract Basic Credential"""
 
-# internal imports
+from abc import abstractmethod
 from pyrestsdk.credential._abstract_credential import AbstractCredential
 
+
 class AbstractBasicCredential(AbstractCredential):
-    """The base for Basic Credentials
-    """
+    """Abstract Basic Credential Type"""
 
     @abstractmethod
-    def get_basic(self, *args, **kwargs) -> str: ...
+    def get_basic(self, /) -> str:
+        """Gets the basic credential encoded string"""

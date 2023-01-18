@@ -1,58 +1,37 @@
-"""Houses Abstract Request"""
+"""Houses Abstract Request Builder"""
 
 from __future__ import annotations
-from abc import abstractmethod
 from typing import (
-    List,
-    Union,
     TypeVar,
     Generic,
     Type,
     final,
     get_args,
-    Optional,
-    Iterable,
 )
-from requests import Response
 from pyrestsdk import AbstractServiceClient
-from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import (
     QueryOption,
     HeaderOption,
-    HeaderOptionCollection,
-    QueryOptionCollection,
 )
 
-B = TypeVar("B", bound="AbstractRequest")
+B = TypeVar("B", bound="AbstractRequestBuilder")
 S = TypeVar("S", bound=AbstractServiceClient)
 O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
 
-class AbstractRequest(Generic[T]):
+class AbstractRequestBuilder(Generic[T]):
     """Abstract Request Type"""
+
+    _client: S
+    _request_url: str
 
     def __init__(self: B, request_url: str, client: S) -> None:
 
         super().__init__()
 
         self._request_url: str = request_url
-        self._client: S = client
-
-    @property
-    @abstractmethod
-    def header_options(self) -> HeaderOptionCollection:
-        """Gets the headers"""
-
-    @property
-    @abstractmethod
-    def request_method(self) -> HttpsMethod:
-        """Gets/Sets the https method"""
-
-    @property
-    @abstractmethod
-    def query_options(self) -> QueryOptionCollection:
-        """Gets the query options"""
+        self._client = client
 
     @property
     def Client(self: B) -> S:
@@ -90,22 +69,6 @@ class AbstractRequest(Generic[T]):
     @request_url.setter
     def request_url(self: B, value: str) -> None:
         self._request_url = value
-
-    @abstractmethod
-    def _parse_options(self, options: Optional[Iterable[O]]) -> None:
-        """Parses the provided options into either header or query options"""
-
-    @abstractmethod
-    def _initialize_url(self, request_url: str) -> str:
-        """Parses the query parameters from URL"""
-
-    @abstractmethod
-    def send_request(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
-        """Makes the desired request and returns the desired return type"""
-
-    @abstractmethod
-    def _send_request(self, value: Optional[T]) -> Optional[Response]:
-        """Makes the desired request and returns Response or None"""
 
     def append_segment_to_request_url(self, url_segment: str) -> str:
         """Gets a URL that is the request builder's request URL with the segment appended.
