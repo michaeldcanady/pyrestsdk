@@ -1,6 +1,11 @@
 """Requests"""
-
-from pyrestsdk.request._base_request import BaseRequest
+from sys import version_info
 from pyrestsdk.request._invokeable_request import InvokableRequest
+from pyrestsdk.request._request import Request
 
-__all__ = ["BaseRequest", "InvokableRequest"]
+if version_info > (3,10):
+    from pyrestsdk.request._base_request39 import BaseRequest
+else:
+    from pyrestsdk.request._base_request310 import BaseRequest
+
+__all__ = ["BaseRequest", "InvokableRequest", "Request"]
