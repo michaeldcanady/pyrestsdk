@@ -50,9 +50,9 @@ class BaseRequest(Request[T]):
 
         for option in options:
             if issubclass(type(option), HeaderOption):
-                self._headers.append(option)
+                self.header_options.append(option)
             elif issubclass(type(option), QueryOption):
-                self._query_options.append(option)
+                self.query_options.append(option)
             else:
                 raise Exception(
                     "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
@@ -68,24 +68,24 @@ class BaseRequest(Request[T]):
         }
 
         Logger.info(
-            f"{type(self).__name__}._sendRequest: {self.Method.name} request made"
+            f"{type(self).__name__}._sendRequest: {self.request_method.name} request made"
         )
 
-        _func = _request_dict.get(self.Method, None)
+        _func = _request_dict.get(self.request_method, None)
 
         if _func is None:
-            raise Exception(f"Unknown HTTPS method {self.Method.name}")
+            raise Exception(f"Unknown HTTPS method {self.request_method.name}")
 
         _response = _func(
-            url=self.RequestUrl,
+            url=self.request_url,
             params=str(self._query_options),
             data=json.dumps(value.Json) if value is not None else None,
         )
 
-        if self.Method == HttpsMethod.DELETE:
+        if self.request_method == HttpsMethod.DELETE:
             return None
 
-        return
+        return _response
 
 
 def parse_result(obj_type: Type[T], result: Dict, client) -> T:

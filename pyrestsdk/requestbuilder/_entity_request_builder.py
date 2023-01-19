@@ -5,7 +5,7 @@ from typing import TypeVar, Iterable, Optional
 from abc import abstractmethod
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.requestbuilder._base_request_builder import BaseRequestBuilder
-from pyrestsdk.request._base_request import BaseRequest
+from pyrestsdk.request import BaseRequest
 from pyrestsdk.type.model import Option
 
 S = TypeVar("S", bound=AbstractServiceClient)

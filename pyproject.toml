@@ -28,6 +28,7 @@ dependencies = [
     "requests-kerberos==0.14.0",
     "tomli==2.0.1",
     "urllib3==1.26.13",
+    "typing_extensions==4.4.0",
 ]
 
 [project.urls]
