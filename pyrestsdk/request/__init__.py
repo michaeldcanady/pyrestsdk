@@ -1,6 +1,5 @@
 """Requests"""
 from sys import version_info
-from pyrestsdk.request._invokeable_request import InvokableRequest
 from pyrestsdk.request._request import Request
 
 if version_info > (3,10):
@@ -8,4 +7,4 @@ if version_info > (3,10):
 else:
     from pyrestsdk.request._base_request310 import BaseRequest
 
-__all__ = ["BaseRequest", "InvokableRequest", "Request"]
+__all__ = ["BaseRequest", "Request"]
