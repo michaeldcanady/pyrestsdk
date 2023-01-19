@@ -74,7 +74,8 @@ class BaseRequest(Request[T]):
         match self.request_method:
             case HttpsMethod.GET:
                 return self._client.get(
-                    url=self.request_url, params=str(self.query_options)
+                    url=self.request_url,
+                    params=str(self.query_options),
                 )
             case HttpsMethod.POST:
                 return self._client.post(
