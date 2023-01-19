@@ -53,9 +53,9 @@ class BaseRequest(Request[T]):
         for option in options:
             match type(option):
                 case n if issubclass(n, HeaderOption):
-                    self._header_options.append(option)
+                    self.header_options.append(option)
                 case n if issubclass(n, QueryOption):
-                    self._query_options.append(option)
+                    self.query_options.append(option)
                 case other:
                     raise Exception(
                         "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",

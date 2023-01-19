@@ -51,7 +51,7 @@ class Request(AbstractRequest[T]):
         self._query_options: QueryOptionCollection = QueryOptionCollection()
         self._header_options: HeaderOptionCollection = HeaderOptionCollection()
         self._parse_options(options)
-
+    
     @property
     def header_options(self) -> HeaderOptionCollection:
         """Gets the headers"""
