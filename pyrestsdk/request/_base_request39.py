@@ -87,6 +87,7 @@ class BaseRequest(Request[T]):
 
         return
 
+
 def parse_result(obj_type: Type[T], result: Dict, client) -> T:
     return obj_type(client).from_json(result)
 
