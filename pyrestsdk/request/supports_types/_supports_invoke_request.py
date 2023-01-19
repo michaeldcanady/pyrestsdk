@@ -1,6 +1,9 @@
 from __future__ import annotations
-from typing import Protocol, Optional, Union, List
+from typing import Protocol, Optional, Union, List, TypeVar
 from abc import abstractmethod
+from pyrestsdk.type.model import BaseEntity
+
+T = TypeVar("T", bound=BaseEntity)
 
 class SupportsInvokeRequest(Protocol):
 

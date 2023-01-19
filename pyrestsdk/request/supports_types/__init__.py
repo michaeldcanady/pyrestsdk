@@ -2,7 +2,7 @@ from pyrestsdk.request.supports_types._supports_invoke_request import (
     SupportsInvokeRequest,
 )
 
-__all__ = ["SupportsInvokeRequests"]
+__all__ = ["SupportsInvokeRequest"]
 
 # TODO Create Supports for each request type
 # @runtime_checkable
