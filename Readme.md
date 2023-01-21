@@ -1,14 +1,19 @@
 # pyrestsdk
 
-## Distributing
-Check any of the Release/* branches to find the needed version
-Check under dist for the .whl file
+PyREST SDK is a fully python toolkit for wrapping REST APIs or creating SDKs for REST APIs.
 
-```bash
-pip install *.whl
+It includes:
+- Credentials
+- Client handling
+- Building API paths
+- Formulating complex requests
+- dynamic structure to object-ify any API return
+
+## Installing
+Install and update using [pip](https://pip.pypa.io/en/stable/getting-started/):
+``` bash
+$ pip install -U pyrestsdk
 ```
 
-## Making Wheel
-```bash
-python setup.py bdist_wheel --universal
-```
+## Projects using PyREST SDK:
+- [pyService-Now](https://github.com/michaeldcanady/pyservicenow)
