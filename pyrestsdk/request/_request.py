@@ -65,7 +65,7 @@ class Request(AbstractRequest[T]):
     @request_method.setter
     def request_method(self, value: HttpsMethod) -> None:
         self._method = value
-        Logger.info("%s.Method: _method set to %s", type(self).__name__, value)
+        Logger.info("%s.Method: request method set to %s", type(self).__name__, value)
 
     @property
     def request_url(self: B) -> str:
@@ -80,6 +80,7 @@ class Request(AbstractRequest[T]):
     @request_url.setter
     def request_url(self: B, value: str) -> None:
         self._request_url = value
+        Logger.info("%s.request_url: request URL set to %s", type(self).__name__, value)
 
     @property
     @final
