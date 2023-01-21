@@ -40,23 +40,6 @@ class AbstractRequestBuilder(Generic[T]):
         return self._client
 
     @property
-    @final
-    def generic_type(self: B) -> Type[T]:
-        """Gets the the type argument provided"""
-
-        # used if type arg is provided in constructor
-        orig_value = getattr(self, "__orig_class__", None)
-
-        if orig_value is None:
-            # used if typ arg is provided when subclassing
-            orig_bases = getattr(self, "__orig_bases__")
-            orig_value = orig_bases[0]
-
-        _type: Type[T] = get_args(orig_value)[0]
-
-        return _type
-
-    @property
     def request_url(self: B) -> str:
         """Gets/Sets the request URL
 
