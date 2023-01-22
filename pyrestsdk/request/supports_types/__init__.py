@@ -10,12 +10,24 @@ from pyrestsdk.request.supports_types._supports_invoke_request import (
     SupportsInvokeRequest,
 )
 
-from pyrestsdk.request.supports_types._supports_delete_method import (
+from pyrestsdk.request.supports_types.methods._supports_delete_method import (
     SupportsDeleteMethod,
 )
-from pyrestsdk.request.supports_types._supports_get_method import SupportsGetMethod
-from pyrestsdk.request.supports_types._supports_post_method import SupportsPostMethod
-from pyrestsdk.request.supports_types._supports_put_method import SupportsPutMethod
+from pyrestsdk.request.supports_types.methods._supports_get_method import (
+    SupportsGetMethod,
+)
+from pyrestsdk.request.supports_types.methods._supports_post_method import (
+    SupportsPostMethod,
+)
+from pyrestsdk.request.supports_types.methods._supports_put_method import (
+    SupportsPutMethod,
+)
+from pyrestsdk.request.supports_types._supports_query_options import (
+    SupportsQueryOptions,
+)
+from pyrestsdk.request.supports_types._supports_header_options import (
+    SupportsHeaderOptions,
+)
 
 __all__ = [
     "SupportsInvokeRequest",
@@ -25,4 +37,6 @@ __all__ = [
     "SupportsGetMethod",
     "SupportsPostMethod",
     "SupportsPutMethod",
+    "SupportsQueryOptions",
+    "SupportsHeaderOptions",
 ]

@@ -48,7 +48,7 @@ class TypeCollection(MutableSequence[T]):
     def __contains__(self, item) -> bool:
         return item in self._internal_list
 
-    def __copy__(self):
+    def __copy__(self: OC) -> OC:
         inst = self.__class__.__new__(self.__class__)
         inst.__dict__.update(self.__dict__)
         # Create a copy and avoid triggering descriptors

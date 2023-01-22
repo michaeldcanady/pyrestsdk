@@ -3,7 +3,6 @@ from typing import TypeVar, List
 from logging import getLogger
 from abc import ABC, abstractmethod
 from requests import Session
-from pyrestsdk.middleware import MiddlewarePipeline
 from pyrestsdk.middleware import BaseMiddleware
 from pyrestsdk.credential import AbstractBasicCredential
 
@@ -35,16 +34,8 @@ class AbstractHTTPClientFactory(ABC):
     def _set_base_url(self, url: str) -> None:
         """Helper method to set the base url"""
 
+    @abstractmethod
     def _register(self, middleware: List[B]) -> None:
         """
         Helper method that constructs a middleware_pipeline with the specified middleware
         """
-
-        Logger.info("%s._register: method called", type(self))
-
-        if middleware:
-            middleware_pipeline = MiddlewarePipeline()
-            for ware in middleware:
-                middleware_pipeline.add_middleware(ware)
-
-            self.session.mount("https://", middleware_pipeline)
