@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyrestsdk.type.model package &#8212; PyRESTSDK  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyrestsdk.type.model.token package" href="pyrestsdk.type.model.token.html" />
+    <link rel="prev" title="pyrestsdk.type.exception package" href="pyrestsdk.type.exception.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pyrestsdk-type-model-package">
+<h1>pyrestsdk.type.model package<a class="headerlink" href="#pyrestsdk-type-model-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyrestsdk.type.model.token.html">pyrestsdk.type.model.token package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyrestsdk.type.model.token.html#module-pyrestsdk.type.model.token">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-pyrestsdk.type.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyrestsdk.type.model" title="Permalink to this headline">¶</a></h2>
+<p>Houses Models</p>
+<dl class="class">
+<dt id="pyrestsdk.type.model.BaseEntity">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">BaseEntity</code><span class="sig-paren">(</span><em class="sig-param">client: A</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/type/model/_base_entity.html#BaseEntity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.BaseEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base Entity Type</p>
+<dl class="method">
+<dt id="pyrestsdk.type.model.BaseEntity.Client">
+<em class="property">property </em><code class="sig-name descname">Client</code><a class="headerlink" href="#pyrestsdk.type.model.BaseEntity.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the client</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.BaseEntity.as_dict">
+<em class="property">abstract property </em><code class="sig-name descname">as_dict</code><a class="headerlink" href="#pyrestsdk.type.model.BaseEntity.as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the object as it’s dict representation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.BaseEntity.as_json">
+<em class="property">abstract property </em><code class="sig-name descname">as_json</code><a class="headerlink" href="#pyrestsdk.type.model.BaseEntity.as_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gest the object’s json representation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.BaseEntity.from_json">
+<em class="property">abstract classmethod </em><code class="sig-name descname">from_json</code><span class="sig-paren">(</span><em class="sig-param">entry: Dict</em><span class="sig-paren">)</span> &#x2192; S<a class="reference internal" href="_modules/pyrestsdk/type/model/_base_entity.html#BaseEntity.from_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.BaseEntity.from_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts Json to class type</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.type.model.Option">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">Option</code><span class="sig-paren">(</span><em class="sig-param">Name: str</em>, <em class="sig-param">Value: Any</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/type/model/_option.html#Option"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.Option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Option Type</p>
+<dl class="attribute">
+<dt id="pyrestsdk.type.model.Option.Name">
+<code class="sig-name descname">Name</code><em class="property">: str</em><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.type.model.Option.Name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyrestsdk.type.model.Option.Value">
+<code class="sig-name descname">Value</code><em class="property">: Any</em><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.type.model.Option.Value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.Option.as_dict">
+<code class="sig-name descname">as_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict[str, Any]<a class="reference internal" href="_modules/pyrestsdk/type/model/_option.html#Option.as_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.Option.as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the object as it’s dict representation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.Option.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pyrestsdk/type/model/_option.html#Option.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.Option.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the ojbect as it’s JSON representation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.type.model.QueryOption">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">QueryOption</code><span class="sig-paren">(</span><em class="sig-param">Name: str</em>, <em class="sig-param">Value: Any</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/type/model/_query_option.html#QueryOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.QueryOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.type.model._option.Option</span></code></p>
+<p>Query Option Type</p>
+<dl class="attribute">
+<dt id="pyrestsdk.type.model.QueryOption.Name">
+<code class="sig-name descname">Name</code><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.type.model.QueryOption.Name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyrestsdk.type.model.QueryOption.Value">
+<code class="sig-name descname">Value</code><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.type.model.QueryOption.Value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.type.model.HeaderOption">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">HeaderOption</code><span class="sig-paren">(</span><em class="sig-param">Name: str</em>, <em class="sig-param">Value: Any</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/type/model/_header_option.html#HeaderOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.HeaderOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.type.model._option.Option</span></code></p>
+<p>Header Option Type</p>
+<dl class="attribute">
+<dt id="pyrestsdk.type.model.HeaderOption.Name">
+<code class="sig-name descname">Name</code><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.type.model.HeaderOption.Name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyrestsdk.type.model.HeaderOption.Value">
+<code class="sig-name descname">Value</code><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.type.model.HeaderOption.Value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.type.model.OptionsCollection">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">OptionsCollection</code><a class="reference internal" href="_modules/pyrestsdk/type/model/_options_collection.html#OptionsCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.OptionsCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.type.model._type_collection.TypeCollection</span></code></p>
+<p>Option Collection Type</p>
+<dl class="method">
+<dt id="pyrestsdk.type.model.OptionsCollection.as_dict">
+<code class="sig-name descname">as_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict[str, Any]<a class="reference internal" href="_modules/pyrestsdk/type/model/_options_collection.html#OptionsCollection.as_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.OptionsCollection.as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the object as it’s dict representation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.OptionsCollection.as_list">
+<code class="sig-name descname">as_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List[O]<a class="reference internal" href="_modules/pyrestsdk/type/model/_options_collection.html#OptionsCollection.as_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.OptionsCollection.as_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the object as it’s list representation</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.type.model.HeaderOptionCollection">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">HeaderOptionCollection</code><a class="reference internal" href="_modules/pyrestsdk/type/model/_header_option_collection.html#HeaderOptionCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.HeaderOptionCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.type.model._options_collection.OptionsCollection</span></code></p>
+<p>Header Option Collection Type</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.type.model.QueryOptionCollection">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">QueryOptionCollection</code><a class="reference internal" href="_modules/pyrestsdk/type/model/_query_option_collection.html#QueryOptionCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.QueryOptionCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.type.model._options_collection.OptionsCollection</span></code></p>
+<p>Query Option Collection Type</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.type.model.TypeCollection">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.type.model.</code><code class="sig-name descname">TypeCollection</code><a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.MutableSequence</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">typing.Generic</span></code></p>
+<p>Type Collection Type</p>
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">_TypeCollection__option: T</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append object to the end of the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the collection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param">value: T</em><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.extend">
+<code class="sig-name descname">extend</code><span class="sig-paren">(</span><em class="sig-param">values: Union[Iterable, OC]</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.extend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.extend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend list by appending elements from the iterable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.index">
+<code class="sig-name descname">index</code><span class="sig-paren">(</span><em class="sig-param">item</em>, <em class="sig-param">*args</em><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">index: int</em>, <em class="sig-param">value: T</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert object before index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.remove">
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">value: T</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove first occurrence of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.reverse">
+<code class="sig-name descname">reverse</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.reverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverses the order of the collection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.type.model.TypeCollection.sort">
+<code class="sig-name descname">sort</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/type/model/_type_collection.html#TypeCollection.sort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.type.model.TypeCollection.sort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sort the list in ascending order and return None.</p>
+<p>The sort is in-place (i.e. the list itself is modified)
+and stable (i.e. the order of two equal elements is maintained).</p>
+<p>If a key function is given, apply it once to each list
+item and sort them, ascending or descending, according to their
+function values.</p>
+<p>The reverse flag can be set to sort in descending order.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PyRESTSDK</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyrestsdk</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyrestsdk.html">pyrestsdk package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyrestsdk</a><ul>
+  <li><a href="pyrestsdk.html">pyrestsdk package</a><ul>
+  <li><a href="pyrestsdk.type.html">pyrestsdk.type package</a><ul>
+      <li>Previous: <a href="pyrestsdk.type.exception.html" title="previous chapter">pyrestsdk.type.exception package</a></li>
+      <li>Next: <a href="pyrestsdk.type.model.token.html" title="next chapter">pyrestsdk.type.model.token package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, michaeldcanady.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/pyrestsdk.type.model.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

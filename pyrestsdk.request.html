@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyrestsdk.request package &#8212; PyRESTSDK  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyrestsdk.request.supports_types package" href="pyrestsdk.request.supports_types.html" />
+    <link rel="prev" title="pyrestsdk.middleware.authorizationhandler package" href="pyrestsdk.middleware.authorizationhandler.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pyrestsdk-request-package">
+<h1>pyrestsdk.request package<a class="headerlink" href="#pyrestsdk-request-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyrestsdk.request.supports_types.html">pyrestsdk.request.supports_types package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyrestsdk.request.supports_types.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyrestsdk.request.supports_types.methods.html">pyrestsdk.request.supports_types.methods package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyrestsdk.request.supports_types.methods.html#module-pyrestsdk.request.supports_types.methods">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyrestsdk.request.supports_types.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-pyrestsdk.request">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyrestsdk.request" title="Permalink to this headline">¶</a></h2>
+<p>Requests</p>
+<dl class="class">
+<dt id="pyrestsdk.request.BaseRequest">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.request.</code><code class="sig-name descname">BaseRequest</code><span class="sig-paren">(</span><em class="sig-param">request_url: str, client: S, options: Optional[Iterable[O]]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/request/_base_request39.html#BaseRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.request.BaseRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.request._request.Request</span></code></p>
+<p>The Base Request Type</p>
+<dl class="method">
+<dt id="pyrestsdk.request.BaseRequest.parse_response">
+<em class="property">abstract </em><code class="sig-name descname">parse_response</code><span class="sig-paren">(</span><em class="sig-param">_response: Optional[requests.models.Response]</em><span class="sig-paren">)</span> &#x2192; Union[List[T], T, None]<a class="reference internal" href="_modules/pyrestsdk/request/_base_request39.html#BaseRequest.parse_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.request.BaseRequest.parse_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the response into the expected return</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.request.Request">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.request.</code><code class="sig-name descname">Request</code><span class="sig-paren">(</span><em class="sig-param">request_url: str, client: S, options: Optional[Iterable[O]]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/request/_request.html#Request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.request.Request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.request._abstract_request.AbstractRequest</span></code></p>
+<dl class="method">
+<dt id="pyrestsdk.request.Request.Client">
+<em class="property">property </em><code class="sig-name descname">Client</code><a class="headerlink" href="#pyrestsdk.request.Request.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the Client</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.Send">
+<code class="sig-name descname">Send</code><span class="sig-paren">(</span><em class="sig-param">_Request__object: Optional[T]</em><span class="sig-paren">)</span> &#x2192; Union[List[T], T, None]<a class="reference internal" href="_modules/pyrestsdk/request/_request.html#Request.Send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.request.Request.Send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submits the request and returns the expected return</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.append_segment_to_request_url">
+<code class="sig-name descname">append_segment_to_request_url</code><span class="sig-paren">(</span><em class="sig-param">url_segment: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/pyrestsdk/request/_request.html#Request.append_segment_to_request_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.request.Request.append_segment_to_request_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a URL that is the request builder’s request URL with the segment appended.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>url_segment (str): The segment to append to the request URL.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: A URL that is the request builder’s request URL with the segment appended.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.generic_type">
+<em class="property">property </em><code class="sig-name descname">generic_type</code><a class="headerlink" href="#pyrestsdk.request.Request.generic_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the the type argument provided</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.header_options">
+<em class="property">property </em><code class="sig-name descname">header_options</code><a class="headerlink" href="#pyrestsdk.request.Request.header_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the headers</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.parse_response">
+<em class="property">abstract </em><code class="sig-name descname">parse_response</code><span class="sig-paren">(</span><em class="sig-param">_response: Optional[requests.models.Response]</em><span class="sig-paren">)</span> &#x2192; Union[List[T], T, None]<a class="reference internal" href="_modules/pyrestsdk/request/_request.html#Request.parse_response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.request.Request.parse_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses the response into the expected return</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.request_method">
+<em class="property">property </em><code class="sig-name descname">request_method</code><a class="headerlink" href="#pyrestsdk.request.Request.request_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets/Sets the https method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.request_url">
+<em class="property">property </em><code class="sig-name descname">request_url</code><a class="headerlink" href="#pyrestsdk.request.Request.request_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets/Sets the request URL</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: The request URL</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.request.Request.send_request">
+<code class="sig-name descname">send_request</code><span class="sig-paren">(</span><em class="sig-param">value: Optional[T]</em><span class="sig-paren">)</span> &#x2192; Union[List[T], T, None]<a class="reference internal" href="_modules/pyrestsdk/request/_request.html#Request.send_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.request.Request.send_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes the desired request and returns the desired return type</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PyRESTSDK</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyrestsdk</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyrestsdk.html">pyrestsdk package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyrestsdk</a><ul>
+  <li><a href="pyrestsdk.html">pyrestsdk package</a><ul>
+      <li>Previous: <a href="pyrestsdk.middleware.authorizationhandler.html" title="previous chapter">pyrestsdk.middleware.authorizationhandler package</a></li>
+      <li>Next: <a href="pyrestsdk.request.supports_types.html" title="next chapter">pyrestsdk.request.supports_types package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, michaeldcanady.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/pyrestsdk.request.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

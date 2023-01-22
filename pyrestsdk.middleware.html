@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyrestsdk.middleware package &#8212; PyRESTSDK  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pyrestsdk.middleware.authorizationhandler package" href="pyrestsdk.middleware.authorizationhandler.html" />
+    <link rel="prev" title="pyrestsdk.credential package" href="pyrestsdk.credential.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pyrestsdk-middleware-package">
+<h1>pyrestsdk.middleware package<a class="headerlink" href="#pyrestsdk-middleware-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyrestsdk.middleware.authorizationhandler.html">pyrestsdk.middleware.authorizationhandler package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyrestsdk.middleware.authorizationhandler.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-pyrestsdk.middleware">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyrestsdk.middleware" title="Permalink to this headline">¶</a></h2>
+<p>Middleware</p>
+<dl class="class">
+<dt id="pyrestsdk.middleware.BaseAuthorizationHandler">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.middleware.</code><code class="sig-name descname">BaseAuthorizationHandler</code><span class="sig-paren">(</span><em class="sig-param">credential: C</em>, <em class="sig-param">/</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyrestsdk/middleware/_base_authorization_handler.html#BaseAuthorizationHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.middleware.BaseAuthorizationHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyrestsdk.middleware._base_middleware.BaseMiddleware</span></code></p>
+<p>Base Authorization Handler Type</p>
+<dl class="attribute">
+<dt id="pyrestsdk.middleware.BaseAuthorizationHandler.credential">
+<code class="sig-name descname">credential</code><em class="property">: C</em><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.middleware.BaseAuthorizationHandler.credential" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyrestsdk.middleware.BaseAuthorizationHandler.retry_count">
+<code class="sig-name descname">retry_count</code><em class="property">: int</em><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.middleware.BaseAuthorizationHandler.retry_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.middleware.BaseMiddleware">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.middleware.</code><code class="sig-name descname">BaseMiddleware</code><a class="reference internal" href="_modules/pyrestsdk/middleware/_base_middleware.html#BaseMiddleware"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.middleware.BaseMiddleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">requests.adapters.HTTPAdapter</span></code></p>
+<p>Base class for middleware</p>
+<p>Handles moving a Request to the next middleware in the pipeline.
+If the current middleware is the last one in the pipeline, it
+makes a network request</p>
+<dl class="attribute">
+<dt id="pyrestsdk.middleware.BaseMiddleware.next">
+<code class="sig-name descname">next</code><em class="property">: Optional[B]</em><em class="property"> = None</em><a class="headerlink" href="#pyrestsdk.middleware.BaseMiddleware.next" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.middleware.BaseMiddleware.send">
+<code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="sig-param">request: requests.models.PreparedRequest, stream: bool = False, timeout: Union[float, Tuple[float, float], Tuple[float, None], None] = None, verify: bool = True, cert: Union[bytes, str, Tuple[Union[bytes, str], Union[bytes, str]], None] = None, proxies: Optional[Mapping[str, str]] = None</em><span class="sig-paren">)</span> &#x2192; requests.models.Response<a class="reference internal" href="_modules/pyrestsdk/middleware/_base_middleware.html#BaseMiddleware.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.middleware.BaseMiddleware.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a network request if next is none, otherwise requests the next middleware to do so</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (PreparedRequest): The network request</p>
+</dd>
+<dt>Returns:</dt><dd><p>Response: Response from network request</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyrestsdk.middleware.MiddlewarePipeline">
+<em class="property">class </em><code class="sig-prename descclassname">pyrestsdk.middleware.</code><code class="sig-name descname">MiddlewarePipeline</code><a class="reference internal" href="_modules/pyrestsdk/middleware/_middleware_pipeline.html#MiddlewarePipeline"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.middleware.MiddlewarePipeline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">requests.adapters.HTTPAdapter</span></code></p>
+<p>MiddlewarePipeline, entry point of middleware
+The pipeline is implemented as a linked-list, read more about
+it here <a class="reference external" href="https://buffered.dev/middleware-python-requests/">https://buffered.dev/middleware-python-requests/</a></p>
+<dl class="method">
+<dt id="pyrestsdk.middleware.MiddlewarePipeline.add_middleware">
+<code class="sig-name descname">add_middleware</code><span class="sig-paren">(</span><em class="sig-param">middleware: B</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/pyrestsdk/middleware/_middleware_pipeline.html#MiddlewarePipeline.add_middleware"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.middleware.MiddlewarePipeline.add_middleware" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds middleware to the pipeline</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyrestsdk.middleware.MiddlewarePipeline.send">
+<code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="sig-param">request: requests.models.PreparedRequest</em>, <em class="sig-param">stream: bool = False</em>, <em class="sig-param">timeout=None</em>, <em class="sig-param">verify: bool = True</em>, <em class="sig-param">cert=None</em>, <em class="sig-param">proxies=None</em><span class="sig-paren">)</span> &#x2192; requests.models.Response<a class="reference internal" href="_modules/pyrestsdk/middleware/_middleware_pipeline.html#MiddlewarePipeline.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyrestsdk.middleware.MiddlewarePipeline.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends the prepared request through the middleware pipeline</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PyRESTSDK</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyrestsdk</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyrestsdk.html">pyrestsdk package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyrestsdk</a><ul>
+  <li><a href="pyrestsdk.html">pyrestsdk package</a><ul>
+      <li>Previous: <a href="pyrestsdk.credential.html" title="previous chapter">pyrestsdk.credential package</a></li>
+      <li>Next: <a href="pyrestsdk.middleware.authorizationhandler.html" title="next chapter">pyrestsdk.middleware.authorizationhandler package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, michaeldcanady.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/pyrestsdk.middleware.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
