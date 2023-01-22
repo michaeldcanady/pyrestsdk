@@ -79,7 +79,7 @@ class BaseRequest(Request[T]):
         _response = _func(
             url=self.request_url,
             params=str(self._query_options),
-            data=json.dumps(value.Json) if value is not None else None,
+            data=json.dumps(value.as_json) if value is not None else None,
         )
 
         if self.request_method == HttpsMethod.DELETE:

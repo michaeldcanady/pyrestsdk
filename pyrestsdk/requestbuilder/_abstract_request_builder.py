@@ -8,6 +8,7 @@ from typing import (
     final,
     get_args,
 )
+from abc import abstractmethod
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.type.model import (
     QueryOption,
@@ -34,12 +35,12 @@ class AbstractRequestBuilder(Generic[T]):
         self._client = client
 
     @property
+    @abstractmethod
     def Client(self: B) -> S:
         """Gets the Client"""
 
-        return self._client
-
     @property
+    @abstractmethod
     def request_url(self: B) -> str:
         """Gets/Sets the request URL
 
@@ -47,12 +48,7 @@ class AbstractRequestBuilder(Generic[T]):
             str: The request URL
         """
 
-        return self._request_url
-
-    @request_url.setter
-    def request_url(self: B, value: str) -> None:
-        self._request_url = value
-
+    @abstractmethod
     def append_segment_to_request_url(self, url_segment: str) -> str:
         """Gets a URL that is the request builder's request URL with the segment appended.
 
@@ -62,8 +58,3 @@ class AbstractRequestBuilder(Generic[T]):
         Returns:
             str: A URL that is the request builder's request URL with the segment appended.
         """
-
-        if not url_segment.startswith("/"):
-            url_segment = f"/{url_segment}"
-
-        return f"{self.request_url}{url_segment}"

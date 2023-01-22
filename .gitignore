@@ -10,6 +10,8 @@
 
 venv/
 
+test_venv/
+
 Testing/
 
 src/testing.py
