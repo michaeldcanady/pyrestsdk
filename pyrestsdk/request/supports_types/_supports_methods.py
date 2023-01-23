@@ -1,6 +1,6 @@
 """Houses Supports Methods"""
 
-from typing import Protocol, Optional, TypeVar
+from typing import Protocol, Optional, TypeVar, Union, Dict, Any
 from logging import getLogger
 
 from pyrestsdk.type.enum import HttpsMethod
@@ -17,7 +17,7 @@ class SupportsMethods(Protocol):
     __slots__ = ["_method", "_input_object"]
 
     _method: HttpsMethod
-    _input_object: Optional[S]
+    _input_object: Optional[Union[S, Dict[str, Any]]]
 
     @property
     def request_method(self) -> HttpsMethod:
@@ -45,7 +45,7 @@ class SupportsMethods(Protocol):
         return self._input_object
 
     @input_object.setter
-    def input_object(self, new_object: Optional[S]) -> None:
+    def input_object(self, new_object: Optional[Union[S, Dict[str, Any]]]) -> None:
 
         Logger.info("%s.input_object: function called", type(self).__name__)
 
@@ -56,7 +56,7 @@ class SupportsMethods(Protocol):
         )
 
     def _update_request_type(
-        self, method: HttpsMethod, input_object: Optional[S]
+        self, method: HttpsMethod, input_object: Optional[Union[S, Dict[str, Any]]]
     ) -> None:
         """Updates the request type, sSets the method and object to the provided values"""
 

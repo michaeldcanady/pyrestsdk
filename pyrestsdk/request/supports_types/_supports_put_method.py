@@ -1,24 +1,19 @@
 """Houses Supports Put Method"""
 
-from sys import version_info
-from typing import TypeVar
-
-if version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self
+from typing import TypeVar, Dict, Union, Any
 
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.request.supports_types._supports_methods import SupportsMethods
 from pyrestsdk.type.model import BaseEntity
 
-S = TypeVar("S", bound=BaseEntity)
+O = TypeVar("O", bound=BaseEntity)
+S = TypeVar("S", bound="SupportsPutMethod")
 
 
 class SupportsPutMethod(SupportsMethods):
     """Supports Put Method Type"""
 
-    def Put(self, input_object: S) -> Self:
+    def Put(self: S, input_object: Union[O, Dict[str, Any]]) -> S:
         """Sets request to put request"""
 
         self._update_request_type(HttpsMethod.PUT, input_object)

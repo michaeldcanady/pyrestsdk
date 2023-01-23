@@ -9,20 +9,6 @@ T = TypeVar("T", bound=BaseEntity)
 class SupportsBaseInvokeRequest(Protocol):
     """Supports Base Invoke Request Type"""
 
-    @property
-    @abstractmethod
-    def generic_type(self) -> Type[T]:
-        ...
-
-    @property
-    @abstractmethod
-    def input_object(self) -> T:
-        ...
-
-    @abstractmethod
-    def Send(self) -> Optional[Union[List[T], T]]:
-        ...
-
     @abstractmethod
     def invoke_request(self) -> Optional[Union[List[T], T]]:
         """Invokes the prepared request"""
