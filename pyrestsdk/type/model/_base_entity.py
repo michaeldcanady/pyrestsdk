@@ -23,17 +23,12 @@ class BaseEntity:
 
     @property
     @abstractmethod
-    def Json(self: S) -> Dict:
-        """Gets the object as it's dict representation"""
-
-    @property
-    @abstractmethod
     def as_dict(self) -> Dict:
         """Gets the object as it's dict representation"""
 
     @property
     @abstractmethod
-    def __json__(self) -> str:
+    def as_json(self) -> str:
         """Gest the object's json representation"""
 
     @property

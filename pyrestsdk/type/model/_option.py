@@ -1,11 +1,12 @@
 """Houses Option"""
 
-from typing import Dict, Any, Iterable
+from typing import Dict, Any
 from dataclasses import dataclass
+from json import dumps
 
 @dataclass
 class Option:
-    """Object Type"""
+    """Option Type"""
     
     Name: str
     Value: Any
@@ -15,5 +16,7 @@ class Option:
 
         return {self.Name: self.Value}
 
-    #def __iter__(self) -> Iterable:
-    #    return iter(self.as_dict().items())
+    def to_json(self) -> str:
+        """Gets the ojbect as it's JSON representation"""
+        
+        return dumps(self.as_dict)

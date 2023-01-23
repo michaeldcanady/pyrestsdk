@@ -3,7 +3,7 @@
 from typing import TypeVar
 
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.request.supports_types._supports_methods import SupportsMethods
+from pyrestsdk.request.supports_types.methods._supports_methods import SupportsMethods
 from pyrestsdk.type.model import BaseEntity
 
 O = TypeVar("O", bound=BaseEntity)
