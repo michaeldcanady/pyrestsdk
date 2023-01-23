@@ -8,6 +8,8 @@ from typing import (
     Optional,
     Iterable,
     get_args,
+    Dict,
+    Any,
 )
 from abc import abstractmethod
 import logging
@@ -124,14 +126,14 @@ class Request(AbstractRequest[T]):
 
         return url._replace(query="").geturl()
 
-    def Send(self, __object: Optional[T]) -> Optional[Union[List[T], T]]:
+    def Send(self, __object: Optional[Union[T, Dict[str, Any]]]) -> Optional[Union[List[T], T]]:
         """Submits the request and returns the expected return"""
 
         Logger.info("%s.Send: method called", type(self).__name__)
 
         return self.send_request(__object)
 
-    def send_request(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
+    def send_request(self, value: Optional[Union[T, Dict[str, Any]]]) -> Optional[Union[List[T], T]]:
         """Makes the desired request and returns the desired return type"""
 
         Logger.info("%s.SendRequest: method called", type(self).__name__)

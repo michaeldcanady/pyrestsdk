@@ -10,6 +10,7 @@ from typing import (
     Iterable,
     Callable,
     Dict,
+    Any,
 )
 from abc import abstractmethod
 import logging
@@ -59,7 +60,7 @@ class BaseRequest(Request[T]):
                     type(option),
                 )
 
-    def _send_request(self, value: Optional[T]) -> Optional[Response]:
+    def _send_request(self, value: Optional[Union[T, Dict[str, Any]]]) -> Optional[Response]:
         _request_dict: Dict[HttpsMethod, Callable] = {
             HttpsMethod.GET: self._client.get,
             HttpsMethod.POST: self._client.post,
@@ -75,11 +76,18 @@ class BaseRequest(Request[T]):
 
         if _func is None:
             raise Exception(f"Unknown HTTPS method {self.request_method.name}")
+        
+        _value = None
+        
+        if self.request_method == HttpsMethod.PUT:
+            _value = value
+        else:
+            _value = json.dumps(value.as_json) if value is not None else None
 
         _response = _func(
             url=self.request_url,
             params=str(self._query_options),
-            data=json.dumps(value.as_json) if value is not None else None,
+            data=_value,
         )
 
         if self.request_method == HttpsMethod.DELETE:

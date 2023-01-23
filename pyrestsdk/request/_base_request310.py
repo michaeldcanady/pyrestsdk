@@ -9,6 +9,7 @@ from typing import (
     Optional,
     Iterable,
     Dict,
+    Any,
 )
 from abc import abstractmethod
 import logging
@@ -62,7 +63,7 @@ class BaseRequest(Request[T]):
                         type(option),
                     )
 
-    def _send_request(self, value: Optional[T]) -> Optional[Response]:
+    def _send_request(self, value: Optional[Union[T, Dict[str, Any]]]) -> Optional[Response]:
         """Makes the desired request and returns Response or None"""
 
         Logger.info(
@@ -93,7 +94,7 @@ class BaseRequest(Request[T]):
                 return self._client.put(
                     url=self.request_url,
                     params=str(self.query_options),
-                    data=json.dumps(value.Json) if value is not None else None,
+                    data=json.dumps(value) if value is not None else None,
                 )
             case other:
                 raise Exception(f"Unknown HTTPS method {self.request_method.name}")
