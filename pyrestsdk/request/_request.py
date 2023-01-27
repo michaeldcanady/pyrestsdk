@@ -94,7 +94,8 @@ class Request(AbstractRequest[T]):
         if orig_value is None:
             # used if typ arg is provided when subclassing
             orig_bases = getattr(self, "__orig_bases__")
-            orig_value = orig_bases[0]
+            # way to find generic with mixins
+            orig_value = [base for base in orig_bases if getattr(base, "_typevar_types", False)][0]
 
         _type: Type[T] = get_args(orig_value)[0]
 
