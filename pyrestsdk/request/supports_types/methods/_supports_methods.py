@@ -1,6 +1,6 @@
 """Houses Supports Methods"""
 
-from typing import Protocol, Optional, TypeVar, Union, Dict, Any
+from typing import Optional, TypeVar, Union, Dict, Any
 from logging import getLogger
 
 from pyrestsdk.type.enum import HttpsMethod
@@ -11,13 +11,19 @@ S = TypeVar("S", bound=BaseEntity)
 Logger = getLogger(__name__)
 
 
-class SupportsMethods(Protocol):
+class SupportsMethods:
     """Supports Methods Type"""
 
     __slots__ = ["_method", "_input_object"]
 
     _method: HttpsMethod
     _input_object: Optional[Union[S, Dict[str, Any]]]
+    
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        
+        self._method = HttpsMethod.GET
+        self._input_object = None
 
     @property
     def request_method(self) -> HttpsMethod:
