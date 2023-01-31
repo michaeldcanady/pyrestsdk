@@ -1,30 +1,29 @@
 """Houses Base Request"""
 
 from __future__ import annotations
+
 from typing import (
     TypeVar,
-    List,
     Union,
-    Type,
     Optional,
     Iterable,
     Callable,
     Dict,
     Any,
 )
-from abc import abstractmethod
+
 import logging
+
 import json
+
 from requests import Response
+
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import (
     BaseEntity,
     QueryOption,
     HeaderOption,
 )
-from abc import abstractmethod
-import logging
-from requests import Response
 from pyrestsdk.type.model import BaseEntity
 from pyrestsdk.request._request import Request
 
@@ -54,7 +53,11 @@ class BaseRequest(Request[T]):
                     type(option),
                 )
 
-    def _send_request(self, value: Optional[Union[T, Dict[str, Any]]]) -> Optional[Response]:
+        return None
+
+    def _send_request(
+        self, value: Optional[Union[T, Dict[str, Any]]]
+    ) -> Optional[Response]:
         _request_dict: Dict[HttpsMethod, Callable] = {
             HttpsMethod.GET: self._client.get,
             HttpsMethod.POST: self._client.post,
@@ -63,16 +66,18 @@ class BaseRequest(Request[T]):
         }
 
         Logger.info(
-            f"{type(self).__name__}._sendRequest: {self.request_method.name} request made"
+            "%s._sendRequest: %s request made",
+            type(self).__name__,
+            self.request_method.name,
         )
 
         _func = _request_dict.get(self.request_method, None)
 
         if _func is None:
-            raise Exception(f"Unknown HTTPS method {self.request_method.name}")
-        
+            raise Exception("Unknown HTTPS method: %s", self.request_method.name)
+
         _value = None
-        
+
         if self.request_method == HttpsMethod.PUT:
             _value = value
         else:

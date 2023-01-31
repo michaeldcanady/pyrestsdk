@@ -89,8 +89,7 @@ class Request(AbstractRequest[T]):
 
     @property
     def generic_type(self: B) -> Type[T]:
-        """Gets the generic type
-        """
+        """Gets the generic type"""
 
         return self._generic_type
 
@@ -99,11 +98,10 @@ class Request(AbstractRequest[T]):
         """Gets the Client"""
 
         return self._client
-    
+
     def _set_generic_type(self: B) -> None:
-        """Sets the generic type attribute
-        """
-        
+        """Sets the generic type attribute"""
+
         # used if type arg is provided in constructor
         orig_value = getattr(self, "__orig_class__", None)
 
@@ -111,7 +109,9 @@ class Request(AbstractRequest[T]):
             # used if typ arg is provided when subclassing
             orig_bases = getattr(self, "__orig_bases__")
             # way to find generic with mixins
-            orig_value = [base for base in orig_bases if getattr(base, "_typevar_types", False)][0]
+            orig_value = [
+                base for base in orig_bases if getattr(base, "_typevar_types", False)
+            ][0]
 
         _type: Type[T] = get_args(orig_value)[0]
 
@@ -137,15 +137,20 @@ class Request(AbstractRequest[T]):
 
         return url._replace(query="").geturl()
 
-    def Send(self, __object: Optional[Union[T, Dict[str, Any]]]) -> Optional[Union[List[T], T]]:
+    def Send(
+        self, __object: Optional[Union[T, Dict[str, Any]]]
+    ) -> Optional[Union[List[T], T]]:
         """Submits the request and returns the expected return"""
 
         Logger.info("%s.Send: method called", type(self).__name__)
 
         return self.send_request(__object)
 
-    def send_request(self, value: Optional[Union[T, Dict[str, Any]]]) -> Optional[Union[List[T], T]]:
-        """Makes the desired request and returns the desired return type"""
+    def send_request(
+        self, value: Optional[Union[T, Dict[str, Any]]]
+    ) -> Optional[Union[List[T], T]]:
+        """Makes the desired request and returns the desired return type
+        """
 
         Logger.info("%s.SendRequest: method called", type(self).__name__)
 
