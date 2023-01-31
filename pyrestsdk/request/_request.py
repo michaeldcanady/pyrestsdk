@@ -35,6 +35,9 @@ Logger = logging.getLogger(__name__)
 
 class Request(AbstractRequest[T]):
 
+    __slots__ = ["_method", "_query_options", "_headers_options"]
+
+    _client: S
     _method: HttpsMethod
     _request_url: str
     _query_options: QueryOptionCollection
@@ -44,14 +47,14 @@ class Request(AbstractRequest[T]):
         self: B, request_url: str, client: S, options: Optional[Iterable[O]]
     ) -> None:
 
-        super().__init__(request_url, client)
-
+        self._request_url = request_url
+        self._client = client
         self._method: HttpsMethod = HttpsMethod.GET
         self._request_url: str = self._initialize_url(request_url)
         self._query_options: QueryOptionCollection = QueryOptionCollection()
         self._header_options: HeaderOptionCollection = HeaderOptionCollection()
         self._parse_options(options)
-    
+
     @property
     def header_options(self) -> HeaderOptionCollection:
         """Gets the headers"""
@@ -142,12 +145,6 @@ class Request(AbstractRequest[T]):
             return None
 
         return self.parse_response(_response)
-
-    @abstractmethod
-    def parse_response(
-        self, _response: Optional[Response]
-    ) -> Optional[Union[List[T], T]]:
-        """Parses the response into the expected return"""
 
     def append_segment_to_request_url(self, url_segment: str) -> str:
         """Gets a URL that is the request builder's request URL with the segment appended.
