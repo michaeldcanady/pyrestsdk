@@ -36,12 +36,6 @@ O = TypeVar("O", QueryOption, HeaderOption)
 class BaseRequest(Request[T]):
     """The Base Request Type"""
 
-    @abstractmethod
-    def parse_response(
-        self, _response: Optional[Response]
-    ) -> Optional[Union[List[T], T]]:
-        """Parses the response into the expected return"""
-
     def _parse_options(self, options: Optional[Iterable[O]]) -> None:
         """Parses the provided options into either header or query options"""
 
@@ -97,18 +91,3 @@ class BaseRequest(Request[T]):
                 )
             case other:
                 raise Exception(f"Unknown HTTPS method {self.request_method.name}")
-
-
-def parse_result(obj_type: Type[T], result: Dict, client) -> T:
-    return obj_type(client).from_json(result)
-
-
-def parse_result_list(obj_type: Type[T], results: List, client) -> List[T]:
-    _results: List[T] = []
-
-    for raw_result in results:
-        _entry = obj_type(client).from_json(raw_result)
-        _entry.__client = client
-        _results.append(_entry)
-
-    return _results
