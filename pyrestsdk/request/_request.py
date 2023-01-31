@@ -1,6 +1,4 @@
-from typing import TypeVar
 from typing import (
-    final,
     TypeVar,
     List,
     Union,
@@ -9,15 +7,15 @@ from typing import (
     Iterable,
     get_args,
 )
-from abc import abstractmethod
+
 import logging
+
 from urllib.parse import urlparse
-from requests import Response
+
 from pyrestsdk import AbstractServiceClient
-from pyrestsdk.request._abstract_request import AbstractRequest
+
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import (
-    BaseEntity,
     QueryOption,
     HeaderOption,
     HeaderOptionCollection,
@@ -35,10 +33,11 @@ Logger = logging.getLogger(__name__)
 
 class Request(AbstractRequest[T]):
 
-    __slots__ = ["_method", "_query_options", "_headers_options"]
+    __slots__ = ["_method", "_query_options", "_headers_options", "_generic_type"]
 
     _client: S
     _method: HttpsMethod
+    _generic_type: Type[T]
     _request_url: str
     _query_options: QueryOptionCollection
     _header_options: HeaderOptionCollection
@@ -54,6 +53,7 @@ class Request(AbstractRequest[T]):
         self._query_options: QueryOptionCollection = QueryOptionCollection()
         self._header_options: HeaderOptionCollection = HeaderOptionCollection()
         self._parse_options(options)
+        self._set_generic_type()
 
     @property
     def header_options(self) -> HeaderOptionCollection:
@@ -86,9 +86,22 @@ class Request(AbstractRequest[T]):
         Logger.info("%s.request_url: request URL set to %s", type(self).__name__, value)
 
     @property
-    @final
     def generic_type(self: B) -> Type[T]:
+        """Gets the generic type
+        """
 
+        return self._generic_type
+
+    @property
+    def Client(self: B) -> S:
+        """Gets the Client"""
+
+        return self._client
+    
+    def _set_generic_type(self: B) -> None:
+        """Sets the generic type attribute
+        """
+        
         # used if type arg is provided in constructor
         orig_value = getattr(self, "__orig_class__", None)
 
@@ -99,13 +112,7 @@ class Request(AbstractRequest[T]):
 
         _type: Type[T] = get_args(orig_value)[0]
 
-        return _type
-
-    @property
-    def Client(self: B) -> S:
-        """Gets the Client"""
-
-        return self._client
+        self._generic_type = _type
 
     def _initialize_url(self, request_url: str) -> str:
         """Parses the query parameters from URL"""

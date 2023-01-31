@@ -1,42 +1,42 @@
 """Houses Base Request"""
 
 from __future__ import annotations
+
 from typing import (
     TypeVar,
-    List,
     Union,
-    Type,
     Optional,
     Iterable,
     Dict,
+    Any,
 )
-from abc import abstractmethod
+
 import logging
-from urllib.parse import urlparse
+
 import json
+
 from requests import Response
+
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import (
     BaseEntity,
     QueryOption,
     HeaderOption,
 )
-from abc import abstractmethod
-import logging
-from requests import Response
-from pyrestsdk.type.model import BaseEntity
+
 from pyrestsdk.request._request import Request
 
 Logger = logging.getLogger(__name__)
 
 T = TypeVar("T", bound=BaseEntity)
-O = TypeVar("O", QueryOption, HeaderOption)
+Q = TypeVar("Q", bound=QueryOption)
+H = TypeVar("H", bound=HeaderOption)
 
 
 class BaseRequest(Request[T]):
     """The Base Request Type"""
 
-    def _parse_options(self, options: Optional[Iterable[O]]) -> None:
+    def _parse_options(self, options: Optional[Iterable[Union[Q, H]]]) -> None:
         """Parses the provided options into either header or query options"""
 
         Logger.info("%s._parse_options: function called", type(self).__name__)
@@ -56,14 +56,18 @@ class BaseRequest(Request[T]):
                         type(option),
                     )
 
-    def _send_request(self, value: Optional[T]) -> Optional[Response]:
+    def _send_request(self, value: Optional[Union[T, Dict[str, Any]]]) -> Optional[Response]:
         """Makes the desired request and returns Response or None"""
 
         Logger.info(
-            "%s._sendRequest: %s request made",
+            "%s._send_request: %s request made",
             type(self).__name__,
             self.request_method.name,
         )
+        
+        if not isinstance(value, dict) and value is not None:
+            value = value.as_dict
+        
 
         match self.request_method:
             case HttpsMethod.GET:
@@ -75,7 +79,7 @@ class BaseRequest(Request[T]):
                 return self._client.post(
                     url=self.request_url,
                     params=str(self.query_options),
-                    data=json.dumps(value.Json) if value is not None else None,
+                    data=json.dumps(value) if value is not None else None,
                 )
             case HttpsMethod.DELETE:
                 self._client.delete(
@@ -87,7 +91,7 @@ class BaseRequest(Request[T]):
                 return self._client.put(
                     url=self.request_url,
                     params=str(self.query_options),
-                    data=json.dumps(value.Json) if value is not None else None,
+                    data=json.dumps(value) if value is not None else None,
                 )
             case other:
                 raise Exception(f"Unknown HTTPS method {self.request_method.name}")
