@@ -1,7 +1,7 @@
 """Houses Abstract Request"""
 
 from __future__ import annotations
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import (
     List,
     Union,
@@ -27,18 +27,17 @@ O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
 
-class AbstractRequest(Generic[T]):
+class AbstractRequest(ABC, Generic[T]):
     """Abstract Request Type"""
+    
+    __slots__ = ["_request_url", "_client"]
 
     _request_url: str
     _client: S
 
-    def __init__(self: B, request_url: str, client: S) -> None:
-
-        super().__init__()
-
-        self._request_url = request_url
-        self._client = client
+    @abstractmethod
+    def __init__(self: B, request_url: str, client: S, options: Optional[Iterable[O]]) -> None:
+        """Instantiates new request"""
 
     @property
     @abstractmethod
@@ -85,6 +84,12 @@ class AbstractRequest(Generic[T]):
     @abstractmethod
     def send_request(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
         """Makes the desired request and returns the desired return type"""
+        
+    @abstractmethod
+    def parse_response(
+        self, _response: Optional[Response]
+    ) -> Optional[Union[List[T], T]]:
+        """Parses the response into the expected return"""
 
     @abstractmethod
     def _send_request(self, value: Optional[T]) -> Optional[Response]:

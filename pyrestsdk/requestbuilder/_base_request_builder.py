@@ -16,17 +16,22 @@ Logger = getLogger(__name__)
 
 class BaseRequestBuilder(AbstractRequestBuilder):
     """Base Request Builder Type"""
+    
+    def __init__(self: B, request_url: str, client: S) -> None:
+        super().__init__(request_url, client)
+        self._request_url: str = request_url
+        self._client = client
 
     @property
-    def Client(self: B) -> S:
+    def request_client(self: B) -> S:
         """Gets/Sets the Client"""
 
         Logger.info("%s.Client: get function called", type(self).__name__)
 
         return self._client
 
-    @Client.setter
-    def Client(self: B, client: S) -> None:
+    @request_client.setter
+    def request_client(self: B, client: S) -> None:
 
         Logger.info("%s.Client: set function called", type(self).__name__)
 
