@@ -14,6 +14,8 @@ C = TypeVar("C", bound=AbstractBasicCredential)
 
 class AbstractHTTPClientFactory(ABC):
     """Abstract HTTP Client Factory Type"""
+    
+    __slots__ = ["session"]
 
     session: Session
 
@@ -21,11 +23,7 @@ class AbstractHTTPClientFactory(ABC):
         self.session = session
 
     @abstractmethod
-    def create_with_default_middleware(self, credential: C) -> Session:
-        """Applies the default middleware chain to the HTTP Client"""
-
-    @abstractmethod
-    def create_with_custom_middleware(self, middleware: B) -> Session:
+    def create_with_custom_middleware(self, middleware: List[B]) -> Session:
         """Applies the custom middleware chain to the HTTP Client"""
 
         raise NotImplementedError("create_with_custom_middleware is not implemented")
