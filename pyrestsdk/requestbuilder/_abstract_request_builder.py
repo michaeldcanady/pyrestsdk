@@ -4,11 +4,8 @@ from __future__ import annotations
 from typing import (
     TypeVar,
     Generic,
-    Type,
-    final,
-    get_args,
 )
-from abc import abstractmethod
+from abc import abstractmethod, ABCMeta
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.type.model import (
     QueryOption,
@@ -23,21 +20,22 @@ T = TypeVar("T")
 
 class AbstractRequestBuilder(Generic[T]):
     """Abstract Request Type"""
+    
+    __metaclass__ = ABCMeta
+    
+    __slots__ = ["_client","_request_url"]
 
     _client: S
     _request_url: str
 
+    @abstractmethod
     def __init__(self: B, request_url: str, client: S) -> None:
-
-        super().__init__()
-
-        self._request_url: str = request_url
-        self._client = client
+        """Instantiates new object"""
 
     @property
     @abstractmethod
-    def Client(self: B) -> S:
-        """Gets the Client"""
+    def request_client(self: B) -> S:
+        """Gets/Sets the Client"""
 
     @property
     @abstractmethod
