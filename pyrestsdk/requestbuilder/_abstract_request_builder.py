@@ -5,7 +5,7 @@ from typing import (
     TypeVar,
     Generic,
 )
-from abc import abstractmethod, ABCMeta
+from abc import abstractmethod, ABC
 from pyrestsdk import AbstractServiceClient
 from pyrestsdk.type.model import (
     QueryOption,
@@ -18,10 +18,8 @@ O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
 
-class AbstractRequestBuilder(Generic[T]):
+class AbstractRequestBuilder(ABC, Generic[T]):
     """Abstract Request Type"""
-    
-    __metaclass__ = ABCMeta
     
     __slots__ = ["_client","_request_url"]
 
