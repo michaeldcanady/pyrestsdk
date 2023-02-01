@@ -31,8 +31,6 @@ T = TypeVar("T")
 class AbstractRequest(Generic[T], CommonBase):
     """Abstract Request Type"""
 
-    __slots__ = ()
-
     @abstractmethod
     def __init__(self: B, request_url: str, client: S, options: Optional[Iterable[O]]) -> None:
         """Instantiates new request"""

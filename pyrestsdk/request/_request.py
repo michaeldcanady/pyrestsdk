@@ -45,8 +45,6 @@ class Request(
     AbstractRequest[T],
     ):
 
-    __slots__ = ("_method", "_request_url", "_client", "_query_options", "_generic_type", "_header_options")
-
     _client: S
     _method: HttpsMethod
     _request_url: str
@@ -99,17 +97,12 @@ class Request(
         Logger.info(f"%s._initialize_url: function called", type(self).__name__)
 
         if not request_url:
-            pass
+            raise Exception("request url can't be None")
 
         url = urlparse(request_url)
 
         if url.query:
-            query_string = url.query
-            query_options = query_string.split("&")
-            for option in query_options:
-                query_parameter, value = option.split("=")
-                _query_parameter = QueryOption(query_parameter, value)
-                self.query_options.append(_query_parameter)
+            self._split_query_options(url.query)
 
         return url._replace(query="").geturl()
 

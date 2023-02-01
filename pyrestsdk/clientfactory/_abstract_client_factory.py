@@ -14,8 +14,6 @@ C = TypeVar("C", bound=AbstractBasicCredential)
 
 class AbstractHTTPClientFactory(ABC):
     """Abstract HTTP Client Factory Type"""
-    
-    __slots__ = ["session"]
 
     session: Session
 

@@ -1,10 +1,10 @@
 from __future__ import annotations
 from typing import Optional, Union, List, TypeVar
 from abc import abstractmethod
-from pyrestsdk.type.model import BaseEntity
+from pyrestsdk.type.model import Entity
 from pyrestsdk.request.supports_types._supports_types import SupportTypes
 
-T = TypeVar("T", bound=BaseEntity)
+T = TypeVar("T", bound=Entity)
 
 
 class SupportsBaseInvokeRequest(SupportTypes):

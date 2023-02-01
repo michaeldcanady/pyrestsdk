@@ -20,8 +20,6 @@ T = TypeVar("T")
 
 class AbstractRequestBuilder(ABC, Generic[T]):
     """Abstract Request Type"""
-    
-    __slots__ = ["_client","_request_url"]
 
     _client: S
     _request_url: str

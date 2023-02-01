@@ -20,16 +20,16 @@ from requests import Response
 
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import (
-    BaseEntity,
+    Entity,
     QueryOption,
     HeaderOption,
 )
-from pyrestsdk.type.model import BaseEntity
+from pyrestsdk.type.model import Entity
 from pyrestsdk.request._request import Request
 
 Logger = logging.getLogger(__name__)
 
-T = TypeVar("T", bound=BaseEntity)
+T = TypeVar("T", bound=Entity)
 O = TypeVar("O", QueryOption, HeaderOption)
 
 
