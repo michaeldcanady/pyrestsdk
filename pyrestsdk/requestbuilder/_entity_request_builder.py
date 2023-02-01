@@ -12,10 +12,15 @@ from pyrestsdk.requestbuilder._abstract_entity_request import (
 from pyrestsdk.request import BaseRequest
 
 R = TypeVar("R", bound=BaseRequest)
+B = TypeVar("B", bound="AbstractEntityRequestBuilder")
 
 
 class EntityRequestBuilder(AbstractEntityRequestBuilder[R], BaseRequestBuilder):
     """Entity Request Builder Type"""
+
+    def __init__(self: B, request_url: str, client: S) -> None:
+        super().__init__(request_url, client)
+
 
     @property
     @final

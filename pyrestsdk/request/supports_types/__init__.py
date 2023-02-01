@@ -28,6 +28,7 @@ from pyrestsdk.request.supports_types._supports_query_options import (
 from pyrestsdk.request.supports_types._supports_header_options import (
     SupportsHeaderOptions,
 )
+from pyrestsdk.request.supports_types._supports_generic_type import SupportsGenericType
 
 __all__ = [
     "SupportsInvokeRequest",
@@ -39,4 +40,5 @@ __all__ = [
     "SupportsPutMethod",
     "SupportsQueryOptions",
     "SupportsHeaderOptions",
+    "SupportsGenericType",
 ]

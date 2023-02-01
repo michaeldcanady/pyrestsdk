@@ -1,12 +1,13 @@
 """Houses Supports Query Options"""
 
 from pyrestsdk.type.model import QueryOptionCollection
+from pyrestsdk.request.supports_types._supports_types import SupportTypes
 
 
-class SupportsQueryOptions:
+class SupportsQueryOptions(SupportTypes):
     """Supports Query Options Type"""
 
-    __slots__ = ["_query_options"]
+    __slots__ = ()
 
     _query_options: QueryOptionCollection
     
