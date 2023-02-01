@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 S = TypeVar("S", bound="AbstractEntity")
 A = TypeVar("A", bound="AbstractServiceClient")
 
-class AbstractEntity(ABC, metaclass=FrozenAttributes):
+class AbstractEntity(metaclass=FrozenAttributes):
     """Abstract Entity Type"""
     
     _client: A
