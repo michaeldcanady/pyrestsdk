@@ -18,7 +18,6 @@ from pyrestsdk import AbstractServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
 
-from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.type.model import (
     CommonBase,
     QueryOption,
