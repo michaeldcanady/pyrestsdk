@@ -3,7 +3,16 @@
 PyREST SDK is a fully python toolkit for wrapping REST APIs or creating SDKs for REST APIs.
 
 It includes:
-- Credentials
+## Credentials
+
+BasicCredential
+```python
+from pyrestsdk.credential import BasicCredential
+
+BasicCredential(username, password)
+
+```
+
 - Client handling
 - Building API paths
 - Formulating complex requests
