@@ -3,7 +3,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Dict, TypeVar, Type
 from abc import abstractmethod
-
 if TYPE_CHECKING:
     from pyrestsdk import AbstractServiceClient
 
