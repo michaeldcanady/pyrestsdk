@@ -1,6 +1,6 @@
 from typing import Any, Tuple, Dict, Any, Type
 
-
+# https://code.activestate.com/recipes/252158/
 def frozen(set):
     """Raise an error when trying to set an undeclared name, or when calling
     from a method other than Frozen.__init__ or the __init__ method of
@@ -53,6 +53,7 @@ class FrozenAttributes(type):
 
 
 class CommonBase(metaclass=FrozenAttributes):
+    """Common Base Type"""
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__()
