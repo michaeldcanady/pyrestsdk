@@ -11,11 +11,16 @@ from typing import (
     Optional,
     Iterable,
 )
+
 from requests import Response
+
 from pyrestsdk import AbstractServiceClient
+
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.request._common_base import CommonBase
+
+from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.type.model import (
+    CommonBase,
     QueryOption,
     HeaderOption,
     HeaderOptionCollection,

@@ -15,12 +15,9 @@ from urllib.parse import urlparse
 from pyrestsdk import AbstractServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.type.model import (
-    QueryOption,
-    HeaderOption,
-)
+from pyrestsdk.type.model._query_option import QueryOption
+from pyrestsdk.type.model._header_option import HeaderOption
 from pyrestsdk.request._abstract_request import AbstractRequest
-from pyrestsdk.request._common_base import CommonBase
 from pyrestsdk.request.supports_types import (
     SupportsGenericType,
     SupportsQueryOptions,

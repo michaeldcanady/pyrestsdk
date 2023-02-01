@@ -4,7 +4,7 @@ from typing import Dict, Any, TypeVar, Type, TYPE_CHECKING
 
 from abc import ABC, abstractmethod
 
-from pyrestsdk.request._common_base import FrozenAttributes
+from pyrestsdk.type.model._common_base import FrozenAttributes
 
 if TYPE_CHECKING:
     from pyrestsdk import AbstractServiceClient
