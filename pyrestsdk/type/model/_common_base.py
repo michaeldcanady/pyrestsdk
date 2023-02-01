@@ -13,16 +13,18 @@ def frozen(func: Callable[[Any, str, Any], Any]):
         from sys import _getframe
 
         co_name = _getframe(1).f_code.co_name
+        
+        allowed_methods = ["__init_subclass__", "__init__"]
 
         # checks if attribute already exists or if it is being set in __init__
-        if (not hasattr(self, name)) and (co_name != "__init__"):
+        if (not hasattr(self, name)) and (co_name not in allowed_methods):
             raise AttributeError(
                 f"You cannot add attributes to {self.__name__}"
             )
         # cheks if attribute is a 'protected' (begins with _) and is being set outside of property or __init__
         elif (
             name.startswith("_")
-            and (co_name != "__init__")
+            and (co_name not in allowed_methods)
             and (
                 co_name == "<module>"
                 or (type(getattr(self, co_name)) is not property)
@@ -54,8 +56,10 @@ class FrozenAttributes(type):
     def __setattr__(self, __name: str, __value: Any) -> None:
         return super().__setattr__(__name, __value)
 
-class CommonBase(metaclass=FrozenAttributes):
+class CommonBase():
     """Common Base Type"""
+    
+    __metaclass__ = FrozenAttributes
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__()

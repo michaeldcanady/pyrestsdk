@@ -33,5 +33,4 @@ class SupportsGenericType(SupportTypes):
             # way to find generic with mixins
             orig_value = [base for base in orig_bases if getattr(base, "_typevar_types", False)][0]
 
-        _type: Type[T] = get_args(orig_value)[0]
-        return _type
+        return get_args(orig_value)[0]
