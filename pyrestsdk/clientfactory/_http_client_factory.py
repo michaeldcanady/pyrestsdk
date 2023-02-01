@@ -18,8 +18,6 @@ C = TypeVar("C", bound=AbstractBasicCredential)
 class HTTPClientFactory(AbstractHTTPClientFactory):
     """HTTP Client Factory"""
 
-    __slots__ = ["_base_url", "_protocol"]
-
     def __init__(
         self,
         base_url: str,

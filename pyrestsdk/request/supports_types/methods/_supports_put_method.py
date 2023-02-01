@@ -4,9 +4,9 @@ from typing import TypeVar, Dict, Union, Any
 
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.request.supports_types.methods._supports_methods import SupportsMethods
-from pyrestsdk.type.model import BaseEntity
+from pyrestsdk.type.model import Entity
 
-O = TypeVar("O", bound=BaseEntity)
+O = TypeVar("O", bound=Entity)
 S = TypeVar("S", bound="SupportsPutMethod")
 
 

@@ -4,17 +4,16 @@ from typing import Optional, TypeVar, Union, Dict, Any
 from logging import getLogger
 
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.type.model import BaseEntity
+from pyrestsdk.type.model import Entity
+from pyrestsdk.request.supports_types._supports_types import SupportTypes
 
-S = TypeVar("S", bound=BaseEntity)
+S = TypeVar("S", bound=Entity)
 
 Logger = getLogger(__name__)
 
 
-class SupportsMethods:
+class SupportsMethods(SupportTypes):
     """Supports Methods Type"""
-
-    __slots__ = ["_method", "_input_object"]
 
     _method: HttpsMethod
     _input_object: Optional[Union[S, Dict[str, Any]]]

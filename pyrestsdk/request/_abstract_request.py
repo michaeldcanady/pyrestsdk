@@ -11,10 +11,16 @@ from typing import (
     Optional,
     Iterable,
 )
+
 from requests import Response
+
 from pyrestsdk import AbstractServiceClient
+
 from pyrestsdk.type.enum import HttpsMethod
+
+from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.type.model import (
+    CommonBase,
     QueryOption,
     HeaderOption,
     HeaderOptionCollection,
@@ -27,17 +33,13 @@ O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
 
-class AbstractRequest(ABC, Generic[T]):
+class AbstractRequest(Generic[T], CommonBase):
     """Abstract Request Type"""
-    
-    __slots__ = ["_request_url", "_client"]
-
-    _request_url: str
-    _client: S
 
     @abstractmethod
     def __init__(self: B, request_url: str, client: S, options: Optional[Iterable[O]]) -> None:
         """Instantiates new request"""
+        super().__init__()
 
     @property
     @abstractmethod

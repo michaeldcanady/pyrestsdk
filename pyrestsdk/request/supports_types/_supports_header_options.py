@@ -1,12 +1,13 @@
 """Houses Supports Header Options"""
 
 from pyrestsdk.type.model import HeaderOptionCollection
+from pyrestsdk.request.supports_types._supports_types import SupportTypes
 
 
-class SupportsHeaderOptions:
+class SupportsHeaderOptions(SupportTypes):
     """Supports Header Options Type"""
 
-    __slots__ = ["_header_options"]
+    
 
     _header_options: HeaderOptionCollection
     

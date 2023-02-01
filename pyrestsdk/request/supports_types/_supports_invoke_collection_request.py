@@ -1,10 +1,10 @@
 from typing import TypeVar, List
 
-from pyrestsdk.type.model import BaseEntity
+from pyrestsdk.type.model import Entity
 from pyrestsdk.type.exception import UnexpectedReturnType
 from pyrestsdk.request.supports_types._supports_base_invoke_request import SupportsBaseInvokeRequest
 
-T = TypeVar("T", bound=BaseEntity)
+T = TypeVar("T", bound=Entity)
 
 class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest):
 

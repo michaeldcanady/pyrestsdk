@@ -19,7 +19,7 @@ from requests import Response
 
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import (
-    BaseEntity,
+    Entity,
     QueryOption,
     HeaderOption,
 )
@@ -28,7 +28,7 @@ from pyrestsdk.request._request import Request
 
 Logger = logging.getLogger(__name__)
 
-T = TypeVar("T", bound=BaseEntity)
+T = TypeVar("T", bound=Entity)
 Q = TypeVar("Q", bound=QueryOption)
 H = TypeVar("H", bound=HeaderOption)
 

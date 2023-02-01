@@ -2,10 +2,8 @@ from typing import (
     TypeVar,
     List,
     Union,
-    Type,
     Optional,
     Iterable,
-    get_args,
     Dict,
     Any,
 )
@@ -17,13 +15,14 @@ from urllib.parse import urlparse
 from pyrestsdk import AbstractServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.type.model import (
-    QueryOption,
-    HeaderOption,
-    HeaderOptionCollection,
-    QueryOptionCollection,
-)
+from pyrestsdk.type.model._query_option import QueryOption
+from pyrestsdk.type.model._header_option import HeaderOption
 from pyrestsdk.request._abstract_request import AbstractRequest
+from pyrestsdk.request.supports_types import (
+    SupportsGenericType,
+    SupportsQueryOptions,
+    SupportsHeaderOptions,
+    )
 
 T = TypeVar("T")
 B = TypeVar("B", bound="Request")
@@ -33,34 +32,27 @@ S = TypeVar("S", bound=AbstractServiceClient)
 Logger = logging.getLogger(__name__)
 
 
-class Request(AbstractRequest[T]):
-
-    __slots__ = ["_method", "_query_options", "_headers_options", "_generic_type"]
+class Request(
+    SupportsHeaderOptions,
+    SupportsQueryOptions,
+    SupportsGenericType,
+    AbstractRequest[T],
+    ):
 
     _client: S
     _method: HttpsMethod
-    _generic_type: Type[T]
     _request_url: str
-    _query_options: QueryOptionCollection
-    _header_options: HeaderOptionCollection
 
     def __init__(
         self: B, request_url: str, client: S, options: Optional[Iterable[O]]
     ) -> None:
+        super().__init__(request_url, client, options)
 
         self._request_url = request_url
         self._client = client
         self._method: HttpsMethod = HttpsMethod.GET
         self._request_url: str = self._initialize_url(request_url)
-        self._query_options: QueryOptionCollection = QueryOptionCollection()
-        self._header_options: HeaderOptionCollection = HeaderOptionCollection()
         self._parse_options(options)
-        self._set_generic_type()
-
-    @property
-    def header_options(self) -> HeaderOptionCollection:
-        """Gets the headers"""
-        return self._header_options
 
     @property
     def request_method(self) -> HttpsMethod:
@@ -88,34 +80,10 @@ class Request(AbstractRequest[T]):
         Logger.info("%s.request_url: request URL set to %s", type(self).__name__, value)
 
     @property
-    def generic_type(self: B) -> Type[T]:
-        """Gets the generic type"""
-
-        return self._generic_type
-
-    @property
     def Client(self: B) -> S:
         """Gets the Client"""
 
         return self._client
-
-    def _set_generic_type(self: B) -> None:
-        """Sets the generic type attribute"""
-
-        # used if type arg is provided in constructor
-        orig_value = getattr(self, "__orig_class__", None)
-
-        if orig_value is None:
-            # used if typ arg is provided when subclassing
-            orig_bases = getattr(self, "__orig_bases__")
-            # way to find generic with mixins
-            orig_value = [
-                base for base in orig_bases if getattr(base, "_typevar_types", False)
-            ][0]
-
-        _type: Type[T] = get_args(orig_value)[0]
-
-        self._generic_type = _type
 
     def _initialize_url(self, request_url: str) -> str:
         """Parses the query parameters from URL"""
@@ -123,17 +91,12 @@ class Request(AbstractRequest[T]):
         Logger.info(f"%s._initialize_url: function called", type(self).__name__)
 
         if not request_url:
-            pass
+            raise Exception("request url can't be None")
 
         url = urlparse(request_url)
 
         if url.query:
-            query_string = url.query
-            query_options = query_string.split("&")
-            for option in query_options:
-                query_parameter, value = option.split("=")
-                _query_parameter = QueryOption(query_parameter, value)
-                self.query_options.append(_query_parameter)
+            self._split_query_options(url.query)
 
         return url._replace(query="").geturl()
 
