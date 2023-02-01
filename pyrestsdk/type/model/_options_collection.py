@@ -14,9 +14,15 @@ class OptionsCollection(TypeCollection[O]):
         """Gets object at index
         """
         
+        """Gets object at index
+        """
+        
         return self._internal_list[index]
 
     def __len__(self) -> int:
+        """gets the length of the collection
+        """
+        
         """gets the length of the collection
         """
         
@@ -26,9 +32,15 @@ class OptionsCollection(TypeCollection[O]):
         """Deletes object at index
         """
         
+        """Deletes object at index
+        """
+        
         del self._internal_list[index]
 
     def __setitem__(self, index: int, value: O) -> None:
+        """Sets object at index
+        """
+        
         """Sets object at index
         """
         
