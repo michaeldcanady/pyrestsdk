@@ -7,7 +7,6 @@ from requests import Response, Session
 
 S = TypeVar("S", bound="AbstractServiceClient")
 
-
 class AbstractServiceClient(ABC):
     """Abstract Service Client Type"""
 
