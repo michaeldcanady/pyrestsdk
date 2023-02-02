@@ -19,11 +19,6 @@ class AbstractEntityRequestBuilder(AbstractRequestBuilder, Generic[R]):
 
     @property
     @abstractmethod
-    def generic_type(self) -> Type[R]:
-        """Gets the value of the generic type provided"""
-
-    @property
-    @abstractmethod
     def request(self) -> R:
         """Builds request with no options"""
 
