@@ -1,7 +1,10 @@
 from pyrestsdk.request import Request
 
 
-def get_generic_type():
+def test_generic_type():
+    """
+    Test that generic gets the proper type
+    """
     
     class ExampleRequest(Request[str]):
         pass

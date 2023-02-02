@@ -8,7 +8,7 @@
 *.zip
 *.egg-info/
 
-venv/
+*venv/
 
 test_venv/
 
