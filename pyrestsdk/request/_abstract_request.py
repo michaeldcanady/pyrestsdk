@@ -18,6 +18,12 @@ from pyrestsdk import AbstractServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
 
+from pyrestsdk.request.supports_types import (
+    SupportsGenericType,
+    SupportsQueryOptions,
+    SupportsHeaderOptions,
+)
+
 from pyrestsdk.type.model import (
     CommonBase,
     QueryOption,
@@ -32,11 +38,17 @@ O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
 
-class AbstractRequest(Generic[T], CommonBase):
+class AbstractRequest(
+    SupportsGenericType,
+    CommonBase,
+    Generic[T],
+):
     """Abstract Request Type"""
 
     @abstractmethod
-    def __init__(self: B, request_url: str, client: S, options: Optional[Iterable[O]]) -> None:
+    def __init__(
+        self: B, request_url: str, client: S, options: Optional[Iterable[O]]
+    ) -> None:
         """Instantiates new request"""
         super().__init__()
 
@@ -85,7 +97,7 @@ class AbstractRequest(Generic[T], CommonBase):
     @abstractmethod
     def send_request(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
         """Makes the desired request and returns the desired return type"""
-        
+
     @abstractmethod
     def parse_response(
         self, _response: Optional[Response]

@@ -31,6 +31,6 @@ class SupportsGenericType(SupportTypes):
             # used if typ arg is provided when subclassing
             orig_bases = getattr(self, "__orig_bases__")
             # way to find generic with mixins
-            orig_value = [base for base in orig_bases if getattr(base, "_typevar_types", False)][0]
+            orig_value = [base for base in orig_bases if type(base).__name__ == "_GenericAlias"][0]
 
         return get_args(orig_value)[0]

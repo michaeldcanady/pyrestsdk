@@ -10,11 +10,12 @@ from pyrestsdk.requestbuilder._abstract_request_builder import AbstractRequestBu
 
 S = TypeVar("S", bound=AbstractServiceClient)
 B = TypeVar("B", bound="BaseRequestBuilder")
+T = TypeVar("T")
 
 Logger = getLogger(__name__)
 
 
-class BaseRequestBuilder(AbstractRequestBuilder):
+class BaseRequestBuilder(AbstractRequestBuilder[T]):
     """Base Request Builder Type"""
     
     def __init__(self: B, request_url: str, client: S) -> None:
