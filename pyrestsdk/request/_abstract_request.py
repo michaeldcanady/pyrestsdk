@@ -74,11 +74,6 @@ class AbstractRequest(
 
     @property
     @abstractmethod
-    def generic_type(self: B) -> Type[T]:
-        """Gets the the type argument provided"""
-
-    @property
-    @abstractmethod
     def request_url(self: B) -> str:
         """Gets/Sets the request URL
 
