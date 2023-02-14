@@ -39,7 +39,7 @@ T = TypeVar("T")
 
 
 class AbstractRequest(
-    SupportsGenericType,
+    #SupportsGenericType,
     CommonBase,
     Generic[T],
 ):

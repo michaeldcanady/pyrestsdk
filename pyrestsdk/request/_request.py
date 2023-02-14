@@ -35,7 +35,7 @@ Logger = logging.getLogger(__name__)
 class Request(
     SupportsHeaderOptions,
     SupportsQueryOptions,
-    #SupportsGenericType,
+    SupportsGenericType,
     AbstractRequest[T],
     ):
 

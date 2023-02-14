@@ -10,4 +10,4 @@ def test_generic_type():
         pass
     
     _request = ExampleRequest("test.com", None, None)
-    assert _request._generic_type is str
+    assert _request.generic_type is str
