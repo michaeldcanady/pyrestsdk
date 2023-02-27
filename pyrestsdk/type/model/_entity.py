@@ -19,6 +19,9 @@ class Entity(AbstractEntity):
     _client: A
 
     def __init__(self: S, client: A) -> None:
+        
+        super().__init__(client)
+        
         self._client = client
 
     @property

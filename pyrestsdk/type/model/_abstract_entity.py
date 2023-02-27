@@ -22,6 +22,8 @@ class AbstractEntity:
     @abstractmethod
     def __init__(self: S, client: A) -> None:
         """Instatiates new class"""
+        
+        super().__init__()
     
     @property
     @abstractmethod
