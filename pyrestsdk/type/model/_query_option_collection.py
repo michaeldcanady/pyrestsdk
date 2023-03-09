@@ -9,4 +9,4 @@ class QueryOptionCollection(OptionsCollection[QueryOption]):
 
     def __str__(self) -> str:
         
-        return urlencode(self.as_dict())
+        return urlencode(self.as_dict)

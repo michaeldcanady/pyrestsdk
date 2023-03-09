@@ -11,6 +11,7 @@ class Option:
     Name: str
     Value: Any
     
+    @property
     def as_dict(self) -> Dict[str, Any]:
         """Gets the object as it's dict representation"""
 

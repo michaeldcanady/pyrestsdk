@@ -151,7 +151,7 @@ class Request(
         
         args = {
             "url": self.request_url,
-            "headers": self.header_options.as_dict(),
+            "headers": self.header_options.as_dict,
             "params": str(self.query_options),
         }
         
