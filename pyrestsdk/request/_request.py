@@ -12,11 +12,16 @@ import logging
 
 from urllib.parse import urlparse
 
+import json
+
 from pyrestsdk import AbstractServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
-from pyrestsdk.type.model._query_option import QueryOption
-from pyrestsdk.type.model._header_option import HeaderOption
+from pyrestsdk.type.model import (
+    Entity,
+    QueryOption,
+    HeaderOption,
+)
 from pyrestsdk.request._abstract_request import AbstractRequest
 from pyrestsdk.request.supports_types import (
     SupportsGenericType,
@@ -24,7 +29,7 @@ from pyrestsdk.request.supports_types import (
     SupportsHeaderOptions,
     )
 
-T = TypeVar("T")
+T = TypeVar("T", bound=Entity)
 B = TypeVar("B", bound="Request")
 O = TypeVar("O", QueryOption, HeaderOption)
 S = TypeVar("S", bound=AbstractServiceClient)
@@ -110,7 +115,7 @@ class Request(
         return self.send_request(__object)
 
     def send_request(
-        self, value: Optional[Union[T, Dict[str, Any]]]
+        self, value: Optional[Union[T, Dict[str, Any], str]] = None
     ) -> Optional[Union[List[T], T]]:
         """Makes the desired request and returns the desired return type
         """
@@ -123,6 +128,40 @@ class Request(
             return None
 
         return self.parse_response(_response)
+
+    def _parse_input_object(self, value: Union[T, Dict[str, Any], str]) -> str:
+        """Converts input object into JSON
+
+        Args:
+            value (Union[T, Dict[str, Any], str]): The input object
+
+        Returns:
+            str: JSON version of object
+        """
+        
+        if isinstance(value, str):
+            return value
+        
+        if not isinstance(value, dict):
+            value = value.as_dict
+            
+        return json.dumps(value)
+
+    def _get_request_args(self, value: Optional[Union[T, Dict[str, Any], str]] = None) -> Dict[str, Any]:
+        
+        args = {
+            "url": self.request_url,
+            "headers": self.header_options.as_dict(),
+            "params": str(self.query_options),
+        }
+        
+        if (self.request_method == HttpsMethod.POST) or (self.request_method == HttpsMethod.PUT):
+            if value is None:
+                raise Exception(f"Missing data for {self.request_method.name} request.")
+            
+            args["data"] = self._parse_input_object(value)
+        
+        return args
 
     def append_segment_to_request_url(self, url_segment: str) -> str:
         """Gets a URL that is the request builder's request URL with the segment appended.

@@ -5,10 +5,13 @@ from setuptools import setup
 from pyrestsdk import __version__, __module_name__
 
 
-def get_packages(directory: str) -> List[str]:
-    return [
-        x[0].replace("\\", ".") for x in os.walk(directory) if "__pycache__" not in x[0]
-    ]
+def get_packages() -> List[str]:
+    """Gets all subpackages"""
+    directory = os.path.join(".","pyrestsdk")
+
+    _packages = [x[0].replace("\\",".") for x in os.walk(directory) if "__pycache__" not in x[0]]
+
+    return _packages
 
 
 setup(
@@ -17,7 +20,7 @@ setup(
     author="michaeldcanady",
     description=("base set to make a REST Api wrapper/sdk"),
     license="MIT",
-    packages=find_packages(),
+    packages=get_packages(),
     install_requires=[
         "black==22.12.0",
         "certifi==2022.12.7",
