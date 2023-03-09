@@ -54,7 +54,7 @@ class BaseRequest(Request[T]):
                         type(option),
                     )
 
-    def _send_request(self, value: Optional[Union[T, Dict[str, Any], str]]) -> Optional[Response]:
+    def _send_request(self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]) -> Optional[Response]:
         """Makes the desired request and returns Response or None"""
 
         Logger.info(
@@ -62,8 +62,6 @@ class BaseRequest(Request[T]):
             type(self).__name__,
             self.request_method.name,
         )
-        
-        args = self._get_request_args(value)
         
 
         match self.request_method:
