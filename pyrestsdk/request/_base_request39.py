@@ -56,7 +56,7 @@ class BaseRequest(Request[T]):
         return None
 
     def _send_request(
-        self, value: Optional[Union[T, Dict[str, Any]]]
+        self, value: Optional[Union[T, Dict[str, Any]]] = None
     ) -> Optional[Response]:
         _request_dict: Dict[HttpsMethod, Callable] = {
             HttpsMethod.GET: self._client.get,
@@ -76,18 +76,9 @@ class BaseRequest(Request[T]):
         if _func is None:
             raise Exception("Unknown HTTPS method: %s", self.request_method.name)
 
-        _value = None
+        args = self._get_request_args(value)
 
-        if self.request_method == HttpsMethod.PUT:
-            _value = value
-        else:
-            _value = json.dumps(value.as_json) if value is not None else None
-
-        _response = _func(
-            url=self.request_url,
-            params=str(self._query_options),
-            data=_value,
-        )
+        _response = _func(**args)
 
         if self.request_method == HttpsMethod.DELETE:
             return None

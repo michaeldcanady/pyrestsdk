@@ -13,8 +13,6 @@ from typing import (
 
 import logging
 
-import json
-
 from requests import Response
 
 from pyrestsdk.type.enum import HttpsMethod
@@ -56,7 +54,7 @@ class BaseRequest(Request[T]):
                         type(option),
                     )
 
-    def _send_request(self, value: Optional[Union[T, Dict[str, Any]]]) -> Optional[Response]:
+    def _send_request(self, value: Optional[Union[T, Dict[str, Any], str]]) -> Optional[Response]:
         """Makes the desired request and returns Response or None"""
 
         Logger.info(
@@ -65,33 +63,18 @@ class BaseRequest(Request[T]):
             self.request_method.name,
         )
         
-        if not isinstance(value, dict) and value is not None:
-            value = value.as_dict
+        args = self._get_request_args(value)
         
 
         match self.request_method:
             case HttpsMethod.GET:
-                return self._client.get(
-                    url=self.request_url,
-                    params=str(self.query_options),
-                )
+                return self._client.get(**args)
             case HttpsMethod.POST:
-                return self._client.post(
-                    url=self.request_url,
-                    params=str(self.query_options),
-                    data=json.dumps(value) if value is not None else None,
-                )
+                return self._client.post(**args)
             case HttpsMethod.DELETE:
-                self._client.delete(
-                    url=self.request_url,
-                    params=str(self.query_options),
-                )
+                self._client.delete(**args)
                 return None
             case HttpsMethod.PUT:
-                return self._client.put(
-                    url=self.request_url,
-                    params=str(self.query_options),
-                    data=json.dumps(value) if value is not None else None,
-                )
+                return self._client.put(**args)
             case other:
                 raise Exception(f"Unknown HTTPS method {self.request_method.name}")

@@ -46,13 +46,14 @@ class OptionsCollection(TypeCollection[O]):
         
         self._internal_list[index] = value
 
+    @property
     def as_dict(self) -> Dict[str, Any]:
         """Gets the object as it's dict representation"""
 
         _return: Dict = {}
 
         for value in self._internal_list:
-            _return.update(value.as_dict())
+            _return.update(value.as_dict)
 
         return _return
 
