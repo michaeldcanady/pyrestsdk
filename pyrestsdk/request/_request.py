@@ -44,17 +44,13 @@ class Request(
     AbstractRequest[T],
     ):
 
-    _client: S
-    _method: HttpsMethod
-    _request_url: str
-
     def __init__(
         self: B, request_url: str, client: S, options: Optional[Iterable[O]]
     ) -> None:
         super().__init__(request_url, client, options)
 
-        self._request_url = request_url
-        self._client = client
+        self._request_url: str = request_url
+        self._client: S = client
         self._method: HttpsMethod = HttpsMethod.GET
         self._request_url: str = self._initialize_url(request_url)
         self._parse_options(options)
@@ -121,13 +117,21 @@ class Request(
         """
 
         Logger.info("%s.SendRequest: method called", type(self).__name__)
+        
+        args = self._get_request_args(value)
 
-        _response = self._send_request(value)
+        _response = self._send_request(args, value)
 
         if _response is None:
             return None
-
-        return self.parse_response(_response)
+        
+        try:
+            Logger.debug("%s.SendRequest: raising response for status", type(self).__name__)
+            _response.raise_for_status()
+        except:
+            self.parse_exception(_response)
+        else:
+            return self.parse_response(_response)
 
     def _parse_input_object(self, value: Union[T, Dict[str, Any], str]) -> str:
         """Converts input object into JSON

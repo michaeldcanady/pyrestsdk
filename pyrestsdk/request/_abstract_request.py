@@ -10,6 +10,8 @@ from typing import (
     Type,
     Optional,
     Iterable,
+    Dict,
+    Any
 )
 
 from requests import Response
@@ -100,8 +102,12 @@ class AbstractRequest(
         """Parses the response into the expected return"""
 
     @abstractmethod
-    def _send_request(self, value: Optional[T]) -> Optional[Response]:
+    def _send_request(self, args: Dict[str, Any], value:  Optional[Union[T, Dict[str, Any], str]]) -> Optional[Response]:
         """Makes the desired request and returns Response or None"""
+        
+    @abstractmethod
+    def _get_request_args(self, value: Optional[Union[T, Dict[str, Any], str]] = None) -> Dict[str, Any]:
+        """gets request arguments"""
 
     @abstractmethod
     def append_segment_to_request_url(self, url_segment: str) -> str:
@@ -113,3 +119,7 @@ class AbstractRequest(
         Returns:
             str: A URL that is the request builder's request URL with the segment appended.
         """
+
+    @abstractmethod
+    def parse_exception(self, response: Response) -> None:
+        """Raises exception based off response"""
