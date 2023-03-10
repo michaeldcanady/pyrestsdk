@@ -5,5 +5,5 @@ from pyrestsdk.type.enum._feature_usage_flag import FeatureUsageFlag
 
 __all__ = ["AbstractServiceClient","FeatureUsageFlag"]
 
-__version__ = "0.3.8-beta4"
+__version__ = "0.4.0"
 __module_name__ = "pyrestsdk"
