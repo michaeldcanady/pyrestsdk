@@ -3,8 +3,6 @@ name = "pyrestsdk"
 version = "0.0.0"
 description = "a toolkit to make writing SDKs in python simple"
 authors = ["Michael Canady"]
-license = "MIT"
-readme = "README.md"
 
 [tool.poetry-dynamic-versioning]
 enable = true
