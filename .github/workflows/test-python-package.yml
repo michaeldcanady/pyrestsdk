@@ -32,12 +32,10 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
 
     - name: Install dependencies
-      run: |
-        run: poetry install
-        if: steps.cache.outputs.cache-hit != 'true'
+      run: poetry install
 
     - name: Test with pytest
-      run: poetry run pytest --cov . -n 2
+      run: poetry run pytest
       env:
         USERNAME: '${{secrets.USERNAME}}'
         PASSWORD: '${{secrets.PASSWORD}}'
