@@ -6,7 +6,7 @@ import ssl
 from requests import PreparedRequest, Response
 from requests.adapters import HTTPAdapter
 from urllib3 import PoolManager
-from pyrestsdk.middleware import BaseMiddleware
+from pyrestsdk.middleware._base_middleware import BaseMiddleware
 from pyrestsdk.middleware._request_context import RequestContext
 
 B = TypeVar("B", bound=BaseMiddleware)
