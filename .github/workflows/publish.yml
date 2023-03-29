@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.11
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
@@ -38,4 +38,4 @@ jobs:
           poetry publish --build --username $PYPI_USERNAME --password $PYPI_PASSWORD
         env:
           PYPI_USERNAME: __token__
-          PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
