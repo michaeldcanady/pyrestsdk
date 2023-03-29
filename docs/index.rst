@@ -1,11 +1,12 @@
 Welcome to PyRESTSDK's documentation!
 =====================================
 
+.. automodule:: pyrestsdk
+   :members:
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
-   modules
 
 Indices and tables
 ==================

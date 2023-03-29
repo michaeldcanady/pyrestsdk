@@ -8,6 +8,8 @@
 *.zip
 *.egg-info/
 
+docs/_build/
+
 *venv/
 .pytest_cache/
 
