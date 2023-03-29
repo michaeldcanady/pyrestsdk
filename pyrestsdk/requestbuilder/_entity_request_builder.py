@@ -20,9 +20,6 @@ S = TypeVar("S", bound=AbstractServiceClient)
 class EntityRequestBuilder(AbstractEntityRequestBuilder[R], BaseRequestBuilder[R]):
     """Entity Request Builder Type"""
 
-    def __init__(self: B, request_url: str, client: S) -> None:
-        super().__init__(request_url, client)
-
     @property
     def request(self) -> R:
 

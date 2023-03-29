@@ -12,7 +12,7 @@ class AbstractServiceClient(ABC):
 
     def __new__(cls: Type[S], *args, **kwargs) -> S:
         if getattr(AbstractServiceClient, "__instance", None) is None:
-            AbstractServiceClient.__instance = object.__new__(cls)
+            AbstractServiceClient.__instance = object.__new__(cls, *args, **kwargs)
         return AbstractServiceClient.__instance
 
     @abstractmethod

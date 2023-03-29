@@ -49,20 +49,32 @@ class BaseRequest(Request[T]):
                 case n if issubclass(n, QueryOption):
                     self.query_options.append(option)
                 case other:
-                    raise Exception(
+                    raise TypeError(
                         "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
-                        type(option),
+                        type(other),
                     )
 
-    def _send_request(self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]) -> Optional[Response]:
-        """Makes the desired request and returns Response or None"""
+    def _send_request(
+        self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]
+    ) -> Optional[Response]:
+        """Sends request
+
+        Args:
+            args (Dict[str, Any]): _description_
+            value (Optional[Union[T, Dict[str, Any], str]]): _description_
+
+        Raises:
+            Exception: _description_
+
+        Returns:
+            Optional[Response]: Response to request
+        """
 
         Logger.info(
             "%s._send_request: %s request made",
             type(self).__name__,
             self.request_method.name,
         )
-        
 
         match self.request_method:
             case HttpsMethod.GET:
@@ -75,4 +87,4 @@ class BaseRequest(Request[T]):
             case HttpsMethod.PUT:
                 return self._client.put(**args)
             case other:
-                raise Exception(f"Unknown HTTPS method {self.request_method.name}")
+                raise TypeError(f"Unknown HTTPS method {other.name}")

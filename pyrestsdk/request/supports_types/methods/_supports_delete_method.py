@@ -12,7 +12,7 @@ class SupportsDeleteMethod(SupportsMethods):
     """Supports Delete Method Type"""
 
     @property
-    def Delete(self: S) -> S:
+    def delete(self: S) -> S:
         """Sets request to delete request"""
 
         self._update_request_type(HttpsMethod.DELETE, None)

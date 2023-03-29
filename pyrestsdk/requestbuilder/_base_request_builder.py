@@ -17,7 +17,7 @@ Logger = getLogger(__name__)
 
 class BaseRequestBuilder(AbstractRequestBuilder[T]):
     """Base Request Builder Type"""
-    
+
     def __init__(self: B, request_url: str, client: S) -> None:
         super().__init__(request_url, client)
         self._request_url: str = request_url
@@ -73,8 +73,12 @@ class BaseRequestBuilder(AbstractRequestBuilder[T]):
         Returns:
             str: A URL that is the request builder's request URL with the segment appended.
         """
-        
-        Logger.info("%s.append_segment_to_request_url: function called with %s", type(self).__name__, url_segment)
+
+        Logger.info(
+            "%s.append_segment_to_request_url: function called with %s",
+            type(self).__name__,
+            url_segment,
+        )
 
         if not url_segment.startswith("/"):
             url_segment = f"/{url_segment}"

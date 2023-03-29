@@ -17,15 +17,20 @@ class SupportsMethods(SupportTypes):
 
     _method: HttpsMethod
     _input_object: Optional[Union[S, Dict[str, Any]]]
-    
+
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        
+
         self._method = HttpsMethod.GET
         self._input_object = None
 
     @property
     def request_method(self) -> HttpsMethod:
+        """Gets/Sets the request method
+
+        Returns:
+            HttpsMethod: The request method
+        """
 
         Logger.info("%s.request_method: function called", type(self).__name__)
 
@@ -43,7 +48,12 @@ class SupportsMethods(SupportTypes):
         )
 
     @property
-    def input_object(self) -> Optional[S]:
+    def input_object(self) -> Optional[Union[S, Dict[str, Any]]]:
+        """Gets/Sets the input object
+
+        Returns:
+            Optional[Union[S, Dict[str, Any]]]: The input object
+        """
 
         Logger.info("%s.input_object: function called", type(self).__name__)
 

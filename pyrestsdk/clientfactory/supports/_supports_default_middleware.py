@@ -2,9 +2,9 @@
 
 from typing import List, TypeVar
 
-from requests import Session
-
 from abc import ABC, abstractmethod
+
+from requests import Session
 
 from pyrestsdk.middleware import BaseMiddleware
 
@@ -17,8 +17,9 @@ class SupportsDefaultMiddleware(ABC):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
+    @abstractmethod
     def _register(self, middleware: List[B]) -> None:
-        ...
+        """register middleware"""
 
     @abstractmethod
     def create_with_default_middleware(self, /) -> Session:

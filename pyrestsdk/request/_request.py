@@ -1,3 +1,6 @@
+"""Houses Request Type
+"""
+
 from typing import (
     TypeVar,
     List,
@@ -27,7 +30,7 @@ from pyrestsdk.request.supports_types import (
     SupportsGenericType,
     SupportsQueryOptions,
     SupportsHeaderOptions,
-    )
+)
 
 T = TypeVar("T", bound=Entity)
 B = TypeVar("B", bound="Request")
@@ -42,7 +45,9 @@ class Request(
     SupportsQueryOptions,
     SupportsGenericType,
     AbstractRequest[T],
-    ):
+):
+    """Request Type
+    """
 
     def __init__(
         self: B, request_url: str, client: S, options: Optional[Iterable[O]]
@@ -81,7 +86,7 @@ class Request(
         Logger.info("%s.request_url: request URL set to %s", type(self).__name__, value)
 
     @property
-    def Client(self: B) -> S:
+    def client(self: B) -> S:
         """Gets the Client"""
 
         return self._client
@@ -89,10 +94,10 @@ class Request(
     def _initialize_url(self, request_url: str) -> str:
         """Parses the query parameters from URL"""
 
-        Logger.info(f"%s._initialize_url: function called", type(self).__name__)
+        Logger.info("%s._initialize_url: function called", type(self).__name__)
 
         if not request_url:
-            raise Exception("request url can't be None")
+            raise TypeError("request url can't be None")
 
         url = urlparse(request_url)
 
@@ -101,7 +106,7 @@ class Request(
 
         return url._replace(query="").geturl()
 
-    def Send(
+    def send(
         self, __object: Optional[Union[T, Dict[str, Any]]]
     ) -> Optional[Union[List[T], T]]:
         """Submits the request and returns the expected return"""
@@ -113,22 +118,23 @@ class Request(
     def send_request(
         self, value: Optional[Union[T, Dict[str, Any], str]] = None
     ) -> Optional[Union[List[T], T]]:
-        """Makes the desired request and returns the desired return type
-        """
+        """Makes the desired request and returns the desired return type"""
 
         Logger.info("%s.SendRequest: method called", type(self).__name__)
-        
+
         args = self._get_request_args(value)
 
         _response = self._send_request(args, value)
 
         if _response is None:
             return None
-        
+
         try:
-            Logger.debug("%s.SendRequest: raising response for status", type(self).__name__)
+            Logger.debug(
+                "%s.SendRequest: raising response for status", type(self).__name__
+            )
             _response.raise_for_status()
-        except:
+        except Exception:
             self.parse_exception(_response)
         else:
             return self.parse_response(_response)
@@ -142,29 +148,33 @@ class Request(
         Returns:
             str: JSON version of object
         """
-        
+
         if isinstance(value, str):
             return value
-        
+
         if not isinstance(value, dict):
             value = value.as_dict
-            
+
         return json.dumps(value)
 
-    def _get_request_args(self, value: Optional[Union[T, Dict[str, Any], str]] = None) -> Dict[str, Any]:
-        
+    def _get_request_args(
+        self, value: Optional[Union[T, Dict[str, Any], str]] = None
+    ) -> Dict[str, Any]:
+
         args = {
             "url": self.request_url,
             "headers": self.header_options.as_dict,
             "params": str(self.query_options),
         }
-        
-        if (self.request_method == HttpsMethod.POST) or (self.request_method == HttpsMethod.PUT):
+
+        if (self.request_method == HttpsMethod.POST) or (
+            self.request_method == HttpsMethod.PUT
+        ):
             if value is None:
-                raise Exception(f"Missing data for {self.request_method.name} request.")
-            
+                raise TypeError(f"Missing data for {self.request_method.name} request.")
+
             args["data"] = self._parse_input_object(value)
-        
+
         return args
 
     def append_segment_to_request_url(self, url_segment: str) -> str:

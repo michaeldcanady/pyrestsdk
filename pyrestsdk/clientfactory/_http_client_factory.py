@@ -1,5 +1,5 @@
 """Houses Client Factory"""
-from typing import TypeVar, List, Type
+from typing import TypeVar, List
 from logging import getLogger
 
 from requests import Session
@@ -35,11 +35,11 @@ class HTTPClientFactory(AbstractHTTPClientFactory):
 
         return self._register(middleware)
 
-    def _set_base_url(self, sub_domain: str) -> None:
+    def _set_base_url(self, url: str) -> None:
 
         Logger.info("%s._set_base_url(): method called", type(self).__name__)
 
-        self.session.base_url = f"{self._protocol}://{sub_domain}.{self._base_url}" # type: ignore
+        self.session.base_url = f"{self._protocol}://{url}.{self._base_url}" # type: ignore
 
         Logger.debug(
             "%s._set_base_url() : base url set to: %s",
@@ -47,7 +47,7 @@ class HTTPClientFactory(AbstractHTTPClientFactory):
             self.session.base_url, # type: ignore
         )
 
-        return
+        return None
 
     def _register(self, middleware: List[B]) -> Session:
         """

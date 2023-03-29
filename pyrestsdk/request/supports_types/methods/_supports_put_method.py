@@ -13,7 +13,7 @@ S = TypeVar("S", bound="SupportsPutMethod")
 class SupportsPutMethod(SupportsMethods):
     """Supports Put Method Type"""
 
-    def Put(self: S, input_object: Union[O, Dict[str, Any]]) -> S:
+    def put(self: S, input_object: Union[O, Dict[str, Any]]) -> S:
         """Sets request to put request"""
 
         self._update_request_type(HttpsMethod.PUT, input_object)

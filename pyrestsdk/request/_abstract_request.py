@@ -1,30 +1,14 @@
 """Houses Abstract Request"""
 
 from __future__ import annotations
-from abc import abstractmethod, ABC
-from typing import (
-    List,
-    Union,
-    TypeVar,
-    Generic,
-    Type,
-    Optional,
-    Iterable,
-    Dict,
-    Any
-)
+from abc import abstractmethod
+from typing import List, Union, TypeVar, Generic, Optional, Iterable, Dict, Any
 
 from requests import Response
 
 from pyrestsdk import AbstractServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
-
-from pyrestsdk.request.supports_types import (
-    SupportsGenericType,
-    SupportsQueryOptions,
-    SupportsHeaderOptions,
-)
 
 from pyrestsdk.type.model import (
     CommonBase,
@@ -41,7 +25,6 @@ T = TypeVar("T")
 
 
 class AbstractRequest(
-    #SupportsGenericType,
     CommonBase,
     Generic[T],
 ):
@@ -71,7 +54,7 @@ class AbstractRequest(
 
     @property
     @abstractmethod
-    def Client(self: B) -> S:
+    def client(self: B) -> S:
         """Gets the Client"""
 
     @property
@@ -102,11 +85,15 @@ class AbstractRequest(
         """Parses the response into the expected return"""
 
     @abstractmethod
-    def _send_request(self, args: Dict[str, Any], value:  Optional[Union[T, Dict[str, Any], str]]) -> Optional[Response]:
+    def _send_request(
+        self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]
+    ) -> Optional[Response]:
         """Makes the desired request and returns Response or None"""
-        
+
     @abstractmethod
-    def _get_request_args(self, value: Optional[Union[T, Dict[str, Any], str]] = None) -> Dict[str, Any]:
+    def _get_request_args(
+        self, value: Optional[Union[T, Dict[str, Any], str]] = None
+    ) -> Dict[str, Any]:
         """gets request arguments"""
 
     @abstractmethod

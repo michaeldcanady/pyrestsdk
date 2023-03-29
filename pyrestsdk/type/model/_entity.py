@@ -15,16 +15,16 @@ A = TypeVar("A", bound="AbstractServiceClient")
 
 class Entity(AbstractEntity):
     """Base Entity Type"""
-    
+
     _client: A
 
     def __init__(self: S, client: A) -> None:
-        
+
         super().__init__(client)
-        
+
         self._client = client
 
     @property
-    def Client(self: S) -> A:
+    def client(self: S) -> A:
         """Gets the client"""
         return self._client
