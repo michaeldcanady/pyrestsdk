@@ -8,6 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        poetry-version: ["1.4.1"]
 
     steps:
       - name: Checkout code
