@@ -1,4 +1,4 @@
-name: Pylint
+name: Lint package with Pylint
 
 on: [push]
 
