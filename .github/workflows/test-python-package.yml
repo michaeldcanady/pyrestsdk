@@ -32,7 +32,9 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
 
     - name: Install dependencies
-      run: poetry install
+      run: |
+      sudo apt install heimdal-dev
+      poetry install
 
     - name: Test with pytest
       run: poetry run pytest
