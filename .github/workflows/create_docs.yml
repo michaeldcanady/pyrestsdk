@@ -1,6 +1,7 @@
 name: Create Sphinx docs for module
 
 on:
+  workflow_dispatch:
   release:
     types:
       - published
