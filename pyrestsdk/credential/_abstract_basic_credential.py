@@ -12,7 +12,7 @@ class AbstractBasicCredential(AbstractCredential):
     @abstractmethod
     def __init__(self, username: str, password: str) -> None:
         """Instatiates new Basic Credential"""
-        
+
         self.username = username
         self.password = password
 

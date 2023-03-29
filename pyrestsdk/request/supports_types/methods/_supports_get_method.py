@@ -12,7 +12,7 @@ class SupportsGetMethod(SupportsMethods):
     """Supports Get Method Type"""
 
     @property
-    def Get(self: S) -> S:
+    def get(self: S) -> S:
         """Sets request to get request"""
 
         self._update_request_type(HttpsMethod.GET, None)

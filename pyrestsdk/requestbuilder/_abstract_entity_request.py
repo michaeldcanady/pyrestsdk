@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TypeVar, Iterable, Optional, Generic, Type
+from typing import TypeVar, Iterable, Optional, Generic
 
 from abc import abstractmethod
 

@@ -1,43 +1,32 @@
+[tool.poetry]
+name = "pyrestsdk"
+version = "0.0.0"
+description = "a toolkit to make writing SDKs in python simple"
+authors = ["Michael Canady"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+pattern  = "^(?P<base>\\d+\\.\\d+\\.\\d+)(-?((?P<stage>[a-zA-Z]+)\\.?(?P<revision>\\d+)?))?"
+style = "semver"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+StrEnum = "^0.4.10"
+requests = "^2.28.2"
+requests-kerberos = "^0.14.0"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+pylint = "^2.17.1"
+
 [build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
-[project]
-name = "pyrestsdk"
-authors = [{name = "michaeldcanady"}]
-readme = "Readme.md"
-license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: MIT License"]
-dynamic = ["version", "description"]
-
-dependencies = [
-    "certifi==2022.12.7",
-    "charset-normalizer==3.0.1",
-    "idna==3.4",
-    "requests==2.28.2",
-    "StrEnum==0.4.9",
-    "urllib3==1.26.14",
-]
-
-[project.urls]
-homepage = "https://github.com/michaeldcanady/pyrestsdk#readme"
-repository = "https://github.com/michaeldcanady/pyrestsdk"
-
-[tool.flit.module]
-name = "pyrestsdk"
-
-[tool.mypy]
-warn_unused_configs = true
-files = "pyrestsdk"
-ignore_missing_imports = true
-
-[tool.yapf]
-based_on_style = "pep8"
-dedent_closing_brackets = true
-each_dict_entry_on_separate_line = true
-column_limit = 100
-
-[tool.pytest.ini_options]
-addopts = [
-    "--import-mode=importlib",
-]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"

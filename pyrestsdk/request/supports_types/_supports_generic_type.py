@@ -1,3 +1,6 @@
+"""Houses Supports Generic Type
+"""
+
 from typing import Type, TypeVar, get_args
 
 from pyrestsdk.request.supports_types._supports_types import SupportTypes
@@ -6,8 +9,8 @@ T = TypeVar("T")
 B = TypeVar("B", bound="SupportsGenericType")
 
 class SupportsGenericType(SupportTypes):
-
-    
+    """Supports Generic Type
+    """
 
     _generic_type: Type[T]
 

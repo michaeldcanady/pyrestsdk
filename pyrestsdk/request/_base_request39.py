@@ -24,7 +24,6 @@ from pyrestsdk.type.model import (
     QueryOption,
     HeaderOption,
 )
-from pyrestsdk.type.model import Entity
 from pyrestsdk.request._request import Request
 
 Logger = logging.getLogger(__name__)
@@ -48,7 +47,7 @@ class BaseRequest(Request[T]):
             elif issubclass(type(option), QueryOption):
                 self.query_options.append(option)
             else:
-                raise Exception(
+                raise TypeError(
                     "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
                     type(option),
                 )
@@ -74,7 +73,7 @@ class BaseRequest(Request[T]):
         _func = _request_dict.get(self.request_method, None)
 
         if _func is None:
-            raise Exception("Unknown HTTPS method: %s", self.request_method.name)
+            raise TypeError("Unknown HTTPS method: %s", self.request_method.name)
 
         _response = _func(**args)
 

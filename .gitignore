@@ -9,6 +9,7 @@
 *.egg-info/
 
 *venv/
+.pytest_cache/
 
 test_venv/
 

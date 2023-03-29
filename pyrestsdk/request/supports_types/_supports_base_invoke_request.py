@@ -9,10 +9,8 @@ T = TypeVar("T", bound=Entity)
 
 class SupportsBaseInvokeRequest(SupportTypes):
     """Supports Base Invoke Request Type"""
-    
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
 
+    @property
     @abstractmethod
     def invoke_request(self) -> Optional[Union[List[T], T]]:
         """Invokes the prepared request"""
