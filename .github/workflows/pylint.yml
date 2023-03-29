@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt install heimdal-dev
-        poetry install
+        poetry install --no-interaction --no-root --with lint
 
     - name: Analysing the code with pylint
       run: poetry run pylint $(git ls-files '*.py')

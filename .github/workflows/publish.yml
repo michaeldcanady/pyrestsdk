@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt install heimdal-dev
-          poetry install
+          poetry install --no-interaction --no-root --with dev
 
       - name: Publish the distibution to PyPI
         if: github.repository == 'michaeldcanady/pyrestsdk'

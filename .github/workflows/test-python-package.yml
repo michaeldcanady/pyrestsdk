@@ -30,7 +30,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt install heimdal-dev
-        poetry install
+        poetry install --no-interaction --no-root --with test
 
     - name: Test with pytest
       run: poetry run pytest
