@@ -1,4 +1,4 @@
-name: Create Sphinx for module
+name: Create Sphinx docs for module
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -8,6 +8,10 @@ permissions:
 jobs:
   docs:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        poetry-version: ["1.4.1"]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
