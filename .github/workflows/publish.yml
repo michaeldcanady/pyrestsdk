@@ -7,8 +7,8 @@ on:
 
 jobs:
   publish:
-    name: Create release and publish distribution to PyPI
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,9 +19,9 @@ jobs:
           python-version: 3.11
 
       - name: Install Poetry
-      uses: abatilo/actions-poetry@v2.1.6
-      with:
-        poetry-version: ${{ matrix.poetry-version }}
+        uses: abatilo/actions-poetry@v2.1.6
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
 
       - name: Install dependencies
         run: |
