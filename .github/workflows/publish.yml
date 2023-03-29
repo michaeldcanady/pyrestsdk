@@ -34,7 +34,7 @@ jobs:
       - name: Publish the distibution to PyPI
         if: github.repository == 'michaeldcanady/pyrestsdk'
         run: |
-          poetry config pypi-token.pypi $PYPI_TOKEN
-          poetry publish --build
+          poetry publish --build --username $PYPI_USERNAME --password $PYPI_PASSWORD
         env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+          PYPI_USERNAME: __token__
+          PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}

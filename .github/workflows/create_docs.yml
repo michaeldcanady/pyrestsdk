@@ -1,6 +1,9 @@
 name: Create Sphinx docs for module
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  release:
+    types:
+      - published
 
 permissions:
     contents: write
