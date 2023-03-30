@@ -1,6 +1,6 @@
 """Houses Options Collection"""
 
-from typing import List, Dict, TypeVar, Any
+from typing import List, Dict, TypeVar, Any, Tuple, Iterator
 from pyrestsdk.type.model._type_collection import TypeCollection
 from pyrestsdk.type.model._option import Option
 
@@ -9,6 +9,16 @@ O = TypeVar("O", bound=Option)
 
 class OptionsCollection(TypeCollection[O]):
     """Option Collection Type"""
+
+    @property
+    def options(self) -> Tuple[O]:
+        """Gets the options
+
+        Returns:
+            Tuple[O]: The options
+        """
+
+        return tuple(self._internal_list)
 
     def __getitem__(self, index: int) -> Option:
         """Gets object at index
@@ -36,14 +46,13 @@ class OptionsCollection(TypeCollection[O]):
 
     @property
     def as_dict(self) -> Dict[str, Any]:
-        """Gets the object as it's dict representation"""
+        """Gets the object as it's dictionary representation
 
-        _return: Dict = {}
+        Returns:
+            Dict[str, Any]: Object's dictionary representation
+        """
 
-        for value in self._internal_list:
-            _return.update(value.as_dict)
-
-        return _return
+        return {option.name: option.value for option in self._internal_list}
 
     def as_list(self) -> List[O]:
         """Gets the object as it's list representation"""

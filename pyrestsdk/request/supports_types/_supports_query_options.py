@@ -16,12 +16,20 @@ class SupportsQueryOptions(SupportTypes):
 
     @property
     def query_options(self) -> QueryOptionCollection:
-        """Gets Query Options"""
+        """Gets the Query Options
+
+        Returns:
+            QueryOptionCollection: The Query Options
+        """
 
         return self._query_options
 
     def _split_query_options(self, query_string: str) -> None:
-        """Parses query options from query string"""
+        """Parses query options from the query string
+
+        Args:
+            query_string (str): The query string
+        """
 
         for option in query_string.split("&"):
             query_parameter, value = option.split("=")

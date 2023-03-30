@@ -15,7 +15,7 @@ class FeatureUsageFlag(IntEnum):
 
 
 FeatureUsageFlag.NONE.__doc__ = "No Feature Flags Set"
-FeatureUsageFlag.REDIRECT_HANDLER_ENABLED.__doc__ = ""
-FeatureUsageFlag.AUTH_HANDLER_ENABLED.__doc__ = ""
-FeatureUsageFlag.DEFAULT_HTTP_PROVIDER_ENABLED.__doc__ = ""
-FeatureUsageFlag.LOGGING_HANDLER_ENABLED.__doc__ = ""
+FeatureUsageFlag.REDIRECT_HANDLER_ENABLED.__doc__ = "Redirect Handler Enabled"
+FeatureUsageFlag.AUTH_HANDLER_ENABLED.__doc__ = "Authorization Handler Enabled"
+FeatureUsageFlag.DEFAULT_HTTP_PROVIDER_ENABLED.__doc__ = "Default HTTP Provider Enabled"
+FeatureUsageFlag.LOGGING_HANDLER_ENABLED.__doc__ = "Logging Handler Enabled"
