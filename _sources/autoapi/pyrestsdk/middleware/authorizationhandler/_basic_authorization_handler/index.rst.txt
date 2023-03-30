@@ -1,0 +1,72 @@
+:py:mod:`pyrestsdk.middleware.authorizationhandler._basic_authorization_handler`
+================================================================================
+
+.. py:module:: pyrestsdk.middleware.authorizationhandler._basic_authorization_handler
+
+.. autoapi-nested-parse::
+
+   Houses Basic Authorization Handler
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.BasicAuthorizationHandler
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.T
+   pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.A
+
+
+.. py:data:: T
+
+   
+
+.. py:data:: A
+
+   
+
+.. py:class:: BasicAuthorizationHandler(credential: T, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.middleware._base_authorization_handler.BaseAuthorizationHandler`
+
+   Basic Authoziation Handler Type
+
+   .. py:attribute:: credential
+      :type: T
+
+      
+
+   .. py:method:: send(request: requests.PreparedRequest, stream: bool = False, timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None, verify: bool = True, cert: Optional[Union[bytes, str, Tuple[Union[bytes, str], Union[bytes, str]]]] = None, proxies: Optional[Mapping[str, str]] = None) -> requests.Response
+
+      Makes a network request if next is none, otherwise requests the next middleware to do so
+
+      Args:
+          request (PreparedRequest): The network request
+
+      Returns:
+          Response: Response from network request
+
+
+   .. py:method:: _get_basic_auth(/) -> str
+
+      Gets the encoded string from the credential's get_basic() function
+
+      Returns:
+          str: The encoded string
+
+
+

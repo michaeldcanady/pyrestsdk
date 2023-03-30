@@ -1,0 +1,84 @@
+:py:mod:`pyrestsdk.requestbuilder._base_request_builder`
+========================================================
+
+.. py:module:: pyrestsdk.requestbuilder._base_request_builder
+
+.. autoapi-nested-parse::
+
+   Houses Base Request Builder
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._base_request_builder.BaseRequestBuilder
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._base_request_builder.S
+   pyrestsdk.requestbuilder._base_request_builder.B
+   pyrestsdk.requestbuilder._base_request_builder.T
+   pyrestsdk.requestbuilder._base_request_builder.Logger
+
+
+.. py:data:: S
+
+   
+
+.. py:data:: B
+
+   
+
+.. py:data:: T
+
+   
+
+.. py:data:: Logger
+
+   
+
+.. py:class:: BaseRequestBuilder(request_url: str, client: S)
+
+   Bases: :py:obj:`pyrestsdk.requestbuilder._abstract_request_builder.AbstractRequestBuilder`\ [\ :py:obj:`T`\ ]
+
+   Base Request Builder Type
+
+   .. py:property:: request_client
+      :type: S
+
+      Gets/Sets the Client
+
+
+   .. py:property:: request_url
+      :type: str
+
+      Gets/Sets the request URL
+
+      Returns:
+          str: The request URL
+
+
+   .. py:method:: append_segment_to_request_url(url_segment: str) -> str
+
+      Gets a URL that is the request builder's request URL with the segment appended.
+
+      Args:
+          url_segment (str): The segment to append to the request URL.
+
+      Returns:
+          str: A URL that is the request builder's request URL with the segment appended.
+
+
+

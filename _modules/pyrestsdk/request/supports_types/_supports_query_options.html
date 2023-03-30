@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>pyrestsdk.request.supports_types._supports_query_options</title>
+    
+          <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../../../_static/theme-vendors.js"></script> -->
+      <script src="../../../../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../../../index.html" class="home-link">
+    
+      <span class="site-name">PyRESTSDK</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../../../autoapi/index.html#api-reference">api reference</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../../../autoapi/pyrestsdk/index.html" class="reference internal ">pyrestsdk</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+    
+      <li><a href="../../../index.html">Module code</a> &raquo;</li>
+    
+    <li>pyrestsdk.request.supports_types._supports_query_options</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <h1>Source code for pyrestsdk.request.supports_types._supports_query_options</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Houses Supports Query Options&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pyrestsdk.type.model</span> <span class="kn">import</span> <span class="n">QueryOptionCollection</span>
+<span class="kn">from</span> <span class="nn">pyrestsdk.request.supports_types._supports_types</span> <span class="kn">import</span> <span class="n">SupportTypes</span>
+<span class="kn">from</span> <span class="nn">pyrestsdk.type.model</span> <span class="kn">import</span> <span class="n">QueryOption</span>
+
+<div class="viewcode-block" id="SupportsQueryOptions"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/request/supports_types/index.html#pyrestsdk.request.supports_types._supports_query_options.SupportsQueryOptions">[docs]</a><span class="k">class</span> <span class="nc">SupportsQueryOptions</span><span class="p">(</span><span class="n">SupportTypes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Supports Query Options Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SupportsQueryOptions._query_options"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/request/supports_types/_supports_query_options/index.html#pyrestsdk.request.supports_types._supports_query_options.SupportsQueryOptions._query_options">[docs]</a>    <span class="n">_query_options</span><span class="p">:</span> <span class="n">QueryOptionCollection</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query_options</span> <span class="o">=</span> <span class="n">QueryOptionCollection</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="SupportsQueryOptions.query_options"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/request/supports_types/_supports_query_options/index.html#pyrestsdk.request.supports_types._supports_query_options.SupportsQueryOptions.query_options">[docs]</a>    <span class="k">def</span> <span class="nf">query_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QueryOptionCollection</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets Query Options&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_options</span></div>
+
+<div class="viewcode-block" id="SupportsQueryOptions._split_query_options"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/request/supports_types/_supports_query_options/index.html#pyrestsdk.request.supports_types._supports_query_options.SupportsQueryOptions._split_query_options">[docs]</a>    <span class="k">def</span> <span class="nf">_split_query_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parses query options from query string&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">query_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">):</span>
+            <span class="n">query_parameter</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+            <span class="n">_query_parameter</span> <span class="o">=</span> <span class="n">QueryOption</span><span class="p">(</span><span class="n">query_parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">query_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_query_parameter</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2023, michaeldcanady.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

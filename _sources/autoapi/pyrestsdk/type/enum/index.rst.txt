@@ -1,0 +1,281 @@
+:py:mod:`pyrestsdk.type.enum`
+=============================
+
+.. py:module:: pyrestsdk.type.enum
+
+.. autoapi-nested-parse::
+
+   Houses enum types
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _feature_usage_flag/index.rst
+   _https_method/index.rst
+   _media_type/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.enum.FeatureUsageFlag
+   pyrestsdk.type.enum.HttpsMethod
+   pyrestsdk.type.enum.MimeType
+
+
+
+
+.. py:class:: FeatureUsageFlag
+
+   Bases: :py:obj:`enum.IntEnum`
+
+   Enumerated list of values used to flag usage of specific middleware
+
+   .. py:attribute:: NONE
+      :value: 0
+
+      
+
+   .. py:attribute:: REDIRECT_HANDLER_ENABLED
+      :value: 1
+
+      
+
+   .. py:attribute:: RETRY_HANDLER_ENABLED
+      :value: 2
+
+      
+
+   .. py:attribute:: AUTH_HANDLER_ENABLED
+      :value: 4
+
+      
+
+   .. py:attribute:: DEFAULT_HTTP_PROVIDER_ENABLED
+      :value: 8
+
+      
+
+   .. py:attribute:: LOGGING_HANDLER_ENABLED
+      :value: 16
+
+      
+
+
+.. py:class:: HttpsMethod
+
+   Bases: :py:obj:`enum.IntEnum`
+
+   HTTPS Method enum
+
+   .. py:attribute:: GET
+
+      
+
+   .. py:attribute:: POST
+
+      
+
+   .. py:attribute:: DELETE
+
+      
+
+   .. py:attribute:: PATCH
+
+      
+
+   .. py:attribute:: PUT
+
+      
+
+
+.. py:class:: MimeType
+
+   MIME Type
+
+   .. py:class:: Text
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Text MIME Type
+
+      .. py:attribute:: PLAIN
+         :value: 'text/plain'
+
+         
+
+      .. py:attribute:: HTML
+         :value: 'text/html'
+
+         
+
+      .. py:attribute:: CSS
+         :value: 'text/css'
+
+         
+
+      .. py:attribute:: JAVASCRIPT
+         :value: 'text/javascript'
+
+         
+
+      .. py:attribute:: CSV
+         :value: 'text/csv'
+
+         
+
+
+   .. py:class:: Application
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Application MIME Type
+
+      .. py:attribute:: OCTET_STREAM
+         :value: 'application/octet-stream'
+
+         
+
+      .. py:attribute:: PKCS12
+         :value: 'application/x-pkcs12'
+
+         
+
+      .. py:attribute:: X_WWW_FORM_URLENCODED
+         :value: 'application/x-www-form-urlencoded'
+
+         
+
+      .. py:attribute:: JSON
+         :value: 'application/json'
+
+         
+
+      .. py:attribute:: PDF
+         :value: 'application/pdf'
+
+         
+
+      .. py:attribute:: XML
+         :value: 'application/xml'
+
+         
+
+      .. py:attribute:: ZIP
+         :value: 'application/zip'
+
+         
+
+      .. py:attribute:: GZIP
+         :value: 'application/gzip'
+
+         
+
+
+   .. py:class:: Image
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Image MIME Type
+
+      .. py:attribute:: JPEG
+         :value: 'image/jpeg'
+
+         
+
+      .. py:attribute:: PNG
+         :value: 'image/png'
+
+         
+
+      .. py:attribute:: GIF
+         :value: 'image/gif'
+
+         
+
+      .. py:attribute:: SVG_XML
+         :value: 'image/svg+xml'
+
+         
+
+      .. py:attribute:: WEBP
+         :value: 'image/webp'
+
+         
+
+
+   .. py:class:: Audio
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Audio MIME Type
+
+      .. py:attribute:: MIDI
+         :value: 'audio/midi'
+
+         
+
+      .. py:attribute:: MPEG
+         :value: 'audio/mpeg'
+
+         
+
+      .. py:attribute:: WEBM
+         :value: 'audio/webm'
+
+         
+
+      .. py:attribute:: OGG
+         :value: 'audio/ogg'
+
+         
+
+      .. py:attribute:: WAV
+         :value: 'audio/wav'
+
+         
+
+
+   .. py:class:: Video
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Video MIME Type
+
+      .. py:attribute:: MPEG
+         :value: 'video/mpeg'
+
+         
+
+      .. py:attribute:: MP4
+         :value: 'video/mp4'
+
+         
+
+      .. py:attribute:: OGG
+         :value: 'video/ogg'
+
+         
+
+      .. py:attribute:: WEBM
+         :value: 'video/webm'
+
+         
+
+      .. py:attribute:: QUICKTIME
+         :value: 'video/quicktime'
+
+         
+
+
+

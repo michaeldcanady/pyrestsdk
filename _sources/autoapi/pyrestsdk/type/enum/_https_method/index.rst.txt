@@ -1,0 +1,51 @@
+:py:mod:`pyrestsdk.type.enum._https_method`
+===========================================
+
+.. py:module:: pyrestsdk.type.enum._https_method
+
+.. autoapi-nested-parse::
+
+   Houses Https Method Enum
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.enum._https_method.HttpsMethod
+
+
+
+
+.. py:class:: HttpsMethod
+
+   Bases: :py:obj:`enum.IntEnum`
+
+   HTTPS Method enum
+
+   .. py:attribute:: GET
+
+      
+
+   .. py:attribute:: POST
+
+      
+
+   .. py:attribute:: DELETE
+
+      
+
+   .. py:attribute:: PATCH
+
+      
+
+   .. py:attribute:: PUT
+
+      
+
+

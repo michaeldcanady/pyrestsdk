@@ -1,0 +1,61 @@
+:py:mod:`pyrestsdk.requestbuilder._abstract_entity_request`
+===========================================================
+
+.. py:module:: pyrestsdk.requestbuilder._abstract_entity_request
+
+.. autoapi-nested-parse::
+
+   Houses Entity Request Builder
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._abstract_entity_request.AbstractEntityRequestBuilder
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._abstract_entity_request.R
+   pyrestsdk.requestbuilder._abstract_entity_request.O
+
+
+.. py:data:: R
+
+   
+
+.. py:data:: O
+
+   
+
+.. py:class:: AbstractEntityRequestBuilder(request_url: str, client: S)
+
+   Bases: :py:obj:`pyrestsdk.requestbuilder._abstract_request_builder.AbstractRequestBuilder`, :py:obj:`Generic`\ [\ :py:obj:`R`\ ]
+
+   Entity Request Builder Type
+
+   .. py:property:: request
+      :type: R
+      :abstractmethod:
+
+      Builds request with no options
+
+
+   .. py:method:: request_with_options(options: Optional[Iterable[O]]) -> R
+      :abstractmethod:
+
+      Builds request
+
+
+

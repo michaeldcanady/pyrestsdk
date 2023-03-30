@@ -1,0 +1,97 @@
+:py:mod:`pyrestsdk.requestbuilder._abstract_request_builder`
+============================================================
+
+.. py:module:: pyrestsdk.requestbuilder._abstract_request_builder
+
+.. autoapi-nested-parse::
+
+   Houses Abstract Request Builder
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._abstract_request_builder.AbstractRequestBuilder
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._abstract_request_builder.B
+   pyrestsdk.requestbuilder._abstract_request_builder.S
+   pyrestsdk.requestbuilder._abstract_request_builder.O
+   pyrestsdk.requestbuilder._abstract_request_builder.T
+
+
+.. py:data:: B
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:data:: O
+
+   
+
+.. py:data:: T
+
+   
+
+.. py:class:: AbstractRequestBuilder(request_url: str, client: S)
+
+   Bases: :py:obj:`abc.ABC`, :py:obj:`Generic`\ [\ :py:obj:`T`\ ]
+
+   Abstract Request Type
+
+   .. py:property:: request_client
+      :type: S
+      :abstractmethod:
+
+      Gets/Sets the Client
+
+
+   .. py:property:: request_url
+      :type: str
+      :abstractmethod:
+
+      Gets/Sets the request URL
+
+      Returns:
+          str: The request URL
+
+
+   .. py:attribute:: _client
+      :type: S
+
+      
+
+   .. py:attribute:: _request_url
+      :type: str
+
+      
+
+   .. py:method:: append_segment_to_request_url(url_segment: str) -> str
+      :abstractmethod:
+
+      Gets a URL that is the request builder's request URL with the segment appended.
+
+      Args:
+          url_segment (str): The segment to append to the request URL.
+
+      Returns:
+          str: A URL that is the request builder's request URL with the segment appended.
+
+
+

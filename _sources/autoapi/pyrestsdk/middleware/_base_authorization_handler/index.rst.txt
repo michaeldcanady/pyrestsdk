@@ -1,0 +1,58 @@
+:py:mod:`pyrestsdk.middleware._base_authorization_handler`
+==========================================================
+
+.. py:module:: pyrestsdk.middleware._base_authorization_handler
+
+.. autoapi-nested-parse::
+
+   Houses Base Authorization Handler
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware._base_authorization_handler.BaseAuthorizationHandler
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware._base_authorization_handler.C
+   pyrestsdk.middleware._base_authorization_handler.A
+
+
+.. py:data:: C
+
+   
+
+.. py:data:: A
+
+   
+
+.. py:class:: BaseAuthorizationHandler(credential: C, /)
+
+   Bases: :py:obj:`pyrestsdk.middleware._base_middleware.BaseMiddleware`
+
+   Base Authorization Handler Type
+
+   .. py:attribute:: credential
+      :type: C
+
+      
+
+   .. py:attribute:: retry_count
+      :type: int
+
+      
+
+

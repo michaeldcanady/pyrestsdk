@@ -1,0 +1,61 @@
+:py:mod:`pyrestsdk.type.enum._feature_usage_flag`
+=================================================
+
+.. py:module:: pyrestsdk.type.enum._feature_usage_flag
+
+.. autoapi-nested-parse::
+
+   Houses Feature Usage Flag Enum
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.enum._feature_usage_flag.FeatureUsageFlag
+
+
+
+
+.. py:class:: FeatureUsageFlag
+
+   Bases: :py:obj:`enum.IntEnum`
+
+   Enumerated list of values used to flag usage of specific middleware
+
+   .. py:attribute:: NONE
+      :value: 0
+
+      
+
+   .. py:attribute:: REDIRECT_HANDLER_ENABLED
+      :value: 1
+
+      
+
+   .. py:attribute:: RETRY_HANDLER_ENABLED
+      :value: 2
+
+      
+
+   .. py:attribute:: AUTH_HANDLER_ENABLED
+      :value: 4
+
+      
+
+   .. py:attribute:: DEFAULT_HTTP_PROVIDER_ENABLED
+      :value: 8
+
+      
+
+   .. py:attribute:: LOGGING_HANDLER_ENABLED
+      :value: 16
+
+      
+
+

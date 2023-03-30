@@ -1,0 +1,60 @@
+:py:mod:`pyrestsdk.request.supports_types._supports_invoke_request`
+===================================================================
+
+.. py:module:: pyrestsdk.request.supports_types._supports_invoke_request
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_invoke_request.SupportsInvokeRequest
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_invoke_request.T
+   pyrestsdk.request.supports_types._supports_invoke_request.S
+
+
+.. py:data:: T
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:class:: SupportsInvokeRequest(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_base_invoke_request.SupportsBaseInvokeRequest`
+
+   Supports Invoke Request
+
+   Request supports invokation at later time
+
+   .. py:property:: invoke_request
+      :type: T
+
+      Invokes Request Expecting single value return type
+
+      Args:
+          self (S): Supports Invoke Request Instance
+
+      Raises:
+          UnexpectedReturnType: Error when return type is other than generic
+
+      Returns:
+          T: The single value return
+
+
+

@@ -1,0 +1,41 @@
+:py:mod:`pyrestsdk.type.model.token._base_token`
+================================================
+
+.. py:module:: pyrestsdk.type.model.token._base_token
+
+.. autoapi-nested-parse::
+
+   Houses Base Token
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model.token._base_token.BaseToken
+
+
+
+
+.. py:class:: BaseToken
+
+   Base Token Type
+
+   .. py:property:: token
+      :type: str
+
+      Gets the token
+              
+
+
+   .. py:attribute:: _token
+      :type: str
+
+      
+
+

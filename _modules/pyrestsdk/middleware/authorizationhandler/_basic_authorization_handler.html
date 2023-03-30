@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>pyrestsdk.middleware.authorizationhandler._basic_authorization_handler</title>
+    
+          <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../../../_static/theme-vendors.js"></script> -->
+      <script src="../../../../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../../../index.html" class="home-link">
+    
+      <span class="site-name">PyRESTSDK</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../../../autoapi/index.html#api-reference">api reference</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../../../autoapi/pyrestsdk/index.html" class="reference internal ">pyrestsdk</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+    
+      <li><a href="../../../index.html">Module code</a> &raquo;</li>
+    
+    <li>pyrestsdk.middleware.authorizationhandler._basic_authorization_handler</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <h1>Source code for pyrestsdk.middleware.authorizationhandler._basic_authorization_handler</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Houses Basic Authorization Handler&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Mapping</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">PreparedRequest</span><span class="p">,</span> <span class="n">Response</span>
+<span class="kn">from</span> <span class="nn">pyrestsdk.middleware._base_authorization_handler</span> <span class="kn">import</span> <span class="n">BaseAuthorizationHandler</span>
+<span class="kn">from</span> <span class="nn">pyrestsdk.credential</span> <span class="kn">import</span> <span class="n">AbstractBasicCredential</span>
+<span class="kn">from</span> <span class="nn">pyrestsdk.type.enum</span> <span class="kn">import</span> <span class="n">FeatureUsageFlag</span>
+
+<div class="viewcode-block" id="T"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/middleware/authorizationhandler/_basic_authorization_handler/index.html#pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.T">[docs]</a><span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">AbstractBasicCredential</span><span class="p">)</span></div>
+<div class="viewcode-block" id="A"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/middleware/authorizationhandler/_basic_authorization_handler/index.html#pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.A">[docs]</a><span class="n">A</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;BasicAuthorizationHandler&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BasicAuthorizationHandler"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/middleware/authorizationhandler/index.html#pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.BasicAuthorizationHandler">[docs]</a><span class="k">class</span> <span class="nc">BasicAuthorizationHandler</span><span class="p">(</span><span class="n">BaseAuthorizationHandler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic Authoziation Handler Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BasicAuthorizationHandler.credential"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/middleware/authorizationhandler/_basic_authorization_handler/index.html#pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.BasicAuthorizationHandler.credential">[docs]</a>    <span class="n">credential</span><span class="p">:</span> <span class="n">T</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">credential</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">credential</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BasicAuthorizationHandler.send"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/middleware/authorizationhandler/_basic_authorization_handler/index.html#pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.BasicAuthorizationHandler.send">[docs]</a>    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span>
+        <span class="n">request</span><span class="p">:</span> <span class="n">PreparedRequest</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">verify</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">cert</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span>
+            <span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">proxies</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Makes a network request if next is none, otherwise requests the next middleware to do so</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            request (PreparedRequest): The network request</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Response: Response from network request</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">context</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">context</span>  <span class="c1"># type: ignore</span>
+
+        <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+            <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Basic </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_basic_auth</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+
+        <span class="n">context</span><span class="o">.</span><span class="n">set_feature_usage</span> <span class="o">=</span> <span class="n">FeatureUsageFlag</span><span class="o">.</span><span class="n">AUTH_HANDLER_ENABLED</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
+
+        <span class="c1"># Token might have expired just before transmission, retry the request one more time</span>
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">retry_count</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">retry_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">verify</span><span class="p">,</span> <span class="n">cert</span><span class="p">,</span> <span class="n">proxies</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="BasicAuthorizationHandler._get_basic_auth"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/middleware/authorizationhandler/_basic_authorization_handler/index.html#pyrestsdk.middleware.authorizationhandler._basic_authorization_handler.BasicAuthorizationHandler._get_basic_auth">[docs]</a>    <span class="k">def</span> <span class="nf">_get_basic_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the encoded string from the credential&#39;s get_basic() function</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The encoded string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">credential</span><span class="o">.</span><span class="n">get_basic</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2023, michaeldcanady.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

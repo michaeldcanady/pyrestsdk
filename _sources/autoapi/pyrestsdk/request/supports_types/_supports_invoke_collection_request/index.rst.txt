@@ -1,0 +1,62 @@
+:py:mod:`pyrestsdk.request.supports_types._supports_invoke_collection_request`
+==============================================================================
+
+.. py:module:: pyrestsdk.request.supports_types._supports_invoke_collection_request
+
+.. autoapi-nested-parse::
+
+   Houses Supports Invoke Collection Request
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_invoke_collection_request.SupportsInvokeCollectionRequest
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_invoke_collection_request.T
+   pyrestsdk.request.supports_types._supports_invoke_collection_request.S
+
+
+.. py:data:: T
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:class:: SupportsInvokeCollectionRequest(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_base_invoke_request.SupportsBaseInvokeRequest`
+
+   Supports Invoke Request
+
+   Request supports invokation at later time
+
+   .. py:property:: invoke_request
+      :type: List[T]
+
+      Invokes Request Expecting list of value return type
+
+      Raises:
+          UnexpectedReturnType: Error when return type is other than generic list
+
+      Returns:
+          List[T]: The list of value
+
+
+

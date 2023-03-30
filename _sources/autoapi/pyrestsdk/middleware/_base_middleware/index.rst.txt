@@ -1,0 +1,63 @@
+:py:mod:`pyrestsdk.middleware._base_middleware`
+===============================================
+
+.. py:module:: pyrestsdk.middleware._base_middleware
+
+.. autoapi-nested-parse::
+
+   Houses base Middleware
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware._base_middleware.BaseMiddleware
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware._base_middleware.B
+
+
+.. py:data:: B
+
+   
+
+.. py:class:: BaseMiddleware
+
+   Bases: :py:obj:`requests.adapters.HTTPAdapter`
+
+   Base class for middleware
+
+   Handles moving a Request to the next middleware in the pipeline.
+   If the current middleware is the last one in the pipeline, it
+   makes a network request
+
+   .. py:attribute:: next
+      :type: Optional[B]
+
+      
+
+   .. py:method:: send(request: requests.PreparedRequest, stream: bool = False, timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None, verify: bool = True, cert: Optional[Union[bytes, str, Tuple[Union[bytes, str], Union[bytes, str]]]] = None, proxies: Optional[Mapping[str, str]] = None) -> requests.Response
+
+      Makes a network request if next is none, otherwise requests the next middleware to do so
+
+      Args:
+          request (PreparedRequest): The network request
+
+      Returns:
+          Response: Response from network request
+
+
+

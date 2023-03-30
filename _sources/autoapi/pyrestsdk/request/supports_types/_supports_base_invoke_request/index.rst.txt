@@ -1,0 +1,45 @@
+:py:mod:`pyrestsdk.request.supports_types._supports_base_invoke_request`
+========================================================================
+
+.. py:module:: pyrestsdk.request.supports_types._supports_base_invoke_request
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_base_invoke_request.SupportsBaseInvokeRequest
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_base_invoke_request.T
+
+
+.. py:data:: T
+
+   
+
+.. py:class:: SupportsBaseInvokeRequest(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Base Invoke Request Type
+
+   .. py:property:: invoke_request
+      :type: Optional[Union[List[T], T]]
+      :abstractmethod:
+
+      Invokes the prepared request
+
+
+

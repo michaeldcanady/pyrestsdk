@@ -1,0 +1,42 @@
+:py:mod:`pyrestsdk.request.supports_types._supports_header_options`
+===================================================================
+
+.. py:module:: pyrestsdk.request.supports_types._supports_header_options
+
+.. autoapi-nested-parse::
+
+   Houses Supports Header Options
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_header_options.SupportsHeaderOptions
+
+
+
+
+.. py:class:: SupportsHeaderOptions(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Header Options Type
+
+   .. py:property:: header_options
+      :type: pyrestsdk.type.model.HeaderOptionCollection
+
+      Gets Header Options
+
+
+   .. py:attribute:: _header_options
+      :type: pyrestsdk.type.model.HeaderOptionCollection
+
+      
+
+

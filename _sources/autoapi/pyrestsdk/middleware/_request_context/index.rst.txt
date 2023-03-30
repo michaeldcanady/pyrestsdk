@@ -1,0 +1,38 @@
+:py:mod:`pyrestsdk.middleware._request_context`
+===============================================
+
+.. py:module:: pyrestsdk.middleware._request_context
+
+.. autoapi-nested-parse::
+
+   Houses Request Context
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware._request_context.RequestContext
+
+
+
+
+.. py:class:: RequestContext(middleware_control, headers)
+
+   A request context contains data that is persisted throughout the request and
+   includes a ClientRequestId property, MiddlewareControl property to control behavior
+   of middleware as well as a FeatureUsage  property to keep track of middleware used
+   in making the request.
+
+   .. py:property:: feature_usage
+      :type: str
+
+      Gets/Sets feature usage flag
+
+
+

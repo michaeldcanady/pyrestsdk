@@ -1,0 +1,61 @@
+:py:mod:`pyrestsdk.type.model._common_base`
+===========================================
+
+.. py:module:: pyrestsdk.type.model._common_base
+
+.. autoapi-nested-parse::
+
+   Houses Common Base
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._common_base.FrozenAttributes
+   pyrestsdk.type.model._common_base.CommonBase
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._common_base.frozen
+
+
+
+.. py:function:: frozen(func: Callable[[Any, str, Any], Any])
+
+   Raise an error when trying to set an undeclared name, or when calling
+   from a method other than Frozen.__init__ or the __init__ method of
+   a class derived from Frozen
+
+
+.. py:class:: FrozenAttributes
+
+   Bases: :py:obj:`type`
+
+   MetaClass for freezing ability to set attributes outside of specific instances
+
+   .. py:method:: __setattr__(__name: str, __value: Any) -> None
+
+      Implement setattr(self, name, value).
+
+
+
+.. py:class:: CommonBase(*args, **kwargs)
+
+   Common Base Type
+
+   .. py:attribute:: __metaclass__
+
+      
+
+

@@ -1,0 +1,83 @@
+:py:mod:`pyrestsdk.requestbuilder`
+==================================
+
+.. py:module:: pyrestsdk.requestbuilder
+
+.. autoapi-nested-parse::
+
+   Request Builder
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _abstract_entity_request/index.rst
+   _abstract_request_builder/index.rst
+   _base_request_builder/index.rst
+   _entity_request_builder/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder.BaseRequestBuilder
+   pyrestsdk.requestbuilder.EntityRequestBuilder
+
+
+
+
+.. py:class:: BaseRequestBuilder(request_url: str, client: S)
+
+   Bases: :py:obj:`pyrestsdk.requestbuilder._abstract_request_builder.AbstractRequestBuilder`\ [\ :py:obj:`T`\ ]
+
+   Base Request Builder Type
+
+   .. py:property:: request_client
+      :type: S
+
+      Gets/Sets the Client
+
+
+   .. py:property:: request_url
+      :type: str
+
+      Gets/Sets the request URL
+
+      Returns:
+          str: The request URL
+
+
+   .. py:method:: append_segment_to_request_url(url_segment: str) -> str
+
+      Gets a URL that is the request builder's request URL with the segment appended.
+
+      Args:
+          url_segment (str): The segment to append to the request URL.
+
+      Returns:
+          str: A URL that is the request builder's request URL with the segment appended.
+
+
+
+.. py:class:: EntityRequestBuilder(request_url: str, client: S)
+
+   Bases: :py:obj:`pyrestsdk.requestbuilder._abstract_entity_request.AbstractEntityRequestBuilder`\ [\ :py:obj:`R`\ ], :py:obj:`pyrestsdk.requestbuilder._base_request_builder.BaseRequestBuilder`\ [\ :py:obj:`R`\ ]
+
+   Entity Request Builder Type
+
+   .. py:property:: request
+      :type: R
+
+      Builds request with no options
+
+
+

@@ -1,0 +1,231 @@
+:py:mod:`pyrestsdk.request.supports_types`
+==========================================
+
+.. py:module:: pyrestsdk.request.supports_types
+
+.. autoapi-nested-parse::
+
+   Supports Types
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   methods/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _supports_base_invoke_request/index.rst
+   _supports_generic_type/index.rst
+   _supports_header_options/index.rst
+   _supports_invoke_collection_request/index.rst
+   _supports_invoke_request/index.rst
+   _supports_query_options/index.rst
+   _supports_types/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.SupportsBaseInvokeRequest
+   pyrestsdk.request.supports_types.SupportsInvokeCollectionRequest
+   pyrestsdk.request.supports_types.SupportsInvokeRequest
+   pyrestsdk.request.supports_types.SupportsDeleteMethod
+   pyrestsdk.request.supports_types.SupportsGetMethod
+   pyrestsdk.request.supports_types.SupportsPostMethod
+   pyrestsdk.request.supports_types.SupportsPutMethod
+   pyrestsdk.request.supports_types.SupportsQueryOptions
+   pyrestsdk.request.supports_types.SupportsHeaderOptions
+   pyrestsdk.request.supports_types.SupportsGenericType
+
+
+
+
+.. py:class:: SupportsBaseInvokeRequest(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Base Invoke Request Type
+
+   .. py:property:: invoke_request
+      :type: Optional[Union[List[T], T]]
+      :abstractmethod:
+
+      Invokes the prepared request
+
+
+
+.. py:class:: SupportsInvokeCollectionRequest(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_base_invoke_request.SupportsBaseInvokeRequest`
+
+   Supports Invoke Request
+
+   Request supports invokation at later time
+
+   .. py:property:: invoke_request
+      :type: List[T]
+
+      Invokes Request Expecting list of value return type
+
+      Raises:
+          UnexpectedReturnType: Error when return type is other than generic list
+
+      Returns:
+          List[T]: The list of value
+
+
+
+.. py:class:: SupportsInvokeRequest(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_base_invoke_request.SupportsBaseInvokeRequest`
+
+   Supports Invoke Request
+
+   Request supports invokation at later time
+
+   .. py:property:: invoke_request
+      :type: T
+
+      Invokes Request Expecting single value return type
+
+      Args:
+          self (S): Supports Invoke Request Instance
+
+      Raises:
+          UnexpectedReturnType: Error when return type is other than generic
+
+      Returns:
+          T: The single value return
+
+
+
+.. py:class:: SupportsDeleteMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Delete Method Type
+
+   .. py:property:: delete
+      :type: S
+
+      Sets request to delete request
+
+
+
+.. py:class:: SupportsGetMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Get Method Type
+
+   .. py:property:: get
+      :type: S
+
+      Sets request to get request
+
+
+
+.. py:class:: SupportsPostMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Post Method Type
+
+   .. py:method:: post(input_object: Union[O, Dict[str, Any]]) -> S
+
+      Sets request to put request
+
+
+
+.. py:class:: SupportsPutMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Put Method Type
+
+   .. py:method:: put(input_object: Union[O, Dict[str, Any]]) -> S
+
+      Sets request to put request
+
+
+
+.. py:class:: SupportsQueryOptions(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Query Options Type
+
+   .. py:property:: query_options
+      :type: pyrestsdk.type.model.QueryOptionCollection
+
+      Gets Query Options
+
+
+   .. py:attribute:: _query_options
+      :type: pyrestsdk.type.model.QueryOptionCollection
+
+      
+
+   .. py:method:: _split_query_options(query_string: str) -> None
+
+      Parses query options from query string
+
+
+
+.. py:class:: SupportsHeaderOptions(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Header Options Type
+
+   .. py:property:: header_options
+      :type: pyrestsdk.type.model.HeaderOptionCollection
+
+      Gets Header Options
+
+
+   .. py:attribute:: _header_options
+      :type: pyrestsdk.type.model.HeaderOptionCollection
+
+      
+
+
+.. py:class:: SupportsGenericType(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Generic Type
+       
+
+   .. py:property:: generic_type
+      :type: Type[T]
+
+      Gets the generic type
+
+
+   .. py:attribute:: _generic_type
+      :type: Type[T]
+
+      
+
+   .. py:method:: _get_generic_type() -> Type[T]
+
+      Sets the generic type attribute
+
+
+

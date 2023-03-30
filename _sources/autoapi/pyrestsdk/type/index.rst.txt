@@ -1,0 +1,22 @@
+:py:mod:`pyrestsdk.type`
+========================
+
+.. py:module:: pyrestsdk.type
+
+.. autoapi-nested-parse::
+
+   Python Rest SDK Types
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   enum/index.rst
+   exception/index.rst
+   model/index.rst
+
+

@@ -1,0 +1,69 @@
+:py:mod:`pyrestsdk.middleware.authorizationhandler._kerbose_authorization_handler`
+==================================================================================
+
+.. py:module:: pyrestsdk.middleware.authorizationhandler._kerbose_authorization_handler
+
+.. autoapi-nested-parse::
+
+   Houses Kerbose Authorization Handler
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware.authorizationhandler._kerbose_authorization_handler.KerboseAuthorizationHandler
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware.authorizationhandler._kerbose_authorization_handler.T
+   pyrestsdk.middleware.authorizationhandler._kerbose_authorization_handler.A
+
+
+.. py:data:: T
+
+   
+
+.. py:data:: A
+
+   
+
+.. py:class:: KerboseAuthorizationHandler(credential: T, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.middleware.BaseAuthorizationHandler`
+
+   Kerbose Authorization Handler Type
+
+   .. py:attribute:: credential
+      :type: T
+
+      
+
+   .. py:method:: send(request: requests.PreparedRequest, stream: bool = False, timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None, verify: bool = True, cert: Optional[Union[bytes, str, Tuple[Union[bytes, str], Union[bytes, str]]]] = None, proxies: Optional[Mapping[str, str]] = None) -> requests.Response
+
+      Makes a network request if next is none, otherwise requests the next middleware to do so
+
+      Args:
+          request (PreparedRequest): The network request
+
+      Returns:
+          Response: Response from network request
+
+
+   .. py:method:: _get_principle() -> str
+
+      Gets the encoded string from the credential's get_principle() function
+
+
+

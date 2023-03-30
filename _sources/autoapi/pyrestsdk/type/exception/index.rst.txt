@@ -1,0 +1,30 @@
+:py:mod:`pyrestsdk.type.exception`
+==================================
+
+.. py:module:: pyrestsdk.type.exception
+
+.. autoapi-nested-parse::
+
+   Python Rest SDK Exceptions
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _expected_return/index.rst
+
+
+Package Contents
+----------------
+
+.. py:exception:: UnexpectedReturnType(return_type: Type[R], expected_type: Type[E])
+
+   Bases: :py:obj:`Exception`
+
+   Unexpected Return Type
+
+

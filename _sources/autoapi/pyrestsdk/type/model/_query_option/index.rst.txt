@@ -1,0 +1,31 @@
+:py:mod:`pyrestsdk.type.model._query_option`
+============================================
+
+.. py:module:: pyrestsdk.type.model._query_option
+
+.. autoapi-nested-parse::
+
+   Houses Query Option Type
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._query_option.QueryOption
+
+
+
+
+.. py:class:: QueryOption
+
+   Bases: :py:obj:`pyrestsdk.type.model._option.Option`
+
+   Query Option Type
+
+

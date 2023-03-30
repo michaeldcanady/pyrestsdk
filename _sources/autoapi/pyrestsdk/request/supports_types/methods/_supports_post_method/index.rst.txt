@@ -1,0 +1,53 @@
+:py:mod:`pyrestsdk.request.supports_types.methods._supports_post_method`
+========================================================================
+
+.. py:module:: pyrestsdk.request.supports_types.methods._supports_post_method
+
+.. autoapi-nested-parse::
+
+   Houses Supports Post Method
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_post_method.SupportsPostMethod
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_post_method.O
+   pyrestsdk.request.supports_types.methods._supports_post_method.S
+
+
+.. py:data:: O
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:class:: SupportsPostMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Post Method Type
+
+   .. py:method:: post(input_object: Union[O, Dict[str, Any]]) -> S
+
+      Sets request to put request
+
+
+

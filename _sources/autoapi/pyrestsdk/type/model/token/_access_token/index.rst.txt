@@ -1,0 +1,43 @@
+:py:mod:`pyrestsdk.type.model.token._access_token`
+==================================================
+
+.. py:module:: pyrestsdk.type.model.token._access_token
+
+.. autoapi-nested-parse::
+
+   Houses access token
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model.token._access_token.AccessToken
+
+
+
+
+.. py:class:: AccessToken
+
+   Bases: :py:obj:`pyrestsdk.type.model.token._base_token.BaseToken`
+
+   Access Token Type
+
+   .. py:property:: expires_on
+      :type: int
+
+      The token's expiration time in Unix time.
+              
+
+
+   .. py:attribute:: _expires_on
+      :type: int
+
+      
+
+

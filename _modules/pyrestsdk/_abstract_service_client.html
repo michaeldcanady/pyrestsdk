@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>pyrestsdk._abstract_service_client</title>
+    
+          <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../_static/theme-vendors.js"></script> -->
+      <script src="../../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../index.html" class="home-link">
+    
+      <span class="site-name">PyRESTSDK</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../autoapi/index.html#api-reference">api reference</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../autoapi/pyrestsdk/index.html" class="reference internal ">pyrestsdk</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+      <li><a href="../index.html">Module code</a> &raquo;</li>
+    
+    <li>pyrestsdk._abstract_service_client</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <h1>Source code for pyrestsdk._abstract_service_client</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">House Abstract Service Client</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Response</span><span class="p">,</span> <span class="n">Session</span>
+
+
+<div class="viewcode-block" id="S"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.S">[docs]</a><span class="n">S</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="s2">&quot;AbstractServiceClient&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AbstractServiceClient"><a class="viewcode-back" href="../../autoapi/pyrestsdk/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient">[docs]</a><span class="k">class</span> <span class="nc">AbstractServiceClient</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract Service Client Type</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">S</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">S</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">AbstractServiceClient</span><span class="p">,</span> <span class="s2">&quot;__instance&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">AbstractServiceClient</span><span class="o">.</span><span class="n">__instance</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AbstractServiceClient</span><span class="o">.</span><span class="n">__instance</span>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient.get"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a GET request. Returns :class:`Response` object.</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient.options"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient.options">[docs]</a>    <span class="k">def</span> <span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a OPTIONS request. Returns :class:`Response` object.</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient.head"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient.head">[docs]</a>    <span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a HEAD request. Returns :class:`Response` object.</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient.post"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a POST request. Returns :class:`Response` object.</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param data: (optional) Dictionary, list of tuples, bytes, or file-like</span>
+<span class="sd">            object to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param json: (optional) json to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        </span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient.put"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a PUT request. Returns :class:`Response` object.</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param data: (optional) Dictionary, list of tuples, bytes, or file-like</span>
+<span class="sd">            object to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        </span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient.patch"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient.patch">[docs]</a>    <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a PATCH request. Returns :class:`Response` object.</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param data: (optional) Dictionary, list of tuples, bytes, or file-like</span>
+<span class="sd">            object to send in the body of the :class:`Request`.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        </span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient.delete"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Sends a DELETE request. Returns :class:`Response` object.</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: URL for the new :class:`Request` object.</span>
+<span class="sd">        :param \*\*kwargs: Optional arguments that ``request`` takes.</span>
+<span class="sd">        </span>
+<span class="sd">        :rtype: requests.Response</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient._get_session"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient._get_session">[docs]</a>    <span class="k">def</span> <span class="nf">_get_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Method to always retrun a single instance of an HTTP Client</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="AbstractServiceClient._instance_url"><a class="viewcode-back" href="../../autoapi/pyrestsdk/_abstract_service_client/index.html#pyrestsdk._abstract_service_client.AbstractServiceClient._instance_url">[docs]</a>    <span class="k">def</span> <span class="nf">_instance_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Appends BASE_URL to user provided path</span>
+<span class="sd">        </span>
+<span class="sd">        :param url: user provided path</span>
+<span class="sd">        </span>
+<span class="sd">        :return: graph_url</span>
+<span class="sd">        &quot;&quot;&quot;</span></div></div>
+</pre></div>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2023, michaeldcanady.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

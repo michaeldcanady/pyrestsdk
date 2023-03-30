@@ -1,0 +1,53 @@
+:py:mod:`pyrestsdk.request.supports_types.methods._supports_put_method`
+=======================================================================
+
+.. py:module:: pyrestsdk.request.supports_types.methods._supports_put_method
+
+.. autoapi-nested-parse::
+
+   Houses Supports Put Method
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_put_method.SupportsPutMethod
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_put_method.O
+   pyrestsdk.request.supports_types.methods._supports_put_method.S
+
+
+.. py:data:: O
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:class:: SupportsPutMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Put Method Type
+
+   .. py:method:: put(input_object: Union[O, Dict[str, Any]]) -> S
+
+      Sets request to put request
+
+
+

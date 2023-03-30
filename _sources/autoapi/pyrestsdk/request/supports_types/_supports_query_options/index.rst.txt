@@ -1,0 +1,47 @@
+:py:mod:`pyrestsdk.request.supports_types._supports_query_options`
+==================================================================
+
+.. py:module:: pyrestsdk.request.supports_types._supports_query_options
+
+.. autoapi-nested-parse::
+
+   Houses Supports Query Options
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_query_options.SupportsQueryOptions
+
+
+
+
+.. py:class:: SupportsQueryOptions(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Query Options Type
+
+   .. py:property:: query_options
+      :type: pyrestsdk.type.model.QueryOptionCollection
+
+      Gets Query Options
+
+
+   .. py:attribute:: _query_options
+      :type: pyrestsdk.type.model.QueryOptionCollection
+
+      
+
+   .. py:method:: _split_query_options(query_string: str) -> None
+
+      Parses query options from query string
+
+
+

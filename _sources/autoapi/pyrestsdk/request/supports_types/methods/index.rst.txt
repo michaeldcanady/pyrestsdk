@@ -1,0 +1,19 @@
+:py:mod:`pyrestsdk.request.supports_types.methods`
+==================================================
+
+.. py:module:: pyrestsdk.request.supports_types.methods
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _supports_delete_method/index.rst
+   _supports_get_method/index.rst
+   _supports_methods/index.rst
+   _supports_post_method/index.rst
+   _supports_put_method/index.rst
+
+

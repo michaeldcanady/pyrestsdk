@@ -1,0 +1,37 @@
+:py:mod:`pyrestsdk.type.model._header_option`
+=============================================
+
+.. py:module:: pyrestsdk.type.model._header_option
+
+.. autoapi-nested-parse::
+
+   Houses Header Option
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._header_option.HeaderOption
+
+
+
+
+.. py:class:: HeaderOption
+
+   Bases: :py:obj:`pyrestsdk.type.model._option.Option`
+
+   Header Option Type
+
+   .. py:property:: as_dict
+      :type: Dict[str, str]
+
+      Gets the object as it's dict representation
+
+
+

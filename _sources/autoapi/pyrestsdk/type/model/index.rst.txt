@@ -1,0 +1,304 @@
+:py:mod:`pyrestsdk.type.model`
+==============================
+
+.. py:module:: pyrestsdk.type.model
+
+.. autoapi-nested-parse::
+
+   Houses Models
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   token/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _abstract_entity/index.rst
+   _common_base/index.rst
+   _entity/index.rst
+   _header_option/index.rst
+   _header_option_collection/index.rst
+   _option/index.rst
+   _options_collection/index.rst
+   _query_option/index.rst
+   _query_option_collection/index.rst
+   _type_collection/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model.Entity
+   pyrestsdk.type.model.Option
+   pyrestsdk.type.model.QueryOption
+   pyrestsdk.type.model.HeaderOption
+   pyrestsdk.type.model.OptionsCollection
+   pyrestsdk.type.model.HeaderOptionCollection
+   pyrestsdk.type.model.QueryOptionCollection
+   pyrestsdk.type.model.TypeCollection
+   pyrestsdk.type.model.CommonBase
+
+
+
+
+.. py:class:: Entity(client: A)
+
+   Bases: :py:obj:`pyrestsdk.type.model._abstract_entity.AbstractEntity`
+
+   Base Entity Type
+
+   .. py:property:: client
+      :type: A
+
+      Gets the client
+
+
+   .. py:attribute:: _client
+      :type: A
+
+      
+
+
+.. py:class:: Option
+
+   Option Type
+
+   .. py:property:: as_dict
+      :type: Dict[str, Any]
+
+      Gets the object as it's dict representation
+
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:attribute:: value
+      :type: Any
+
+      
+
+   .. py:method:: to_json() -> str
+
+      Gets the ojbect as it's JSON representation
+
+
+
+.. py:class:: QueryOption
+
+   Bases: :py:obj:`pyrestsdk.type.model._option.Option`
+
+   Query Option Type
+
+
+.. py:class:: HeaderOption
+
+   Bases: :py:obj:`pyrestsdk.type.model._option.Option`
+
+   Header Option Type
+
+   .. py:property:: as_dict
+      :type: Dict[str, str]
+
+      Gets the object as it's dict representation
+
+
+
+.. py:class:: OptionsCollection
+
+   Bases: :py:obj:`pyrestsdk.type.model._type_collection.TypeCollection`\ [\ :py:obj:`O`\ ]
+
+   Option Collection Type
+
+   .. py:property:: as_dict
+      :type: Dict[str, Any]
+
+      Gets the object as it's dict representation
+
+
+   .. py:method:: __getitem__(index: int) -> pyrestsdk.type.model._option.Option
+
+      Gets object at index
+              
+
+
+   .. py:method:: __len__() -> int
+
+      gets the length of the collection
+              
+
+
+   .. py:method:: __delitem__(index: int) -> None
+
+      Deletes object at index
+              
+
+
+   .. py:method:: __setitem__(index: int, value: O) -> None
+
+      Sets object at index
+              
+
+
+   .. py:method:: as_list() -> List[O]
+
+      Gets the object as it's list representation
+
+
+
+.. py:class:: HeaderOptionCollection
+
+   Bases: :py:obj:`pyrestsdk.type.model._options_collection.OptionsCollection`\ [\ :py:obj:`pyrestsdk.type.model._header_option.HeaderOption`\ ]
+
+   Header Option Collection Type
+
+
+.. py:class:: QueryOptionCollection
+
+   Bases: :py:obj:`pyrestsdk.type.model._options_collection.OptionsCollection`\ [\ :py:obj:`pyrestsdk.type.model._query_option.QueryOption`\ ]
+
+   Query Option Collection Type
+
+   .. py:method:: __str__() -> str
+
+      Return str(self).
+
+
+
+.. py:class:: TypeCollection
+
+   Bases: :py:obj:`MutableSequence`\ [\ :py:obj:`T`\ ]
+
+   Type Collection Type
+
+   .. py:method:: __getitem__(index: int) -> T
+
+
+   .. py:method:: __iter__() -> Iterator[T]
+
+
+   .. py:method:: __len__() -> int
+
+
+   .. py:method:: __delitem__(index: int) -> None
+
+
+   .. py:method:: __setitem__(index: int, value: T) -> None
+
+
+   .. py:method:: __lt__(other: List[T]) -> bool
+
+      Return self<value.
+
+
+   .. py:method:: __le__(other: List[T]) -> bool
+
+      Return self<=value.
+
+
+   .. py:method:: __eq__(other: List[T]) -> bool
+
+      Return self==value.
+
+
+   .. py:method:: __gt__(other: List[T]) -> bool
+
+      Return self>value.
+
+
+   .. py:method:: __ge__(other: List[T]) -> bool
+
+      Return self>=value.
+
+
+   .. py:method:: __contains__(item) -> bool
+
+
+   .. py:method:: __copy__() -> OC
+
+
+   .. py:method:: append(__option: T) -> None
+
+      Append object to the end of the list.
+
+
+   .. py:method:: insert(index: int, value: T) -> None
+
+      Insert object before index.
+
+
+   .. py:method:: remove(value: T) -> None
+
+      Remove first occurrence of value.
+
+      Raises ValueError if the value is not present.
+
+
+   .. py:method:: clear() -> None
+
+      Clears the collection
+
+
+   .. py:method:: count(value: T) -> int
+
+      Return number of occurrences of value.
+
+
+   .. py:method:: index(item, *args) -> int
+
+      Return first index of value.
+
+      Raises ValueError if the value is not present.
+
+
+   .. py:method:: reverse() -> None
+
+      Reverses the order of the collection
+
+
+   .. py:method:: sort(/, *args, **kwds)
+
+      Sort the list in ascending order and return None.
+
+      The sort is in-place (i.e. the list itself is modified)
+      and stable (i.e. the order of two equal elements is maintained).
+
+      If a key function is given, apply it once to each list
+      item and sort them, ascending or descending, according to their
+      function values.
+
+      The reverse flag can be set to sort in descending order.
+
+
+   .. py:method:: extend(values: Union[Iterable, OC]) -> None
+
+      Extend list by appending elements from the iterable.
+
+
+
+.. py:class:: CommonBase(*args, **kwargs)
+
+   Common Base Type
+
+   .. py:attribute:: __metaclass__
+
+      
+
+

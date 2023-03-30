@@ -1,0 +1,96 @@
+:py:mod:`pyrestsdk.clientfactory`
+=================================
+
+.. py:module:: pyrestsdk.clientfactory
+
+.. autoapi-nested-parse::
+
+   Client Factories
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   supports/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _abstract_client_factory/index.rst
+   _http_client_factory/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.clientfactory.AbstractHTTPClientFactory
+   pyrestsdk.clientfactory.HTTPClientFactory
+
+
+
+
+.. py:class:: AbstractHTTPClientFactory(/, session)
+
+   Bases: :py:obj:`abc.ABC`
+
+   Abstract HTTP Client Factory Type
+
+   .. py:attribute:: session
+      :type: requests.Session
+
+      
+
+   .. py:method:: create_with_custom_middleware(middleware: List[B]) -> requests.Session
+      :abstractmethod:
+
+      Applies the custom middleware chain to the HTTP Client
+
+
+   .. py:method:: _set_base_url(url: str) -> None
+      :abstractmethod:
+
+      Helper method to set the base url
+
+
+   .. py:method:: _register(middleware: List[B]) -> None
+      :abstractmethod:
+
+      Helper method that constructs a middleware_pipeline with the specified middleware
+
+
+
+.. py:class:: HTTPClientFactory(base_url: str, session: requests.Session, protocol: str = 'https')
+
+   Bases: :py:obj:`pyrestsdk.clientfactory._abstract_client_factory.AbstractHTTPClientFactory`
+
+   HTTP Client Factory
+
+   .. py:method:: create_with_custom_middleware(middleware: List[B]) -> requests.Session
+
+      Applies the custom middleware chain to the HTTP Client
+
+
+   .. py:method:: _set_base_url(url: str) -> None
+
+      Helper method to set the base url
+
+
+   .. py:method:: _register(middleware: List[B]) -> requests.Session
+
+      Helper method that constructs a middleware_pipeline with the specified middleware
+
+
+

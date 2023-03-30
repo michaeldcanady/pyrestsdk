@@ -1,0 +1,49 @@
+:py:mod:`pyrestsdk.request.supports_types.methods._supports_delete_method`
+==========================================================================
+
+.. py:module:: pyrestsdk.request.supports_types.methods._supports_delete_method
+
+.. autoapi-nested-parse::
+
+   Houses Supports Delete Method
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_delete_method.SupportsDeleteMethod
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_delete_method.S
+
+
+.. py:data:: S
+
+   
+
+.. py:class:: SupportsDeleteMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Delete Method Type
+
+   .. py:property:: delete
+      :type: S
+
+      Sets request to delete request
+
+
+

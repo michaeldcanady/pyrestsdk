@@ -1,0 +1,142 @@
+:py:mod:`pyrestsdk._abstract_service_client`
+============================================
+
+.. py:module:: pyrestsdk._abstract_service_client
+
+.. autoapi-nested-parse::
+
+   House Abstract Service Client
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk._abstract_service_client.AbstractServiceClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk._abstract_service_client.S
+
+
+.. py:data:: S
+
+   
+
+.. py:class:: AbstractServiceClient
+
+   Bases: :py:obj:`abc.ABC`
+
+   Abstract Service Client Type
+       
+
+   .. py:method:: get(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a GET request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+      :rtype: requests.Response
+
+
+   .. py:method:: options(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a OPTIONS request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+      :rtype: requests.Response
+
+
+   .. py:method:: head(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a HEAD request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+      :rtype: requests.Response
+
+
+   .. py:method:: post(url: str, data=None, json=None, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a POST request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+          object to send in the body of the :class:`Request`.
+      :param json: (optional) json to send in the body of the :class:`Request`.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: put(url: str, data=None, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a PUT request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+          object to send in the body of the :class:`Request`.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: patch(url: str, data=None, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a PATCH request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+          object to send in the body of the :class:`Request`.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: delete(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a DELETE request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: _get_session(/, **kwargs) -> requests.Session
+      :abstractmethod:
+
+      Method to always retrun a single instance of an HTTP Client
+              
+
+
+   .. py:method:: _instance_url(url: str) -> str
+      :abstractmethod:
+
+      Appends BASE_URL to user provided path
+
+      :param url: user provided path
+
+      :return: graph_url
+
+
+

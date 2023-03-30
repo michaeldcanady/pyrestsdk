@@ -1,0 +1,78 @@
+:py:mod:`pyrestsdk.request._base_request310`
+============================================
+
+.. py:module:: pyrestsdk.request._base_request310
+
+.. autoapi-nested-parse::
+
+   Houses Base Request
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request._base_request310.BaseRequest
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request._base_request310.Logger
+   pyrestsdk.request._base_request310.T
+   pyrestsdk.request._base_request310.Q
+   pyrestsdk.request._base_request310.H
+
+
+.. py:data:: Logger
+
+   
+
+.. py:data:: T
+
+   
+
+.. py:data:: Q
+
+   
+
+.. py:data:: H
+
+   
+
+.. py:class:: BaseRequest(request_url: str, client: S, options: Optional[Iterable[O]])
+
+   Bases: :py:obj:`pyrestsdk.request._request.Request`\ [\ :py:obj:`T`\ ]
+
+   The Base Request Type
+
+   .. py:method:: _parse_options(options: Optional[Iterable[Union[Q, H]]]) -> None
+
+      Parses the provided options into either header or query options
+
+
+   .. py:method:: _send_request(args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]) -> Optional[requests.Response]
+
+      Sends request
+
+      Args:
+          args (Dict[str, Any]): _description_
+          value (Optional[Union[T, Dict[str, Any], str]]): _description_
+
+      Raises:
+          Exception: _description_
+
+      Returns:
+          Optional[Response]: Response to request
+
+
+

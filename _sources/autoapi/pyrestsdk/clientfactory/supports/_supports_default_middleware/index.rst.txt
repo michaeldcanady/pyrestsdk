@@ -1,0 +1,55 @@
+:py:mod:`pyrestsdk.clientfactory.supports._supports_default_middleware`
+=======================================================================
+
+.. py:module:: pyrestsdk.clientfactory.supports._supports_default_middleware
+
+.. autoapi-nested-parse::
+
+   Houses Supports Default Middleware Type
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.clientfactory.supports._supports_default_middleware.SupportsDefaultMiddleware
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.clientfactory.supports._supports_default_middleware.B
+
+
+.. py:data:: B
+
+   
+
+.. py:class:: SupportsDefaultMiddleware(*args, **kwargs)
+
+   Bases: :py:obj:`abc.ABC`
+
+   Supports Default Middleware Type
+
+   .. py:method:: _register(middleware: List[B]) -> None
+      :abstractmethod:
+
+      register middleware
+
+
+   .. py:method:: create_with_default_middleware(/) -> requests.Session
+      :abstractmethod:
+
+      Applies the default middleware chain to the HTTP Client
+
+
+

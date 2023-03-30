@@ -1,0 +1,49 @@
+:py:mod:`pyrestsdk.request.supports_types.methods._supports_get_method`
+=======================================================================
+
+.. py:module:: pyrestsdk.request.supports_types.methods._supports_get_method
+
+.. autoapi-nested-parse::
+
+   Houses Supports Get Method
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_get_method.SupportsGetMethod
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_get_method.S
+
+
+.. py:data:: S
+
+   
+
+.. py:class:: SupportsGetMethod(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods`
+
+   Supports Get Method Type
+
+   .. py:property:: get
+      :type: S
+
+      Sets request to get request
+
+
+

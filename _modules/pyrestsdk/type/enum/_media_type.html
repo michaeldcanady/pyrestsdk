@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>pyrestsdk.type.enum._media_type</title>
+    
+          <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../../../_static/theme-vendors.js"></script> -->
+      <script src="../../../../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../../../index.html" class="home-link">
+    
+      <span class="site-name">PyRESTSDK</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../../../autoapi/index.html#api-reference">api reference</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../../../autoapi/pyrestsdk/index.html" class="reference internal ">pyrestsdk</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+    
+      <li><a href="../../../index.html">Module code</a> &raquo;</li>
+    
+    <li>pyrestsdk.type.enum._media_type</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <h1>Source code for pyrestsdk.type.enum._media_type</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Houses MIME Types</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">auto</span>
+
+
+<div class="viewcode-block" id="MIMECategoryEnum"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MIMECategoryEnum">[docs]</a><span class="k">class</span> <span class="nc">MIMECategoryEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MIME Category Enum</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">auto</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Values of MIMECategoryEnum must be strings: </span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> is a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">/&quot;</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Value of MIMECategoryEnum must begin with the designated prefix:</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> does not start with </span><span class="si">{</span><span class="n">prefix</span><span class="si">!r}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MIMECategoryEnum.__str__"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MIMECategoryEnum.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span></div></div>
+
+
+<div class="viewcode-block" id="MimeType"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/index.html#pyrestsdk.type.enum._media_type.MimeType">[docs]</a><span class="k">class</span> <span class="nc">MimeType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MIME Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MimeType.Text"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Text">[docs]</a>    <span class="k">class</span> <span class="nc">Text</span><span class="p">(</span><span class="n">MIMECategoryEnum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Text MIME Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MimeType.Text.PLAIN"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Text.PLAIN">[docs]</a>        <span class="n">PLAIN</span> <span class="o">=</span> <span class="s2">&quot;text/plain&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Text.HTML"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Text.HTML">[docs]</a>        <span class="n">HTML</span> <span class="o">=</span> <span class="s2">&quot;text/html&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Text.CSS"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Text.CSS">[docs]</a>        <span class="n">CSS</span> <span class="o">=</span> <span class="s2">&quot;text/css&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Text.JAVASCRIPT"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Text.JAVASCRIPT">[docs]</a>        <span class="n">JAVASCRIPT</span> <span class="o">=</span> <span class="s2">&quot;text/javascript&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Text.CSV"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Text.CSV">[docs]</a>        <span class="n">CSV</span> <span class="o">=</span> <span class="s2">&quot;text/csv&quot;</span></div></div>
+
+<div class="viewcode-block" id="MimeType.Application"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application">[docs]</a>    <span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">MIMECategoryEnum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Application MIME Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MimeType.Application.OCTET_STREAM"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.OCTET_STREAM">[docs]</a>        <span class="n">OCTET_STREAM</span> <span class="o">=</span> <span class="s2">&quot;application/octet-stream&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Application.PKCS12"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.PKCS12">[docs]</a>        <span class="n">PKCS12</span> <span class="o">=</span> <span class="s2">&quot;application/x-pkcs12&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Application.X_WWW_FORM_URLENCODED"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.X_WWW_FORM_URLENCODED">[docs]</a>        <span class="n">X_WWW_FORM_URLENCODED</span> <span class="o">=</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Application.JSON"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.JSON">[docs]</a>        <span class="n">JSON</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Application.PDF"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.PDF">[docs]</a>        <span class="n">PDF</span> <span class="o">=</span> <span class="s2">&quot;application/pdf&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Application.XML"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.XML">[docs]</a>        <span class="n">XML</span> <span class="o">=</span> <span class="s2">&quot;application/xml&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Application.ZIP"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.ZIP">[docs]</a>        <span class="n">ZIP</span> <span class="o">=</span> <span class="s2">&quot;application/zip&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Application.GZIP"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Application.GZIP">[docs]</a>        <span class="n">GZIP</span> <span class="o">=</span> <span class="s2">&quot;application/gzip&quot;</span></div></div>
+
+<div class="viewcode-block" id="MimeType.Image"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Image">[docs]</a>    <span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">MIMECategoryEnum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Image MIME Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MimeType.Image.JPEG"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Image.JPEG">[docs]</a>        <span class="n">JPEG</span> <span class="o">=</span> <span class="s2">&quot;image/jpeg&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Image.PNG"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Image.PNG">[docs]</a>        <span class="n">PNG</span> <span class="o">=</span> <span class="s2">&quot;image/png&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Image.GIF"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Image.GIF">[docs]</a>        <span class="n">GIF</span> <span class="o">=</span> <span class="s2">&quot;image/gif&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Image.SVG_XML"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Image.SVG_XML">[docs]</a>        <span class="n">SVG_XML</span> <span class="o">=</span> <span class="s2">&quot;image/svg+xml&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Image.WEBP"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Image.WEBP">[docs]</a>        <span class="n">WEBP</span> <span class="o">=</span> <span class="s2">&quot;image/webp&quot;</span></div></div>
+
+<div class="viewcode-block" id="MimeType.Audio"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Audio">[docs]</a>    <span class="k">class</span> <span class="nc">Audio</span><span class="p">(</span><span class="n">MIMECategoryEnum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Audio MIME Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MimeType.Audio.MIDI"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Audio.MIDI">[docs]</a>        <span class="n">MIDI</span> <span class="o">=</span> <span class="s2">&quot;audio/midi&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Audio.MPEG"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Audio.MPEG">[docs]</a>        <span class="n">MPEG</span> <span class="o">=</span> <span class="s2">&quot;audio/mpeg&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Audio.WEBM"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Audio.WEBM">[docs]</a>        <span class="n">WEBM</span> <span class="o">=</span> <span class="s2">&quot;audio/webm&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Audio.OGG"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Audio.OGG">[docs]</a>        <span class="n">OGG</span> <span class="o">=</span> <span class="s2">&quot;audio/ogg&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Audio.WAV"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Audio.WAV">[docs]</a>        <span class="n">WAV</span> <span class="o">=</span> <span class="s2">&quot;audio/wav&quot;</span></div></div>
+
+<div class="viewcode-block" id="MimeType.Video"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Video">[docs]</a>    <span class="k">class</span> <span class="nc">Video</span><span class="p">(</span><span class="n">MIMECategoryEnum</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Video MIME Type&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MimeType.Video.MPEG"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Video.MPEG">[docs]</a>        <span class="n">MPEG</span> <span class="o">=</span> <span class="s2">&quot;video/mpeg&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Video.MP4"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Video.MP4">[docs]</a>        <span class="n">MP4</span> <span class="o">=</span> <span class="s2">&quot;video/mp4&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Video.OGG"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Video.OGG">[docs]</a>        <span class="n">OGG</span> <span class="o">=</span> <span class="s2">&quot;video/ogg&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Video.WEBM"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Video.WEBM">[docs]</a>        <span class="n">WEBM</span> <span class="o">=</span> <span class="s2">&quot;video/webm&quot;</span></div>
+<div class="viewcode-block" id="MimeType.Video.QUICKTIME"><a class="viewcode-back" href="../../../../autoapi/pyrestsdk/type/enum/_media_type/index.html#pyrestsdk.type.enum._media_type.MimeType.Video.QUICKTIME">[docs]</a>        <span class="n">QUICKTIME</span> <span class="o">=</span> <span class="s2">&quot;video/quicktime&quot;</span></div></div></div>
+</pre></div>
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2023, michaeldcanady.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

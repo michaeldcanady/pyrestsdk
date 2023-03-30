@@ -1,0 +1,78 @@
+:py:mod:`pyrestsdk.type.model._options_collection`
+==================================================
+
+.. py:module:: pyrestsdk.type.model._options_collection
+
+.. autoapi-nested-parse::
+
+   Houses Options Collection
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._options_collection.OptionsCollection
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._options_collection.O
+
+
+.. py:data:: O
+
+   
+
+.. py:class:: OptionsCollection
+
+   Bases: :py:obj:`pyrestsdk.type.model._type_collection.TypeCollection`\ [\ :py:obj:`O`\ ]
+
+   Option Collection Type
+
+   .. py:property:: as_dict
+      :type: Dict[str, Any]
+
+      Gets the object as it's dict representation
+
+
+   .. py:method:: __getitem__(index: int) -> pyrestsdk.type.model._option.Option
+
+      Gets object at index
+              
+
+
+   .. py:method:: __len__() -> int
+
+      gets the length of the collection
+              
+
+
+   .. py:method:: __delitem__(index: int) -> None
+
+      Deletes object at index
+              
+
+
+   .. py:method:: __setitem__(index: int, value: O) -> None
+
+      Sets object at index
+              
+
+
+   .. py:method:: as_list() -> List[O]
+
+      Gets the object as it's list representation
+
+
+

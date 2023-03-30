@@ -1,0 +1,55 @@
+:py:mod:`pyrestsdk.middleware._middleware_pipeline`
+===================================================
+
+.. py:module:: pyrestsdk.middleware._middleware_pipeline
+
+.. autoapi-nested-parse::
+
+   Houses Middleware Pipeline
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware._middleware_pipeline.MiddlewarePipeline
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware._middleware_pipeline.B
+
+
+.. py:data:: B
+
+   
+
+.. py:class:: MiddlewarePipeline
+
+   Bases: :py:obj:`requests.adapters.HTTPAdapter`
+
+   MiddlewarePipeline, entry point of middleware
+   The pipeline is implemented as a linked-list, read more about
+   it here https://buffered.dev/middleware-python-requests/
+
+   .. py:method:: add_middleware(middleware: B) -> None
+
+      Adds middleware to the pipeline
+
+
+   .. py:method:: send(request: requests.PreparedRequest, stream: bool = False, timeout=None, verify: bool = True, cert=None, proxies=None) -> requests.Response
+
+      Sends the prepared request through the middleware pipeline
+
+
+

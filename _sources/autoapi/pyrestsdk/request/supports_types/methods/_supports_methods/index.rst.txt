@@ -1,0 +1,81 @@
+:py:mod:`pyrestsdk.request.supports_types.methods._supports_methods`
+====================================================================
+
+.. py:module:: pyrestsdk.request.supports_types.methods._supports_methods
+
+.. autoapi-nested-parse::
+
+   Houses Supports Methods
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_methods.SupportsMethods
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types.methods._supports_methods.S
+   pyrestsdk.request.supports_types.methods._supports_methods.Logger
+
+
+.. py:data:: S
+
+   
+
+.. py:data:: Logger
+
+   
+
+.. py:class:: SupportsMethods(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Methods Type
+
+   .. py:property:: request_method
+      :type: pyrestsdk.type.enum.HttpsMethod
+
+      Gets/Sets the request method
+
+      Returns:
+          HttpsMethod: The request method
+
+
+   .. py:property:: input_object
+      :type: Optional[Union[S, Dict[str, Any]]]
+
+      Gets/Sets the input object
+
+      Returns:
+          Optional[Union[S, Dict[str, Any]]]: The input object
+
+
+   .. py:attribute:: _method
+      :type: pyrestsdk.type.enum.HttpsMethod
+
+      
+
+   .. py:attribute:: _input_object
+      :type: Optional[Union[S, Dict[str, Any]]]
+
+      
+
+   .. py:method:: _update_request_type(method: pyrestsdk.type.enum.HttpsMethod, input_object: Optional[Union[S, Dict[str, Any]]]) -> None
+
+      Updates the request type, sSets the method and object to the provided values
+
+
+

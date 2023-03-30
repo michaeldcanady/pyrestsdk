@@ -1,0 +1,191 @@
+:py:mod:`pyrestsdk`
+===================
+
+.. py:module:: pyrestsdk
+
+.. autoapi-nested-parse::
+
+   Py REST SDK
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   clientfactory/index.rst
+   credential/index.rst
+   middleware/index.rst
+   request/index.rst
+   requestbuilder/index.rst
+   type/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _abstract_service_client/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.AbstractServiceClient
+   pyrestsdk.FeatureUsageFlag
+
+
+
+
+.. py:class:: AbstractServiceClient
+
+   Bases: :py:obj:`abc.ABC`
+
+   Abstract Service Client Type
+       
+
+   .. py:method:: get(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a GET request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+      :rtype: requests.Response
+
+
+   .. py:method:: options(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a OPTIONS request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+      :rtype: requests.Response
+
+
+   .. py:method:: head(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a HEAD request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+      :rtype: requests.Response
+
+
+   .. py:method:: post(url: str, data=None, json=None, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a POST request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+          object to send in the body of the :class:`Request`.
+      :param json: (optional) json to send in the body of the :class:`Request`.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: put(url: str, data=None, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a PUT request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+          object to send in the body of the :class:`Request`.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: patch(url: str, data=None, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a PATCH request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param data: (optional) Dictionary, list of tuples, bytes, or file-like
+          object to send in the body of the :class:`Request`.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: delete(url: str, **kwargs) -> requests.Response
+      :abstractmethod:
+
+      Sends a DELETE request. Returns :class:`Response` object.
+
+      :param url: URL for the new :class:`Request` object.
+      :param \*\*kwargs: Optional arguments that ``request`` takes.
+
+      :rtype: requests.Response
+
+
+   .. py:method:: _get_session(/, **kwargs) -> requests.Session
+      :abstractmethod:
+
+      Method to always retrun a single instance of an HTTP Client
+              
+
+
+   .. py:method:: _instance_url(url: str) -> str
+      :abstractmethod:
+
+      Appends BASE_URL to user provided path
+
+      :param url: user provided path
+
+      :return: graph_url
+
+
+
+.. py:class:: FeatureUsageFlag
+
+   Bases: :py:obj:`enum.IntEnum`
+
+   Enumerated list of values used to flag usage of specific middleware
+
+   .. py:attribute:: NONE
+      :value: 0
+
+      
+
+   .. py:attribute:: REDIRECT_HANDLER_ENABLED
+      :value: 1
+
+      
+
+   .. py:attribute:: RETRY_HANDLER_ENABLED
+      :value: 2
+
+      
+
+   .. py:attribute:: AUTH_HANDLER_ENABLED
+      :value: 4
+
+      
+
+   .. py:attribute:: DEFAULT_HTTP_PROVIDER_ENABLED
+      :value: 8
+
+      
+
+   .. py:attribute:: LOGGING_HANDLER_ENABLED
+      :value: 16
+
+      
+
+

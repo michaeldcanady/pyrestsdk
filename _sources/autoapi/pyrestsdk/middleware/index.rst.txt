@@ -1,0 +1,110 @@
+:py:mod:`pyrestsdk.middleware`
+==============================
+
+.. py:module:: pyrestsdk.middleware
+
+.. autoapi-nested-parse::
+
+   Middleware
+
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   authorizationhandler/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   _base_authorization_handler/index.rst
+   _base_middleware/index.rst
+   _middleware_pipeline/index.rst
+   _request_context/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.middleware.BaseAuthorizationHandler
+   pyrestsdk.middleware.BaseMiddleware
+   pyrestsdk.middleware.MiddlewarePipeline
+
+
+
+
+.. py:class:: BaseAuthorizationHandler(credential: C, /)
+
+   Bases: :py:obj:`pyrestsdk.middleware._base_middleware.BaseMiddleware`
+
+   Base Authorization Handler Type
+
+   .. py:attribute:: credential
+      :type: C
+
+      
+
+   .. py:attribute:: retry_count
+      :type: int
+
+      
+
+
+.. py:class:: BaseMiddleware
+
+   Bases: :py:obj:`requests.adapters.HTTPAdapter`
+
+   Base class for middleware
+
+   Handles moving a Request to the next middleware in the pipeline.
+   If the current middleware is the last one in the pipeline, it
+   makes a network request
+
+   .. py:attribute:: next
+      :type: Optional[B]
+
+      
+
+   .. py:method:: send(request: requests.PreparedRequest, stream: bool = False, timeout: Optional[Union[float, Tuple[float, float], Tuple[float, None]]] = None, verify: bool = True, cert: Optional[Union[bytes, str, Tuple[Union[bytes, str], Union[bytes, str]]]] = None, proxies: Optional[Mapping[str, str]] = None) -> requests.Response
+
+      Makes a network request if next is none, otherwise requests the next middleware to do so
+
+      Args:
+          request (PreparedRequest): The network request
+
+      Returns:
+          Response: Response from network request
+
+
+
+.. py:class:: MiddlewarePipeline
+
+   Bases: :py:obj:`requests.adapters.HTTPAdapter`
+
+   MiddlewarePipeline, entry point of middleware
+   The pipeline is implemented as a linked-list, read more about
+   it here https://buffered.dev/middleware-python-requests/
+
+   .. py:method:: add_middleware(middleware: B) -> None
+
+      Adds middleware to the pipeline
+
+
+   .. py:method:: send(request: requests.PreparedRequest, stream: bool = False, timeout=None, verify: bool = True, cert=None, proxies=None) -> requests.Response
+
+      Sends the prepared request through the middleware pipeline
+
+
+

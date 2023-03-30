@@ -1,0 +1,150 @@
+:py:mod:`pyrestsdk.request._abstract_request`
+=============================================
+
+.. py:module:: pyrestsdk.request._abstract_request
+
+.. autoapi-nested-parse::
+
+   Houses Abstract Request
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request._abstract_request.AbstractRequest
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request._abstract_request.B
+   pyrestsdk.request._abstract_request.S
+   pyrestsdk.request._abstract_request.O
+   pyrestsdk.request._abstract_request.T
+
+
+.. py:data:: B
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:data:: O
+
+   
+
+.. py:data:: T
+
+   
+
+.. py:class:: AbstractRequest(request_url: str, client: S, options: Optional[Iterable[O]])
+
+   Bases: :py:obj:`pyrestsdk.type.model.CommonBase`, :py:obj:`Generic`\ [\ :py:obj:`T`\ ]
+
+   Abstract Request Type
+
+   .. py:property:: header_options
+      :type: pyrestsdk.type.model.HeaderOptionCollection
+      :abstractmethod:
+
+      Gets the headers
+
+
+   .. py:property:: request_method
+      :type: pyrestsdk.type.enum.HttpsMethod
+      :abstractmethod:
+
+      Gets/Sets the https method
+
+
+   .. py:property:: query_options
+      :type: pyrestsdk.type.model.QueryOptionCollection
+      :abstractmethod:
+
+      Gets the query options
+
+
+   .. py:property:: client
+      :type: S
+      :abstractmethod:
+
+      Gets the Client
+
+
+   .. py:property:: request_url
+      :type: str
+      :abstractmethod:
+
+      Gets/Sets the request URL
+
+      Returns:
+          str: The request URL
+
+
+   .. py:method:: _parse_options(options: Optional[Iterable[O]]) -> None
+      :abstractmethod:
+
+      Parses the provided options into either header or query options
+
+
+   .. py:method:: _initialize_url(request_url: str) -> str
+      :abstractmethod:
+
+      Parses the query parameters from URL
+
+
+   .. py:method:: send_request(value: Optional[T]) -> Optional[Union[List[T], T]]
+      :abstractmethod:
+
+      Makes the desired request and returns the desired return type
+
+
+   .. py:method:: parse_response(_response: Optional[requests.Response]) -> Optional[Union[List[T], T]]
+      :abstractmethod:
+
+      Parses the response into the expected return
+
+
+   .. py:method:: _send_request(args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]) -> Optional[requests.Response]
+      :abstractmethod:
+
+      Makes the desired request and returns Response or None
+
+
+   .. py:method:: _get_request_args(value: Optional[Union[T, Dict[str, Any], str]] = None) -> Dict[str, Any]
+      :abstractmethod:
+
+      gets request arguments
+
+
+   .. py:method:: append_segment_to_request_url(url_segment: str) -> str
+      :abstractmethod:
+
+      Gets a URL that is the request builder's request URL with the segment appended.
+
+      Args:
+          url_segment (str): The segment to append to the request URL.
+
+      Returns:
+          str: A URL that is the request builder's request URL with the segment appended.
+
+
+   .. py:method:: parse_exception(response: requests.Response) -> None
+      :abstractmethod:
+
+      Raises exception based off response
+
+
+

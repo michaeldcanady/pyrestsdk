@@ -1,0 +1,29 @@
+:py:mod:`pyrestsdk.type.exception._expected_return`
+===================================================
+
+.. py:module:: pyrestsdk.type.exception._expected_return
+
+.. autoapi-nested-parse::
+
+   Houses unexpected return
+
+
+
+Module Contents
+---------------
+
+.. py:data:: R
+
+   
+
+.. py:data:: E
+
+   
+
+.. py:exception:: UnexpectedReturnType(return_type: Type[R], expected_type: Type[E])
+
+   Bases: :py:obj:`Exception`
+
+   Unexpected Return Type
+
+

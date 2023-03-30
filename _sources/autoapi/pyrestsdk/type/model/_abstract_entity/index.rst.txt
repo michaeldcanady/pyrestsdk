@@ -1,0 +1,83 @@
+:py:mod:`pyrestsdk.type.model._abstract_entity`
+===============================================
+
+.. py:module:: pyrestsdk.type.model._abstract_entity
+
+.. autoapi-nested-parse::
+
+   Houses Abstract Entity Type
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._abstract_entity.AbstractEntity
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._abstract_entity.S
+   pyrestsdk.type.model._abstract_entity.A
+
+
+.. py:data:: S
+
+   
+
+.. py:data:: A
+
+   
+
+.. py:class:: AbstractEntity(client: A)
+
+   Abstract Entity Type
+
+   .. py:property:: client
+      :type: A
+      :abstractmethod:
+
+      Gets the client
+
+
+   .. py:property:: as_dict
+      :type: Dict[str, Any]
+      :abstractmethod:
+
+      Gets the object as it's dict representation
+
+
+   .. py:property:: as_json
+      :type: str
+      :abstractmethod:
+
+      Gets the object's json representation
+
+
+   .. py:attribute:: __metaclass__
+
+      
+
+   .. py:attribute:: _client
+      :type: A
+
+      
+
+   .. py:method:: from_json(entry: Dict) -> S
+      :classmethod:
+      :abstractmethod:
+
+      Converts Json to class type
+
+
+

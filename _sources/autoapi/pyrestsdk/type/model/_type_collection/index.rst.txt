@@ -1,0 +1,152 @@
+:py:mod:`pyrestsdk.type.model._type_collection`
+===============================================
+
+.. py:module:: pyrestsdk.type.model._type_collection
+
+.. autoapi-nested-parse::
+
+   Houses Type Collection
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._type_collection.TypeCollection
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._type_collection.T
+   pyrestsdk.type.model._type_collection.OC
+
+
+.. py:data:: T
+
+   
+
+.. py:data:: OC
+
+   
+
+.. py:class:: TypeCollection
+
+   Bases: :py:obj:`MutableSequence`\ [\ :py:obj:`T`\ ]
+
+   Type Collection Type
+
+   .. py:method:: __getitem__(index: int) -> T
+
+
+   .. py:method:: __iter__() -> Iterator[T]
+
+
+   .. py:method:: __len__() -> int
+
+
+   .. py:method:: __delitem__(index: int) -> None
+
+
+   .. py:method:: __setitem__(index: int, value: T) -> None
+
+
+   .. py:method:: __lt__(other: List[T]) -> bool
+
+      Return self<value.
+
+
+   .. py:method:: __le__(other: List[T]) -> bool
+
+      Return self<=value.
+
+
+   .. py:method:: __eq__(other: List[T]) -> bool
+
+      Return self==value.
+
+
+   .. py:method:: __gt__(other: List[T]) -> bool
+
+      Return self>value.
+
+
+   .. py:method:: __ge__(other: List[T]) -> bool
+
+      Return self>=value.
+
+
+   .. py:method:: __contains__(item) -> bool
+
+
+   .. py:method:: __copy__() -> OC
+
+
+   .. py:method:: append(__option: T) -> None
+
+      Append object to the end of the list.
+
+
+   .. py:method:: insert(index: int, value: T) -> None
+
+      Insert object before index.
+
+
+   .. py:method:: remove(value: T) -> None
+
+      Remove first occurrence of value.
+
+      Raises ValueError if the value is not present.
+
+
+   .. py:method:: clear() -> None
+
+      Clears the collection
+
+
+   .. py:method:: count(value: T) -> int
+
+      Return number of occurrences of value.
+
+
+   .. py:method:: index(item, *args) -> int
+
+      Return first index of value.
+
+      Raises ValueError if the value is not present.
+
+
+   .. py:method:: reverse() -> None
+
+      Reverses the order of the collection
+
+
+   .. py:method:: sort(/, *args, **kwds)
+
+      Sort the list in ascending order and return None.
+
+      The sort is in-place (i.e. the list itself is modified)
+      and stable (i.e. the order of two equal elements is maintained).
+
+      If a key function is given, apply it once to each list
+      item and sort them, ascending or descending, according to their
+      function values.
+
+      The reverse flag can be set to sort in descending order.
+
+
+   .. py:method:: extend(values: Union[Iterable, OC]) -> None
+
+      Extend list by appending elements from the iterable.
+
+
+

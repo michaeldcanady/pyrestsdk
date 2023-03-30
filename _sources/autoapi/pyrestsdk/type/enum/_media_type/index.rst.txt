@@ -1,0 +1,218 @@
+:py:mod:`pyrestsdk.type.enum._media_type`
+=========================================
+
+.. py:module:: pyrestsdk.type.enum._media_type
+
+.. autoapi-nested-parse::
+
+   Houses MIME Types
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.enum._media_type.MIMECategoryEnum
+   pyrestsdk.type.enum._media_type.MimeType
+
+
+
+
+.. py:class:: MIMECategoryEnum
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   MIME Category Enum
+       
+
+   .. py:method:: __str__() -> str
+
+      Return str(self).
+
+
+
+.. py:class:: MimeType
+
+   MIME Type
+
+   .. py:class:: Text
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Text MIME Type
+
+      .. py:attribute:: PLAIN
+         :value: 'text/plain'
+
+         
+
+      .. py:attribute:: HTML
+         :value: 'text/html'
+
+         
+
+      .. py:attribute:: CSS
+         :value: 'text/css'
+
+         
+
+      .. py:attribute:: JAVASCRIPT
+         :value: 'text/javascript'
+
+         
+
+      .. py:attribute:: CSV
+         :value: 'text/csv'
+
+         
+
+
+   .. py:class:: Application
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Application MIME Type
+
+      .. py:attribute:: OCTET_STREAM
+         :value: 'application/octet-stream'
+
+         
+
+      .. py:attribute:: PKCS12
+         :value: 'application/x-pkcs12'
+
+         
+
+      .. py:attribute:: X_WWW_FORM_URLENCODED
+         :value: 'application/x-www-form-urlencoded'
+
+         
+
+      .. py:attribute:: JSON
+         :value: 'application/json'
+
+         
+
+      .. py:attribute:: PDF
+         :value: 'application/pdf'
+
+         
+
+      .. py:attribute:: XML
+         :value: 'application/xml'
+
+         
+
+      .. py:attribute:: ZIP
+         :value: 'application/zip'
+
+         
+
+      .. py:attribute:: GZIP
+         :value: 'application/gzip'
+
+         
+
+
+   .. py:class:: Image
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Image MIME Type
+
+      .. py:attribute:: JPEG
+         :value: 'image/jpeg'
+
+         
+
+      .. py:attribute:: PNG
+         :value: 'image/png'
+
+         
+
+      .. py:attribute:: GIF
+         :value: 'image/gif'
+
+         
+
+      .. py:attribute:: SVG_XML
+         :value: 'image/svg+xml'
+
+         
+
+      .. py:attribute:: WEBP
+         :value: 'image/webp'
+
+         
+
+
+   .. py:class:: Audio
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Audio MIME Type
+
+      .. py:attribute:: MIDI
+         :value: 'audio/midi'
+
+         
+
+      .. py:attribute:: MPEG
+         :value: 'audio/mpeg'
+
+         
+
+      .. py:attribute:: WEBM
+         :value: 'audio/webm'
+
+         
+
+      .. py:attribute:: OGG
+         :value: 'audio/ogg'
+
+         
+
+      .. py:attribute:: WAV
+         :value: 'audio/wav'
+
+         
+
+
+   .. py:class:: Video
+
+      Bases: :py:obj:`MIMECategoryEnum`
+
+      Video MIME Type
+
+      .. py:attribute:: MPEG
+         :value: 'video/mpeg'
+
+         
+
+      .. py:attribute:: MP4
+         :value: 'video/mp4'
+
+         
+
+      .. py:attribute:: OGG
+         :value: 'video/ogg'
+
+         
+
+      .. py:attribute:: WEBM
+         :value: 'video/webm'
+
+         
+
+      .. py:attribute:: QUICKTIME
+         :value: 'video/quicktime'
+
+         
+
+
+

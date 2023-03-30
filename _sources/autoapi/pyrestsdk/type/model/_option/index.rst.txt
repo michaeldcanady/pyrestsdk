@@ -1,0 +1,50 @@
+:py:mod:`pyrestsdk.type.model._option`
+======================================
+
+.. py:module:: pyrestsdk.type.model._option
+
+.. autoapi-nested-parse::
+
+   Houses Option
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.type.model._option.Option
+
+
+
+
+.. py:class:: Option
+
+   Option Type
+
+   .. py:property:: as_dict
+      :type: Dict[str, Any]
+
+      Gets the object as it's dict representation
+
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:attribute:: value
+      :type: Any
+
+      
+
+   .. py:method:: to_json() -> str
+
+      Gets the ojbect as it's JSON representation
+
+
+

@@ -1,0 +1,65 @@
+:py:mod:`pyrestsdk.request.supports_types._supports_generic_type`
+=================================================================
+
+.. py:module:: pyrestsdk.request.supports_types._supports_generic_type
+
+.. autoapi-nested-parse::
+
+   Houses Supports Generic Type
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_generic_type.SupportsGenericType
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request.supports_types._supports_generic_type.T
+   pyrestsdk.request.supports_types._supports_generic_type.B
+
+
+.. py:data:: T
+
+   
+
+.. py:data:: B
+
+   
+
+.. py:class:: SupportsGenericType(*args, **kwargs)
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types._supports_types.SupportTypes`
+
+   Supports Generic Type
+       
+
+   .. py:property:: generic_type
+      :type: Type[T]
+
+      Gets the generic type
+
+
+   .. py:attribute:: _generic_type
+      :type: Type[T]
+
+      
+
+   .. py:method:: _get_generic_type() -> Type[T]
+
+      Sets the generic type attribute
+
+
+

@@ -1,0 +1,127 @@
+:py:mod:`pyrestsdk.request._request`
+====================================
+
+.. py:module:: pyrestsdk.request._request
+
+.. autoapi-nested-parse::
+
+   Houses Request Type
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request._request.Request
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.request._request.T
+   pyrestsdk.request._request.B
+   pyrestsdk.request._request.O
+   pyrestsdk.request._request.S
+   pyrestsdk.request._request.Logger
+
+
+.. py:data:: T
+
+   
+
+.. py:data:: B
+
+   
+
+.. py:data:: O
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:data:: Logger
+
+   
+
+.. py:class:: Request(request_url: str, client: S, options: Optional[Iterable[O]])
+
+   Bases: :py:obj:`pyrestsdk.request.supports_types.SupportsHeaderOptions`, :py:obj:`pyrestsdk.request.supports_types.SupportsQueryOptions`, :py:obj:`pyrestsdk.request.supports_types.SupportsGenericType`, :py:obj:`pyrestsdk.request._abstract_request.AbstractRequest`\ [\ :py:obj:`T`\ ]
+
+   Request Type
+       
+
+   .. py:property:: request_method
+      :type: pyrestsdk.type.enum.HttpsMethod
+
+      Gets/Sets the https method
+
+
+   .. py:property:: request_url
+      :type: str
+
+      Gets/Sets the request URL
+
+      Returns:
+          str: The request URL
+
+
+   .. py:property:: client
+      :type: S
+
+      Gets the Client
+
+
+   .. py:method:: _initialize_url(request_url: str) -> str
+
+      Parses the query parameters from URL
+
+
+   .. py:method:: send(__object: Optional[Union[T, Dict[str, Any]]]) -> Optional[Union[List[T], T]]
+
+      Submits the request and returns the expected return
+
+
+   .. py:method:: send_request(value: Optional[Union[T, Dict[str, Any], str]] = None) -> Optional[Union[List[T], T]]
+
+      Makes the desired request and returns the desired return type
+
+
+   .. py:method:: _parse_input_object(value: Union[T, Dict[str, Any], str]) -> str
+
+      Converts input object into JSON
+
+      Args:
+          value (Union[T, Dict[str, Any], str]): The input object
+
+      Returns:
+          str: JSON version of object
+
+
+   .. py:method:: _get_request_args(value: Optional[Union[T, Dict[str, Any], str]] = None) -> Dict[str, Any]
+
+      gets request arguments
+
+
+   .. py:method:: append_segment_to_request_url(url_segment: str) -> str
+
+      Gets a URL that is the request builder's request URL with the segment appended.
+
+      Args:
+          url_segment (str): The segment to append to the request URL.
+
+      Returns:
+          str: A URL that is the request builder's request URL with the segment appended.
+
+
+

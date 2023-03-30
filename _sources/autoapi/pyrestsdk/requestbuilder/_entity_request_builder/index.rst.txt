@@ -1,0 +1,59 @@
+:py:mod:`pyrestsdk.requestbuilder._entity_request_builder`
+==========================================================
+
+.. py:module:: pyrestsdk.requestbuilder._entity_request_builder
+
+.. autoapi-nested-parse::
+
+   Houses Entity Request Builder
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._entity_request_builder.EntityRequestBuilder
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.requestbuilder._entity_request_builder.R
+   pyrestsdk.requestbuilder._entity_request_builder.B
+   pyrestsdk.requestbuilder._entity_request_builder.S
+
+
+.. py:data:: R
+
+   
+
+.. py:data:: B
+
+   
+
+.. py:data:: S
+
+   
+
+.. py:class:: EntityRequestBuilder(request_url: str, client: S)
+
+   Bases: :py:obj:`pyrestsdk.requestbuilder._abstract_entity_request.AbstractEntityRequestBuilder`\ [\ :py:obj:`R`\ ], :py:obj:`pyrestsdk.requestbuilder._base_request_builder.BaseRequestBuilder`\ [\ :py:obj:`R`\ ]
+
+   Entity Request Builder Type
+
+   .. py:property:: request
+      :type: R
+
+      Builds request with no options
+
+
+

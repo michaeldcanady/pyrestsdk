@@ -1,0 +1,76 @@
+:py:mod:`pyrestsdk.clientfactory._abstract_client_factory`
+==========================================================
+
+.. py:module:: pyrestsdk.clientfactory._abstract_client_factory
+
+.. autoapi-nested-parse::
+
+   Houses Abstract HTTP Client Factory
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.clientfactory._abstract_client_factory.AbstractHTTPClientFactory
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pyrestsdk.clientfactory._abstract_client_factory.Logger
+   pyrestsdk.clientfactory._abstract_client_factory.B
+   pyrestsdk.clientfactory._abstract_client_factory.C
+
+
+.. py:data:: Logger
+
+   
+
+.. py:data:: B
+
+   
+
+.. py:data:: C
+
+   
+
+.. py:class:: AbstractHTTPClientFactory(/, session)
+
+   Bases: :py:obj:`abc.ABC`
+
+   Abstract HTTP Client Factory Type
+
+   .. py:attribute:: session
+      :type: requests.Session
+
+      
+
+   .. py:method:: create_with_custom_middleware(middleware: List[B]) -> requests.Session
+      :abstractmethod:
+
+      Applies the custom middleware chain to the HTTP Client
+
+
+   .. py:method:: _set_base_url(url: str) -> None
+      :abstractmethod:
+
+      Helper method to set the base url
+
+
+   .. py:method:: _register(middleware: List[B]) -> None
+      :abstractmethod:
+
+      Helper method that constructs a middleware_pipeline with the specified middleware
+
+
+
