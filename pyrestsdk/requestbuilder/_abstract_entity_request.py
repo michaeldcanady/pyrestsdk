@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TypeVar, Iterable, Optional, Generic
+from typing import TypeVar, Iterable, Optional
 
 from abc import abstractmethod
 
@@ -14,7 +14,7 @@ R = TypeVar("R", bound=BaseRequest)
 O = TypeVar("O", bound=Option)
 
 
-class AbstractEntityRequestBuilder(AbstractRequestBuilder, Generic[R]):
+class AbstractEntityRequestBuilder(AbstractRequestBuilder):
     """Entity Request Builder Type"""
 
     @property

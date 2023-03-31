@@ -17,7 +17,7 @@ B = TypeVar("B", bound="AbstractEntityRequestBuilder")
 S = TypeVar("S", bound=AbstractServiceClient)
 
 
-class EntityRequestBuilder(AbstractEntityRequestBuilder[R], BaseRequestBuilder[R]):
+class EntityRequestBuilder(AbstractEntityRequestBuilder, BaseRequestBuilder):
     """Entity Request Builder Type"""
 
     @property

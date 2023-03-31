@@ -12,7 +12,7 @@ from pyrestsdk.type.enum import HttpsMethod
 T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeCollectionRequest")
 
-class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest):
+class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest[T]):
     """Supports Invoke Request
     
     Request supports invokation at later time
@@ -29,7 +29,7 @@ class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest):
             List[T]: The list of value
         """
 
-        _return = self.Send(self.input_object)
+        _return = self.send(self.input_object)
 
         if (self.request_method == HttpsMethod.POST) or (self.request_method == HttpsMethod.PUT):
             return _return

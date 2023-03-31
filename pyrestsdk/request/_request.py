@@ -117,26 +117,26 @@ class Request(
         else:
             return self.parse_response(response)
 
-    def _parse_input_object(self, value: Union[T, Dict[str, Any], str]) -> str:
+    def _parse_input_object(self, input_value: Union[T, Dict[str, Any], str]) -> str:
         """Converts input object into JSON
 
         Args:
-            value (Union[T, Dict[str, Any], str]): The input object
+            input_value (Union[T, Dict[str, Any], str]): The input object
 
         Returns:
             str: JSON version of object
         """
 
-        if isinstance(value, str):
-            return value
+        if isinstance(input_value, str):
+            return input_value
 
-        if not isinstance(value, dict):
-            value = value.as_dict
+        if not isinstance(input_value, dict):
+            input_value = input_value.as_dict
 
-        return json.dumps(value)
+        return json.dumps(input_value)
 
     def _get_request_args(
-        self, value: Optional[Union[T, Dict[str, Any], str]] = None
+        self, input_value: Optional[Union[T, Dict[str, Any], str]] = None
     ) -> Dict[str, Any]:
         args = {
             "url": self.request_url,
@@ -145,10 +145,10 @@ class Request(
         }
 
         if self.request_method in (HttpsMethod.POST, HttpsMethod.PUT):
-            if value is None:
-                raise TypeError(f"Missing data for {self.request_method.name} request.")
+            if input_value is None:
+                raise ValueError(f"Missing data for {self.request_method.name} request.")
 
-            args["data"] = self._parse_input_object(value)
+            args["data"] = self._parse_input_object(input_value)
 
         return args
 

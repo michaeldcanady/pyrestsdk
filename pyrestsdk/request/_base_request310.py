@@ -30,6 +30,7 @@ class BaseRequest(Request[T]):
         for option in options:
             if isinstance(option, HeaderOption):
                 self.header_options.append(option)
+                print(len(self.header_options))
             elif isinstance(option, QueryOption):
                 self.query_options.append(option)
             else:
@@ -57,14 +58,15 @@ class BaseRequest(Request[T]):
             self.request_method.name,
         )
 
-        if self.request_method == HttpsMethod.GET:
-            return self._client.get(**args)
-        elif self.request_method == HttpsMethod.POST:
-            return self._client.post(**args)
-        elif self.request_method == HttpsMethod.DELETE:
-            self._client.delete(**args)
-            return None
-        elif self.request_method == HttpsMethod.PUT:
-            return self._client.put(**args)
-        else:
-            raise TypeError(f"Unknown HTTPS method {self.request_method.name}")
+        match self.request_method:
+            case HttpsMethod.GET:
+                return self._client.get(**args)
+            case HttpsMethod.POST:
+                return self._client.post(**args)
+            case HttpsMethod.DELETE:
+                self._client.delete(**args)
+                return None
+            case HttpsMethod.PUT:
+                return self._client.put(**args)
+            case _:
+                raise TypeError(f"Unknown HTTPS method {self.request_method.name}")

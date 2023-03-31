@@ -1,22 +1,42 @@
-"""HTTP Client Factory Tests
-"""
+from unittest.mock import MagicMock
 
 from requests import Session
 
+import pytest
+
 from pyrestsdk.clientfactory import HTTPClientFactory
-from pyrestsdk.middleware import BaseAuthorizationHandler
+from pyrestsdk.credential import AbstractBasicCredential
+from pyrestsdk.middleware import BaseMiddleware, MiddlewarePipeline
 
-def test_client_factory_with_custom_middleware():
-    """
-    Test that requests from a native HTTP client have a context object attached
-    """
+class MockBasicCredential(AbstractBasicCredential):
+    pass
 
-    middleware = [
-        BaseAuthorizationHandler(None)
-    ]
+class MockMiddleware(BaseMiddleware):
+    pass
 
-    client = HTTPClientFactory("google.com",Session()).create_with_custom_middleware(middleware)
+def test_http_client_factory_init():
+    session = MagicMock(spec=Session)
+    factory = HTTPClientFactory("example.com", session, "https")
+    assert factory._base_url == "example.com"
+    assert factory._protocol == "https"
+    assert factory.session == session
 
-    response = client.get("https://www.google.com")
+def test_http_client_factory_create_with_custom_middleware():
+    session = Session()
+    protocol = "https"
+    factory = HTTPClientFactory("example.com", session, protocol)
+    middleware = [MockMiddleware()]
+    with pytest.raises(ValueError):
+        factory.create_with_custom_middleware([])
 
-    assert response.status_code == 200
+    factory.create_with_custom_middleware(middleware)
+
+    assert isinstance(factory.session.adapters[f"{protocol}://"], MiddlewarePipeline)
+
+def test_http_client_factory_set_base_url():
+    session = MagicMock(spec=Session)
+    factory = HTTPClientFactory("example.com", session, "https")
+
+    factory._set_base_url("api")
+
+    assert session.base_url == "https://api.example.com"

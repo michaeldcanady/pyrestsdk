@@ -7,7 +7,7 @@ from pyrestsdk.request.supports_types._supports_base_invoke_request import Suppo
 T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeRequest")
 
-class SupportsInvokeRequest(SupportsBaseInvokeRequest):
+class SupportsInvokeRequest(SupportsBaseInvokeRequest[T]):
     """Supports Invoke Request
     
     Request supports invokation at later time
@@ -27,7 +27,7 @@ class SupportsInvokeRequest(SupportsBaseInvokeRequest):
             T: The single value return
         """
 
-        _return = self.Send(self.input_object)
+        _return = self.send(self.input_object)
 
         if not isinstance(_return, self.generic_type) or _return is None:
             raise UnexpectedReturnType(type(_return), type(self.generic_type))

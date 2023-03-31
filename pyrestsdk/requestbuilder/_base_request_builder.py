@@ -15,10 +15,18 @@ T = TypeVar("T")
 Logger = getLogger(__name__)
 
 
-class BaseRequestBuilder(AbstractRequestBuilder[T]):
+class BaseRequestBuilder(AbstractRequestBuilder):
     """Base Request Builder Type"""
 
     def __init__(self: B, request_url: str, client: S) -> None:
+        """
+        Initializes a BaseRequestBuilder instance.
+
+        Args:
+            request_url (str): The base request URL for the request.
+            client (S): The client instance used to make HTTP requests.
+        """
+
         super().__init__(request_url, client)
         self._request_url: str = request_url
         self._client = client
@@ -34,7 +42,7 @@ class BaseRequestBuilder(AbstractRequestBuilder[T]):
     @request_client.setter
     def request_client(self: B, client: S) -> None:
 
-        Logger.info("%s.Client: set function called", type(self).__name__)
+        Logger.info("%s.request_client: set function called", type(self).__name__)
 
         self._client = client
 

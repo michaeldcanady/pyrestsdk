@@ -10,3 +10,7 @@ class HeaderOption(Option):
     @property
     def as_dict(self) -> Dict[str, str]:
         return {str(self.name): str(self.value)}
+
+    def __str__(self) -> str:
+
+        return f"{self.name}:{self.value}"
