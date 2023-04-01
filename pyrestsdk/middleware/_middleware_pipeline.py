@@ -27,6 +27,9 @@ class MiddlewarePipeline(HTTPAdapter):
     def add_middleware(self, middleware: B) -> None:
         """Adds middleware to the pipeline"""
 
+        if not isinstance(middleware, BaseMiddleware) or not issubclass(type(middleware), BaseMiddleware):
+            raise TypeError(f"middleware is not of or subtype of {BaseMiddleware.__name__!r} is {type(middleware).__name__!r}")
+
         if self._current_middleware is not None:
             self._current_middleware.next = middleware
             self._current_middleware = middleware
@@ -45,7 +48,14 @@ class MiddlewarePipeline(HTTPAdapter):
     ) -> Response:
         """Sends the prepared request through the middleware pipeline"""
 
+        if request is None:
+            raise TypeError("request cannot be None")
+
+        if request.headers is None:
+            request.headers = {}
+
         middleware_control_json = request.headers.pop("middleware_control", None)
+
         if middleware_control_json:
             middleware_control = json.loads(middleware_control_json)
         else:
@@ -54,9 +64,10 @@ class MiddlewarePipeline(HTTPAdapter):
         # Set Context
         request.context = RequestContext(middleware_control, request.headers)
 
-        if self._first_middleware is not None:
-            return self._first_middleware.send(
-                request, stream, timeout, verify, cert, proxies
-            )
-        # No middleware in pipeline, call superclass' send
-        return super().send(request, stream, timeout, verify, cert, proxies)
+        if self._first_middleware is None:
+            # No middleware in pipeline, call superclass' send
+            return super().send(request, stream, timeout, verify, cert, proxies)
+
+        return self._first_middleware.send(
+            request, stream, timeout, verify, cert, proxies
+        )
