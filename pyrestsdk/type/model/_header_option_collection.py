@@ -21,7 +21,7 @@ class HeaderOptionCollection(OptionsCollection[HeaderOption]):
             return None
         for key, value in headers.items():
             self.append(HeaderOption(key, value))
-    
+
     def add(self, name: str, value: str) -> None:
         """Adds a new header option
 

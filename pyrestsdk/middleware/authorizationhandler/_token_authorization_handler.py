@@ -38,13 +38,20 @@ class TokenAuthorizationHandler(BaseAuthorizationHandler):
             Response: Response from network request
         """
 
-        context = request.context  # type: ignore
+        context = None
+
+        if getattr(request, "context", None):
+            context = request.context  # type: ignore
+
+        if not getattr(request, "headers", None):
+            request.headers = {}
 
         request.headers.update(
             {"Authorization": f"Bearer {self._get_access_token(context)}"}
         )
 
-        context.set_feature_usage = FeatureUsageFlag.AUTH_HANDLER_ENABLED
+        if context:
+            context.set_feature_usage = FeatureUsageFlag.AUTH_HANDLER_ENABLED
         response = super().send(request, stream, timeout, verify, cert, proxies)
 
         # Token might have expired just before transmission, retry the request one more time

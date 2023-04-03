@@ -4,7 +4,7 @@ from typing import Dict, Any, TypeVar, Type, TYPE_CHECKING
 
 from abc import ABC, abstractmethod
 
-from pyrestsdk.type.model._common_base import FrozenAttributes
+from pyrestsdk.type.model._common_base import CommonBase
 
 if TYPE_CHECKING:
     from pyrestsdk import AbstractServiceClient
@@ -12,10 +12,8 @@ if TYPE_CHECKING:
 S = TypeVar("S", bound="AbstractEntity")
 A = TypeVar("A", bound="AbstractServiceClient")
 
-class AbstractEntity:
+class AbstractEntity(CommonBase):
     """Abstract Entity Type"""
-
-    __metaclass__ = FrozenAttributes
 
     _client: A
 

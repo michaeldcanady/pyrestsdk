@@ -94,7 +94,7 @@ class AbstractServiceClient(ABC):
 
     @abstractmethod
     def _get_session(self, /, **kwargs) -> Session:
-        """Method to always retrun a single instance of an HTTP Client
+        """Method to always return a single instance of an HTTP Client
         """
 
     @abstractmethod

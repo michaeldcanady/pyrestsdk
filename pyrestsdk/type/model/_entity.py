@@ -6,8 +6,7 @@ from typing import TYPE_CHECKING, TypeVar
 
 from pyrestsdk.type.model._abstract_entity import AbstractEntity
 
-if TYPE_CHECKING:
-    from pyrestsdk import AbstractServiceClient
+from pyrestsdk import AbstractServiceClient
 
 S = TypeVar("S", bound="Entity")
 A = TypeVar("A", bound="AbstractServiceClient")
@@ -19,6 +18,9 @@ class Entity(AbstractEntity):
     _client: A
 
     def __init__(self: S, client: A) -> None:
+        
+        if not (isinstance(client, AbstractServiceClient) or issubclass(type(client), AbstractServiceClient)):
+            raise TypeError(f"Expected an instance or subclass of AbstractServiceClient, but got {type(client)}")
 
         super().__init__(client)
 
