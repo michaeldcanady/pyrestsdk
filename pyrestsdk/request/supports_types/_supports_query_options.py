@@ -1,10 +1,13 @@
-"""Houses Supports Query Options"""
+"""
+Supports Query Options
+======================
+"""
 
 from pyrestsdk.type.model import QueryOptionCollection
 from pyrestsdk.request.supports_types._supports_types import SupportTypes
 from pyrestsdk.type.model import QueryOption
 
-class SupportsQueryOptions(SupportTypes):
+class SupportsQueryOptions(SupportTypes): #pylint: disable=too-few-public-methods
     """Supports Query Options Type"""
 
     _query_options: QueryOptionCollection

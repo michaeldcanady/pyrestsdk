@@ -8,7 +8,7 @@ from pyrestsdk.type.model.token import AccessToken
 A = TypeVar("A", bound=AccessToken)
 
 
-class AbstractTokenCredential(AbstractCredential):
+class AbstractTokenCredential(AbstractCredential): #pylint: disable=too-few-public-methods
     """Abstract Token Credential Type"""
 
     @abstractmethod

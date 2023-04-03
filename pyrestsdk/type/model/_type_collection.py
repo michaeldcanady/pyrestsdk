@@ -32,7 +32,7 @@ class TypeCollection(MutableSequence[T]):
         Yields:
             Iterator[T]: The iterator over the elements in the collection.
         """
-        
+
         return iter(self._internal_list)
 
     def __len__(self) -> int:

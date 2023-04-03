@@ -21,8 +21,9 @@ class HeaderOptionCollection(OptionsCollection[HeaderOption]):
             return None
         for key, value in headers.items():
             self.append(HeaderOption(key, value))
+        return None
 
-    def add(self, name: str, value: str) -> None:
+    def add(self, name: str, value: str) -> None: #pylint: disable=arguments-renamed
         """Adds a new header option
 
         Args:
@@ -30,4 +31,3 @@ class HeaderOptionCollection(OptionsCollection[HeaderOption]):
             value (str): Header value
         """
         self.append(HeaderOption(name=name, value=value))
-

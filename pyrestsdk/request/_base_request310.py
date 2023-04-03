@@ -16,10 +16,12 @@ Logger = logging.getLogger(__name__)
 T = TypeVar("T", bound=Entity)
 
 
-class BaseRequest(Request[T]):
+class BaseRequest(Request[T]): # pylint: disable=too-many-ancestors
     """The Base Request Type"""
 
-    def _parse_options(self, options: Optional[Iterable[Union[QueryOption, HeaderOption]]]) -> None:
+    def _parse_options(
+        self, options: Optional[Iterable[Union[QueryOption, HeaderOption]]]
+    ) -> None:
         """Parses the provided options into either header or query options"""
 
         Logger.info("%s._parse_options: function called", type(self).__name__)
@@ -30,15 +32,17 @@ class BaseRequest(Request[T]):
         for option in options:
             if isinstance(option, HeaderOption):
                 self.header_options.append(option)
-                print(len(self.header_options))
             elif isinstance(option, QueryOption):
                 self.query_options.append(option)
             else:
                 raise TypeError(
-                    f"Unexpected type: {type(option)}, expected instance of HeaderOption or QueryOption"
+                    f"Unexpected type: {type(option)}, expected instance of HeaderOption or QueryOption" #pylint: disable=line-too-long
                 )
+        return None
 
-    def _send_request(self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]) -> Optional[Response]:
+    def _send_request(
+        self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]
+    ) -> Optional[Response]:
         """Sends request
 
         Args:

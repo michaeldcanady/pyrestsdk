@@ -11,7 +11,7 @@ from pyrestsdk.middleware import BaseMiddleware
 B = TypeVar("B", bound=BaseMiddleware)
 
 
-class SupportsDefaultMiddleware(ABC):
+class SupportsDefaultMiddleware(ABC): #pylint: disable=too-few-public-methods
     """Supports Default Middleware Type"""
 
     def __init__(self, *args, **kwargs) -> None:

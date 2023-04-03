@@ -1,6 +1,14 @@
+"""
+Common Base
+===========
+The shared parent for all types, it's used to keep the
+user from mutating the class outside of being inherited.
+"""
+
 from typing import Any, Callable
 from functools import wraps
 from sys import _getframe
+
 
 def frozen(cls: Callable) -> Callable:
     """
@@ -15,11 +23,16 @@ def frozen(cls: Callable) -> Callable:
 
         # Checks if attribute already exists or if it is being set in __init__
         if not hasattr(self, name) and co_name != "__init__":
-            raise AttributeError(f"You cannot add attributes to {self.__class__.__name__}")
+            raise AttributeError(
+                f"You cannot add attributes to {self.__class__.__name__}"
+            )
 
-        # Checks if attribute is a 'protected' attribute (begins with _) and is being set outside of __init__
+        # Checks if attribute is a 'protected'
+        # attribute (begins with _) and is being set outside of __init__
         if name.startswith("_") and co_name != "__init__":
-            raise AttributeError(f"You cannot set value of protected attribute {self.__class__.__name__}.{name}")
+            raise AttributeError(
+                f"You cannot set value of protected attribute {self.__class__.__name__}.{name}"
+            )
 
         # Calls the original __setattr__ function
         original_setattr(self, name, value)
@@ -29,7 +42,7 @@ def frozen(cls: Callable) -> Callable:
     return cls
 
 @frozen
-class CommonBase:
+class CommonBase: #pylint: disable=too-few-public-methods
     """Common Base Type"""
 
     def __init__(self, *args, **kwargs) -> None:

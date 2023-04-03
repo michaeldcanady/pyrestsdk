@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, TypeVar
+from typing import TypeVar
 
 from pyrestsdk.type.model._abstract_entity import AbstractEntity
 
@@ -18,9 +18,13 @@ class Entity(AbstractEntity):
     _client: A
 
     def __init__(self: S, client: A) -> None:
-        
-        if not (isinstance(client, AbstractServiceClient) or issubclass(type(client), AbstractServiceClient)):
-            raise TypeError(f"Expected an instance or subclass of AbstractServiceClient, but got {type(client)}")
+        if not (
+            isinstance(client, AbstractServiceClient)
+            or issubclass(type(client), AbstractServiceClient)
+        ):
+            raise TypeError(
+                f"Expected an instance or subclass of AbstractServiceClient, but got {type(client)}"
+            )
 
         super().__init__(client)
 

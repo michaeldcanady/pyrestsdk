@@ -2,7 +2,7 @@
 
 from typing import Dict, Any, TypeVar, Type, TYPE_CHECKING
 
-from abc import ABC, abstractmethod
+from abc import abstractmethod, ABC
 
 from pyrestsdk.type.model._common_base import CommonBase
 
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 S = TypeVar("S", bound="AbstractEntity")
 A = TypeVar("A", bound="AbstractServiceClient")
 
-class AbstractEntity(CommonBase):
+class AbstractEntity(CommonBase, ABC):
     """Abstract Entity Type"""
 
     _client: A

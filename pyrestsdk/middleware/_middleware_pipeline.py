@@ -27,8 +27,12 @@ class MiddlewarePipeline(HTTPAdapter):
     def add_middleware(self, middleware: B) -> None:
         """Adds middleware to the pipeline"""
 
-        if not isinstance(middleware, BaseMiddleware) or not issubclass(type(middleware), BaseMiddleware):
-            raise TypeError(f"middleware is not of or subtype of {BaseMiddleware.__name__!r} is {type(middleware).__name__!r}")
+        if (not isinstance(middleware, BaseMiddleware)) or (
+            not issubclass(type(middleware), BaseMiddleware)
+        ):
+            raise TypeError(
+                f"middleware is not of or subtype of {BaseMiddleware.__name__!r} is {type(middleware).__name__!r}" #pylint: disable=line-too-long
+            )
 
         if self._current_middleware is not None:
             self._current_middleware.next = middleware
@@ -37,7 +41,7 @@ class MiddlewarePipeline(HTTPAdapter):
             self._first_middleware = middleware
             self._current_middleware = self._first_middleware
 
-    def send(
+    def send( #pylint: disable=too-many-arguments
         self,
         request: PreparedRequest,
         stream: bool = False,

@@ -1,3 +1,9 @@
+"""
+Basic Credential
+================
+A basic example of how to implement the AbstractBasicCredential
+"""
+
 from typing import Union
 
 from base64 import b64encode

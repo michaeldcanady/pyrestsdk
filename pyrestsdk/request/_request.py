@@ -22,7 +22,7 @@ S = TypeVar("S", bound=AbstractServiceClient)
 Logger = logging.getLogger(__name__)
 
 
-class Request(
+class Request( #pylint: disable=too-many-ancestors
     SupportsHeaderOptions,
     SupportsQueryOptions,
     SupportsGenericType,
@@ -112,10 +112,9 @@ class Request(
         try:
             Logger.debug("%s.Send: raising response for status", type(self).__name__)
             response.raise_for_status()
-        except Exception:
-            self.parse_exception(response)
-        else:
-            return self.parse_response(response)
+        except Exception: #pylint: disable=broad-exception-caught
+            return self.parse_exception(response)
+        return self.parse_response(response)
 
     def _parse_input_object(self, input_value: Union[T, Dict[str, Any], str]) -> str:
         """Converts input object into JSON
@@ -135,7 +134,7 @@ class Request(
 
         return json.dumps(input_value)
 
-    def _get_request_args(
+    def _get_request_args( #pylint: disable=arguments-renamed
         self, input_value: Optional[Union[T, Dict[str, Any], str]] = None
     ) -> Dict[str, Any]:
         args = {
