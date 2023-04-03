@@ -11,6 +11,17 @@ class MockClient:
         self.post = MagicMock()
         self.delete = MagicMock()
         self.put = MagicMock()
+    
+class MockRequest(BaseRequest[str]):
+
+    def parse_exception(self, *args):
+        pass
+
+    def send_request(self, *args):
+        pass
+
+    def parse_response(self, *args):
+        pass
 
 @pytest.fixture()
 def mock_client():
@@ -18,7 +29,7 @@ def mock_client():
 
 @pytest.fixture()
 def base_request(mock_client):
-    return BaseRequest("https://example.com", mock_client, None)
+    return MockRequest("https://example.com", mock_client, None)
 
 def test_base_request_init(base_request):
     assert base_request.request_url == "https://example.com"

@@ -19,17 +19,24 @@ def frozen(cls: Callable) -> Callable:
 
     @wraps(cls.__setattr__)
     def setattr_frozen(self: Any, name: str, value: Any) -> None:
-        co_name = _getframe(1).f_code.co_name
+        caller = _getframe(1)
+        co_name = caller.f_code.co_name
 
-        # Checks if attribute already exists or if it is being set in __init__
-        if not hasattr(self, name) and co_name != "__init__":
+        # Allow assignments at the module level and during __init__
+        if co_name == "<module>" or co_name == "__init__":
+            original_setattr(self, name, value)
+            return
+
+        # Prevent adding new attributes
+        if not hasattr(self, name):
             raise AttributeError(
                 f"You cannot add attributes to {self.__class__.__name__}"
             )
 
-        # Checks if attribute is a 'protected'
-        # attribute (begins with _) and is being set outside of __init__
-        if name.startswith("_") and co_name != "__init__":
+        # Prevent setting value of protected attributes, except for property setters
+        if name.startswith("_") and not isinstance(
+            getattr(self.__class__, co_name, None), property
+        ):
             raise AttributeError(
                 f"You cannot set value of protected attribute {self.__class__.__name__}.{name}"
             )
@@ -41,8 +48,9 @@ def frozen(cls: Callable) -> Callable:
     setattr(cls, "__setattr__", setattr_frozen)
     return cls
 
+
 @frozen
-class CommonBase: #pylint: disable=too-few-public-methods
+class CommonBase:  # pylint: disable=too-few-public-methods
     """Common Base Type"""
 
     def __init__(self, *args, **kwargs) -> None:

@@ -87,6 +87,7 @@ class OptionsCollection(GetGenericTypeMixin, TypeCollection[O]):
 
         if isinstance(new_options, dict):
             for key, value in new_options.items():
+                print(self.element_type)
                 cleaned_new_options.append(self.element_type(key, value))
         else:
             cleaned_new_options = new_options

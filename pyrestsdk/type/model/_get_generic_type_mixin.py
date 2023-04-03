@@ -8,6 +8,7 @@ from typing import (
     TypeVar,
     Type,
     get_args,
+    _GenericAlias
 )
 from types import GenericAlias
 
@@ -31,13 +32,26 @@ class GetGenericTypeMixin: #pylint: disable=too-few-public-methods
             orig_value = (getattr(self, "__orig_class__"),)
 
         # Find generic with mixins
-        generic_type = None
-        for base in orig_value:
-            if isinstance(base, GenericAlias):
-                generic_type = get_args(base)[0]
-                break
+        generic_type = self._search_for_generic_type(orig_value)
 
         if generic_type is None:
             raise TypeError(f"No generic type found in bases {orig_value}")
+
+        return generic_type
+
+    def _search_for_generic_type(self, orig_value: object):
+
+        generic_type = None
+
+        for base in orig_value:
+
+            print(type(base))
+
+            if isinstance(base, _GenericAlias) or isinstance(base, GenericAlias):
+                generic_type = get_args(base)[0]
+                break
+
+            if (_or_value := getattr(base, "__orig_bases__", None)):
+                return self._search_for_generic_type(_or_value)
 
         return generic_type

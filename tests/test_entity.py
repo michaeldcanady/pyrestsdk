@@ -4,26 +4,35 @@ Tests for the Entity Type
 
 """
 
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 import pytest
 from pyrestsdk.type.model._abstract_entity import AbstractEntity
 from pyrestsdk.type.model import Entity
+from pyrestsdk import ServiceClient
 
-if TYPE_CHECKING:
-    from pyrestsdk import AbstractServiceClient
-
-class MockClient:
+class MockClient(ServiceClient):
     """
     Mock Client for testing
     """
-    pass
+
+    def _get_session(self):
+        self._session = None
 
 class MockEntity(Entity):
     """
     Mock Entity for testing
     """
-    pass
+
+    @property
+    def as_dict(self):
+        return {}
+
+    def as_json(self):
+        return
+
+    def from_json(self):
+        return
 
 def test_entity_initialization():
     """
