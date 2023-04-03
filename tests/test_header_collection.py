@@ -113,7 +113,7 @@ def test_header_collection_contains_true():
     contains = "Authorization" in header_collection.as_dict
 
     # Assert
-    assert contains == True
+    assert contains is True
 
 
 def test_header_collection_contains_false():
@@ -126,4 +126,4 @@ def test_header_collection_contains_false():
     contains = "Accept" in header_collection
 
     # Assert
-    assert contains == False
+    assert contains is False

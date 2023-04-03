@@ -20,7 +20,7 @@ class MockMiddleware(BaseMiddleware):
         super().__init__()
         self.next = None
 
-    def send(
+    def send( #pylint: disable=too-many-arguments
         self,
         request: PreparedRequest,
         stream: bool = False,

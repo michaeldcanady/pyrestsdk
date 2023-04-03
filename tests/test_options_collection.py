@@ -9,7 +9,7 @@ from typing import Any
 
 from pyrestsdk.type.model import Option, OptionsCollection
 
-class TestOption(Option):
+class TestOption(Option): #pylint: disable=too-few-public-methods
     """
     Test Option
     """
@@ -112,6 +112,10 @@ def test_options_collection_remove():
     assert options_collection.as_dict == expected_options_dict
 
 def test_options_collection_get():
+    """
+    Test ability to get Query Option value from key
+    """
+
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
     options_collection = TestOptionsCollection(options_dict)
@@ -126,6 +130,10 @@ def test_options_collection_get():
     # Output: {'key1': 'value1', 'key2': 'value2'}
 
 def test_options_collection_set():
+    """
+    Tests ability to set specified key
+    """
+
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
     expected_options_dict = {"key1": "new_value1", "key2": "value2"}
@@ -136,7 +144,3 @@ def test_options_collection_set():
 
     # Assert
     assert options_collection.as_dict == expected_options_dict
-
-    print(options_collection.as_dict)
-    # Output: {'key1': 'new_value1', 'key2': 'value2'}
-

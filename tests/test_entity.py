@@ -16,7 +16,7 @@ class MockClient(ServiceClient):
     Mock Client for testing
     """
 
-    def _get_session(self):
+    def _get_session(self): #pylint: disable=arguments-differ
         self._session = None
 
 class MockEntity(Entity):
@@ -28,10 +28,12 @@ class MockEntity(Entity):
     def as_dict(self):
         return {}
 
+    @property
     def as_json(self):
         return
 
-    def from_json(self):
+    @classmethod
+    def from_json(cls, entry):
         return
 
 def test_entity_initialization():

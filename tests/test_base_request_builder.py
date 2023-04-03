@@ -16,13 +16,17 @@ from pyrestsdk.type.model import Entity
 
 
 class TestServiceClient(AbstractServiceClient):
+    """
+    Service Client for testing
+    """
+
     def __init__(self):
         self.session = Session()
 
-    def _get_session(self):
+    def _get_session(self): #pylint: disable=arguments-differ
         return self.session
 
-    def _instance_url(self):
+    def _instance_url(self): #pylint: disable=arguments-differ
         pass
 
     def get(self, *args, **kwargs):
@@ -72,24 +76,59 @@ class TestEntityRequestBuilder(AbstractEntityRequestBuilder):
 
 
 @pytest.fixture
-def client():
+def client() -> TestServiceClient:
+    """Gets the testing client
+
+    Returns:
+        TestServiceClient: The testing client
+    """
     return TestServiceClient()
 
 
 @pytest.fixture
-def entity_request_builder(client):
+def entity_request_builder(client: TestServiceClient) -> TestEntityRequestBuilder: #pylint: disable=redefined-outer-name
+    """Gets the test entity request builder
+
+    Args:
+        client (TestServiceClient): The client
+
+    Returns:
+        TestEntityRequestBuilder: The test entity request builder
+    """
+
     return TestEntityRequestBuilder("https://example.com", client)
 
 @pytest.fixture
-def base_request_builder(client):
+def base_request_builder(client: TestServiceClient) -> TestBaseRequestBuilder: #pylint: disable=redefined-outer-name
+    """Gets the test request builder
+
+    Args:
+        client (TestServiceClient): The client
+
+    Returns:
+        TestBaseRequestBuilder: The test request builder
+    """
+
     return TestBaseRequestBuilder("https://example.com", client)
 
 @pytest.fixture
-def supports_base_invoke_request():
+def supports_base_invoke_request() -> TestSupportsBaseInvokeRequest:
+    """Gets the test supports base invoke request
+
+    Returns:
+        TestSupportsBaseInvokeRequest: The test supports base invoke request
+    """
+
     return TestSupportsBaseInvokeRequest()
 
 
-def test_request_property(entity_request_builder):
+def test_request_property(entity_request_builder: TestEntityRequestBuilder): #pylint: disable=redefined-outer-name
+    """Tests functionality of request
+
+    Args:
+        entity_request_builder (TestEntityRequestBuilder): The entity request builder
+    """
+
     mock_request_with_options = MagicMock(return_value=BaseRequest)
     entity_request_builder.request_with_options = mock_request_with_options
 
@@ -98,7 +137,7 @@ def test_request_property(entity_request_builder):
     assert request == BaseRequest
     mock_request_with_options.assert_called_once_with(None)
 
-def test_base_request_builder_properties(base_request_builder, client):
+def test_base_request_builder_properties(base_request_builder: TestBaseRequestBuilder, client: TestServiceClient): #pylint: disable=redefined-outer-name 
     assert base_request_builder.request_client == client
     assert base_request_builder.request_url == "https://example.com"
 
