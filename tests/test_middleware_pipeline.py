@@ -12,10 +12,12 @@ from pyrestsdk.middleware._base_middleware import BaseMiddleware
 from pyrestsdk.middleware._middleware_pipeline import MiddlewarePipeline
 
 class MockMiddleware(BaseMiddleware):
-    """Mock Middleware for testing
+    """
+    Mock Middleware for testing
     """
 
     def __init__(self) -> None:
+        super().__init__()
         self.next = None
 
     def send(
@@ -34,7 +36,8 @@ class MockMiddleware(BaseMiddleware):
         return Response()
 
 def test_middleware_pipeline():
-    """Tests that MiddlewarePipeline executes a chain of middlewares correctly
+    """
+    Tests that MiddlewarePipeline executes a chain of middlewares correctly
     """
 
     # Arrange
@@ -62,7 +65,8 @@ def test_middleware_pipeline():
 
 
 def test_middleware_pipeline_no_middleware():
-    """Tests that MiddlewarePipeline raises a TypeError when there is no middleware in the pipeline
+    """
+    Tests that MiddlewarePipeline raises a TypeError when there is no middleware in the pipeline
     """
 
     # Arrange
@@ -74,7 +78,8 @@ def test_middleware_pipeline_no_middleware():
 
 
 def test_middleware_pipeline_one_middleware():
-    """Tests that MiddlewarePipeline executes a single middleware correctly
+    """
+    Tests that MiddlewarePipeline executes a single middleware correctly
     """
 
     # Arrange
@@ -94,7 +99,8 @@ def test_middleware_pipeline_one_middleware():
     assert response is not None
 
 def test_middleware_pipeline_add_middleware_no_arguments():
-    """Tests that MiddlewarePipeline raises a TypeError
+    """
+    Tests that MiddlewarePipeline raises a TypeError
     when add_middleware is called with no arguments
     """
 
@@ -103,11 +109,12 @@ def test_middleware_pipeline_add_middleware_no_arguments():
 
     # Act/Assert
     with pytest.raises(TypeError):
-        middleware_pipeline.add_middleware()
+        middleware_pipeline.add_middleware() #pylint: disable=no-value-for-parameter
 
 
 def test_middleware_pipeline_add_middleware_non_base_middleware_argument():
-    """Tests that MiddlewarePipeline raises a TypeError
+    """
+    Tests that MiddlewarePipeline raises a TypeError
     when add_middleware is called with a non-BaseMiddleware argument
     """
 

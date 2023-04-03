@@ -14,9 +14,6 @@ class TestOption(Option):
     Test Option
     """
 
-    def __init__(self, name: str, value: Any):
-        super().__init__(name, value)
-
 class TestOptionsCollection(OptionsCollection[TestOption]):
     """
     Test Options Collection
