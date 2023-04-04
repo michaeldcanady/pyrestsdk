@@ -27,14 +27,10 @@ jobs:
         sudo apt install heimdal-dev
         poetry install --no-interaction --no-root --with lint
 
-    - name: test
-      run: |
-        echo "(1) < (2) (3)" matrix.python-version && 3.10 && ${{ matrix.python-version < 3.10 }}
-
     - name: Analysing the code with pylint
       if: ${{ matrix.python-version != 3.8 && matrix.python-version != 3.9 }}
       run: poetry run pylint $(git ls-files '*.py')
     
     - name: Analysing the code with pylint
-      if: ${{ matrix.python-version < 3.10 }}
+      if: ${{ ${{matrix.python-version}} < 3.10 }}
       run: poetry run pylint $(git ls-files '*.py') --ignore _base_request310.py
