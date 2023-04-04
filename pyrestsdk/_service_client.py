@@ -67,3 +67,18 @@ class ServiceClient(AbstractServiceClient, ABC):
         Returns:
             Session: The Session
         """
+
+    def append_segment_to_request_url(self, url_segment: str) -> None:
+        """Gets a URL that is the request URL with the segment appended.
+
+        Args:
+            url_segment (str): The segment to append to the request URL.
+
+        Returns:
+            str: A URL that is the request URL with the segment appended.
+        """
+
+        if not url_segment.startswith("/"):
+            url_segment = f"/{url_segment}"
+
+        return f"{self.session.base_url}{url_segment}"
