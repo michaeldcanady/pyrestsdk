@@ -11,14 +11,14 @@ jobs:
         python-minor-version: [8, 9, 10, 11]
         poetry-version: ['1.4.1']
     env:
-        python-version: ${{ python-version }}
+        python-version: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ python-version }}
+    - name: Set up Python ${{ env.python-version }}
       uses: actions/setup-python@v3
       with:
-        python-version: ${{ python-version }}
+        python-version: ${{ env.python-version }}
 
     - name: Install Poetry ${{ matrix.poetry-version }}
       uses: abatilo/actions-poetry@v2.1.6
@@ -29,9 +29,6 @@ jobs:
       run: |
         sudo apt install heimdal-dev
         poetry install --no-interaction --no-root --with lint
-
-    - name: Random
-      run: echo ${{'3.10'}}
 
     - name: Analysing the code with pylint
       if: ${{ matrix.python-minor-version > 10 }}
