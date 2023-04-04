@@ -126,7 +126,6 @@ def test_options_collection_get():
     # Assert
     assert value == "value1"
 
-    print(options_collection.as_dict)
     # Output: {'key1': 'value1', 'key2': 'value2'}
 
 def test_options_collection_set():
