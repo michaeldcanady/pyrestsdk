@@ -10,7 +10,7 @@ from typing import (
     get_args,
     _GenericAlias
 )
-from types import GenericAlias
+from types import GenericAlias #pylint: disable=no-name-in-module
 
 O = TypeVar("O")
 OC = TypeVar("OC", bound="GetGenericTypeMixin")
