@@ -37,6 +37,10 @@ class TestClient(ServiceClient):
     def _get_session(self): #pylint: disable=arguments-differ
         pass
 
+    @staticmethod
+    def _initialize_session_and_base_url(*args, **kwargs):
+        pass
+
 
 class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[TestEntity]):
     """
