@@ -31,7 +31,7 @@ jobs:
         poetry install --no-interaction --no-root --with lint
 
     - name: Analysing the code with pylint
-      if: ${{ matrix.python-minor-version > 10 }}
+      if: ${{ matrix.python-minor-version >= 10 }}
       run: poetry run pylint $(git ls-files '*.py')
     
     - name: Analysing the code with pylint
