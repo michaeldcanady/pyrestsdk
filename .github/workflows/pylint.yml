@@ -28,7 +28,7 @@ jobs:
         poetry install --no-interaction --no-root --with lint
 
     - name: Random
-      run: echo ${{matrix.python-version}}
+      run: echo ${{'3.10'}}
 
     - name: Analysing the code with pylint
       if: ${{ matrix.python-version != 3.8 && matrix.python-version != 3.9 }}
