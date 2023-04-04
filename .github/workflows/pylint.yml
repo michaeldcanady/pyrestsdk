@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   build:
+    run-name: build (${{python-version}}, ${{poetry-version}})
     runs-on: ubuntu-latest
     strategy:
       matrix:
