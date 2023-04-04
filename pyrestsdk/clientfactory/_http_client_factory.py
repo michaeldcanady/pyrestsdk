@@ -15,7 +15,7 @@ B = TypeVar("B", bound=BaseMiddleware)
 C = TypeVar("C", bound=AbstractBasicCredential)
 
 
-class HTTPClientFactory(AbstractHTTPClientFactory):
+class HTTPClientFactory(AbstractHTTPClientFactory): #pylint: disable=too-few-public-methods
     """HTTP Client Factory"""
 
     def __init__(
@@ -46,8 +46,6 @@ class HTTPClientFactory(AbstractHTTPClientFactory):
             type(self),
             self.session.base_url, # type: ignore
         )
-
-        return None
 
     def _register(self, middleware: List[B]) -> Session:
         """

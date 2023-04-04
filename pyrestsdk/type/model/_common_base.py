@@ -1,69 +1,59 @@
-"""Houses Common Base
+"""
+Common Base
+===========
+The shared parent for all types, it's used to keep the
+user from mutating the class outside of being inherited.
 """
 
 from typing import Any, Callable
-
 from functools import wraps
-from sys import _getframe
+import inspect
 
-# https://code.activestate.com/recipes/252158/
-def frozen(func: Callable[[Any, str, Any], Any]):
-    """Raise an error when trying to set an undeclared name, or when calling
-    from a method other than Frozen.__init__ or the __init__ method of
-    a class derived from Frozen"""
 
-    @wraps(func)
-    def set_attr(self: Any, name: str, value: Any) -> None:
+def frozen(cls: Callable) -> Callable:
+    """
+    Decorator for freezing ability to set attributes outside of specific instances.
+    """
+    # Replace the class's __setattr__ method with the frozen version
+    original_setattr = cls.__setattr__
 
-        co_name = _getframe(1).f_code.co_name
+    @wraps(cls.__setattr__)
+    def setattr_frozen(self: Any, name: str, value: Any) -> None:
+        caller = inspect.stack()[1]
+        co_name = caller.function
 
-        allowed_methods = ["__init_subclass__", "__init__"]
+        # Allow assignments at the module level and during __init__
+        if co_name in ["<module>", "__init__"]:
+            original_setattr(self, name, value)
+            return
 
-        # checks if attribute already exists or if it is being set in __init__
-        if (not hasattr(self, name)) and (co_name not in allowed_methods):
+        # Prevent adding new attributes
+        if not hasattr(self, name):
             raise AttributeError(
-                f"You cannot add attributes to {self.__name__}"
+                f"You cannot add attributes to {self.__class__.__name__}"
             )
-        # cheks if attribute is a 'protected' (begins with _)
-        # and is being set outside of property or __init__
-        elif (
-            name.startswith("_")
-            and (co_name not in allowed_methods)
-            and (
-                co_name == "<module>"
-                or (not isinstance(getattr(self, co_name), property))
-            )
-        ):
+
+        if isinstance(getattr(self.__class__, co_name, None), property):
+            original_setattr(self, name, value)
+            return
+
+        # Prevent setting value of protected attributes, except for property setters
+        if name.startswith("_"):
             raise AttributeError(
-                f"You cannot set value of protected attribute {self.__name__}.{name}"
+                f"You cannot set value of protected attribute {self.__class__.__name__}.{name}"
             )
 
-        if co_name == "__init__":
-            for key, value in _getframe(1).f_locals.items():
-                if key == "self" and isinstance(value, self.__class__):
+        # Calls the original __setattr__ function
+        original_setattr(self, name, value)
 
-                    func(self, name, value)
-
-                    return None
-
-        func(self, name, value)
-
-        return None
-
-    return set_attr
+    # Replace the class's __setattr__ with the frozen version
+    setattr(cls, "__setattr__", setattr_frozen)
+    return cls
 
 
-class FrozenAttributes(type):
-    """MetaClass for freezing ability to set attributes outside of specific instances"""
-
-    @frozen
-    def __setattr__(cls, __name: str, __value: Any) -> None:
-        return super().__setattr__(__name, __value)
-
-class CommonBase():
+@frozen
+class CommonBase:  # pylint: disable=too-few-public-methods
     """Common Base Type"""
-
-    __metaclass__ = FrozenAttributes
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

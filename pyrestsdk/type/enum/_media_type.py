@@ -1,4 +1,7 @@
-"""Houses MIME Types
+"""
+MIME Types
+==========
+reference URL: https://www.iana.org/assignments/media-types/media-types.xhtml
 """
 
 from enum import Enum, auto
@@ -18,7 +21,7 @@ class MIMECategoryEnum(str, Enum):
 
         if isinstance(value, str) and not value.startswith(prefix):
             raise TypeError(
-                f"Value of MIMECategoryEnum must begin with the designated prefix:{value!r} does not start with {prefix!r}"
+                f"Value of MIMECategoryEnum must begin with the designated prefix:{value!r} does not start with {prefix!r}" #pylint: disable=line-too-long
             )
 
         return super().__new__(cls, value, *args, **kwargs)
@@ -28,7 +31,7 @@ class MIMECategoryEnum(str, Enum):
         return self.value
 
 
-class MimeType:
+class MimeType: #pylint: disable=too-few-public-methods
     """MIME Type"""
 
     class Text(MIMECategoryEnum):

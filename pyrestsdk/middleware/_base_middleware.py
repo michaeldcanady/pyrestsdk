@@ -20,7 +20,7 @@ class BaseMiddleware(HTTPAdapter):
     def __init__(self):
         super().__init__()
 
-    def send(
+    def send( #pylint: disable=too-many-arguments
         self: B,
         request: PreparedRequest,
         stream: bool = False,

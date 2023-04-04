@@ -14,8 +14,6 @@ from typing import (
 
 import logging
 
-import json
-
 from requests import Response
 
 from pyrestsdk.type.enum import HttpsMethod
@@ -32,7 +30,7 @@ T = TypeVar("T", bound=Entity)
 O = TypeVar("O", QueryOption, HeaderOption)
 
 
-class BaseRequest(Request[T]):
+class BaseRequest(Request[T]): #pylint: disable=too-many-ancestors
     """The Base Request Type"""
 
     def _parse_options(self, options: Optional[Iterable[O]]) -> None:
@@ -48,8 +46,7 @@ class BaseRequest(Request[T]):
                 self.query_options.append(option)
             else:
                 raise TypeError(
-                    "Unexpected type: %s, expected subtype of HeaderOption or QueryOption",
-                    type(option),
+                    f"Unexpected type: {type(option).__name__}, expected subtype of HeaderOption or QueryOption", #pylint: disable=line-too-long
                 )
 
         return None
@@ -73,7 +70,7 @@ class BaseRequest(Request[T]):
         _func = _request_dict.get(self.request_method, None)
 
         if _func is None:
-            raise TypeError("Unknown HTTPS method: %s", self.request_method.name)
+            raise TypeError(f"Unknown HTTPS method: {self.request_method.name}")
 
         _response = _func(**args)
 

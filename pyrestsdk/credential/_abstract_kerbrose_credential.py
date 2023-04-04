@@ -4,7 +4,7 @@ from abc import abstractmethod
 from pyrestsdk.credential._abstract_credential import AbstractCredential
 
 
-class AbstractKerbroseCredential(AbstractCredential):
+class AbstractKerbroseCredential(AbstractCredential): #pylint: disable=too-few-public-methods
     """Abstract Kerbrose Credential Type"""
 
     @abstractmethod

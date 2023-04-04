@@ -1,10 +1,13 @@
-"""Houses Supports Query Options"""
+"""
+Supports Query Options
+======================
+"""
 
 from pyrestsdk.type.model import QueryOptionCollection
 from pyrestsdk.request.supports_types._supports_types import SupportTypes
 from pyrestsdk.type.model import QueryOption
 
-class SupportsQueryOptions(SupportTypes):
+class SupportsQueryOptions(SupportTypes): #pylint: disable=too-few-public-methods
     """Supports Query Options Type"""
 
     _query_options: QueryOptionCollection
@@ -16,12 +19,20 @@ class SupportsQueryOptions(SupportTypes):
 
     @property
     def query_options(self) -> QueryOptionCollection:
-        """Gets Query Options"""
+        """Gets the Query Options
+
+        Returns:
+            QueryOptionCollection: The Query Options
+        """
 
         return self._query_options
 
     def _split_query_options(self, query_string: str) -> None:
-        """Parses query options from query string"""
+        """Parses query options from the query string
+
+        Args:
+            query_string (str): The query string
+        """
 
         for option in query_string.split("&"):
             query_parameter, value = option.split("=")

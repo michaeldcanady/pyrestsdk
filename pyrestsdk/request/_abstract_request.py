@@ -1,7 +1,7 @@
 """Houses Abstract Request"""
 
 from __future__ import annotations
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 from typing import List, Union, TypeVar, Generic, Optional, Iterable, Dict, Any
 
 from requests import Response
@@ -27,6 +27,7 @@ T = TypeVar("T")
 class AbstractRequest(
     CommonBase,
     Generic[T],
+    ABC,
 ):
     """Abstract Request Type"""
 

@@ -3,7 +3,6 @@
 from __future__ import annotations
 from typing import (
     TypeVar,
-    Generic,
 )
 from abc import abstractmethod, ABC
 from pyrestsdk import AbstractServiceClient
@@ -15,10 +14,9 @@ from pyrestsdk.type.model import (
 B = TypeVar("B", bound="AbstractRequestBuilder")
 S = TypeVar("S", bound=AbstractServiceClient)
 O = TypeVar("O", QueryOption, HeaderOption)
-T = TypeVar("T")
 
 
-class AbstractRequestBuilder(ABC, Generic[T]):
+class AbstractRequestBuilder(ABC):
     """Abstract Request Type"""
 
     _client: S

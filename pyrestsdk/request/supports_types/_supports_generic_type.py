@@ -1,14 +1,15 @@
 """Houses Supports Generic Type
 """
 
-from typing import Type, TypeVar, get_args
+from typing import Type, TypeVar, Generic
 
 from pyrestsdk.request.supports_types._supports_types import SupportTypes
+from pyrestsdk.type.model._get_generic_type_mixin import GetGenericTypeMixin
 
 T = TypeVar("T")
 B = TypeVar("B", bound="SupportsGenericType")
 
-class SupportsGenericType(SupportTypes):
+class SupportsGenericType(SupportTypes, GetGenericTypeMixin, Generic[T]): #pylint: disable=too-few-public-methods
     """Supports Generic Type
     """
 
@@ -23,17 +24,3 @@ class SupportsGenericType(SupportTypes):
         """Gets the generic type"""
 
         return self._generic_type
-
-    def _get_generic_type(self: B) -> Type[T]:
-        """Sets the generic type attribute"""
-
-        # used if type arg is provided in constructor
-        orig_value = getattr(self, "__orig_class__", None)
-
-        if orig_value is None:
-            # used if typ arg is provided when subclassing
-            orig_bases = getattr(self, "__orig_bases__")
-            # way to find generic with mixins
-            orig_value = [base for base in orig_bases if type(base).__name__ == "_GenericAlias"][0]
-
-        return get_args(orig_value)[0]

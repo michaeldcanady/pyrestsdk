@@ -1,2 +1,5 @@
-"""Python Rest SDK Types
+"""
+Python Rest SDK Types
+=====================
+Houses are types
 """

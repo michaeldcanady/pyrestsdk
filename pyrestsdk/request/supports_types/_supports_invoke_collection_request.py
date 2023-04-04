@@ -3,6 +3,8 @@
 
 from typing import TypeVar, List
 
+from abc import ABC
+
 from pyrestsdk.type.model import Entity
 from pyrestsdk.type.exception import UnexpectedReturnType
 from pyrestsdk.request.supports_types._supports_base_invoke_request import SupportsBaseInvokeRequest
@@ -12,7 +14,7 @@ from pyrestsdk.type.enum import HttpsMethod
 T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeCollectionRequest")
 
-class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest):
+class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest[T], ABC):
     """Supports Invoke Request
     
     Request supports invokation at later time
@@ -29,9 +31,9 @@ class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest):
             List[T]: The list of value
         """
 
-        _return = self.Send(self.input_object)
+        _return = self.send(self.input_object)
 
-        if (self.request_method == HttpsMethod.POST) or (self.request_method == HttpsMethod.PUT):
+        if self.request_method in [HttpsMethod.POST, HttpsMethod.PUT]:
             return _return
 
         if not isinstance(_return, list) or _return is None:

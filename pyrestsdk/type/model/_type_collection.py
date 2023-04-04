@@ -1,102 +1,151 @@
 """Houses Type Collection"""
 
-from typing import MutableSequence, List, Union, TypeVar, Iterator, Iterable
+from typing import MutableSequence, List, TypeVar, Iterator, Iterable
 
 T = TypeVar("T")
-OC = TypeVar("OC", bound="TypeCollection")
 
 
 class TypeCollection(MutableSequence[T]):
-    """Type Collection Type"""
+    """A collection type for storing elements with specific type constraints."""
 
     def __init__(self) -> None:
-        super().__init__()
+        """Initialize an empty TypeCollection.
+        """
 
         self._internal_list: List[T] = []
 
     def __getitem__(self, index: int) -> T:
+        """Get an item at the given index.
+
+        Args:
+            index (int): The index of the item
+
+        Returns:
+            T: The item
+        """
+
         return self._internal_list[index]
 
     def __iter__(self) -> Iterator[T]:
-        for value in self._internal_list:
-            yield value
+        """Return an iterator over the elements in the collection.
+
+        Yields:
+            Iterator[T]: The iterator over the elements in the collection.
+        """
+
+        return iter(self._internal_list)
 
     def __len__(self) -> int:
+        """Return the number of elements in the collection.
+
+        Returns:
+            int: The number of elements in the collection.
+        """
+
         return len(self._internal_list)
 
     def __delitem__(self, index: int) -> None:
+        """Delete an item at the given index.
+
+        Args:
+            index (int): The index
+        """
+
         del self._internal_list[index]
 
     def __setitem__(self, index: int, value: T) -> None:
+        """Set the value of an item at the given index.
+
+        Args:
+            index (int): The index
+            value (T): The value
+        """
+
         self._internal_list[index] = value
 
-    def __lt__(self, other: List[T]) -> bool:
-        return self._internal_list < other
-
-    def __le__(self, other: List[T]) -> bool:
-        return self._internal_list <= other
-
-    def __eq__(self, other: List[T]) -> bool:
-        return self._internal_list == other
-
-    def __gt__(self, other: List[T]) -> bool:
-        return self._internal_list > other
-
-    def __ge__(self, other: List[T]) -> bool:
-        return self._internal_list >= other
-
-    def __contains__(self, item) -> bool:
-        return item in self._internal_list
-
-    def __copy__(self: OC) -> OC:
-        inst = self.__class__.__new__(self.__class__)
-        inst.__dict__.update(self.__dict__)
-        # Create a copy and avoid triggering descriptors
-        inst.__dict__["_internal_list"] = self.__dict__["_internal_list"][:]
-        return inst
-
-    def append(self, __option: T) -> None:
-        """Append object to the end of the list."""
-
-        self._internal_list.append(__option)
-
     def insert(self, index: int, value: T) -> None:
-        """Insert object before index."""
+        """Insert an item at the given index.
+
+        Args:
+            index (int): The index
+            value (T): The value
+        """
+
         self._internal_list.insert(index, value)
 
-    def remove(self, value: T) -> None:
-        """Remove first occurrence of value.
+    def __repr__(self) -> str:
+        """Returns a string representation of the collection.
 
-        Raises ValueError if the value is not present.
+        Returns:
+            str: A string representation of the collection.
+        """
+
+        return f"{type(self).__name__}({self._internal_list})"
+
+    def append(self, value: T) -> None:
+        """Append an item to the end of the collection.
+
+        Args:
+            value (T): Item to append
+        """
+
+        self._internal_list.append(value)
+
+    def remove(self, value: T) -> None:
+        """Remove the first occurrence of the given value from the collection.
+
+        Args:
+            value (T): The value to remove
+        
+        Raises:
+            ValueError: if the value is not present.
         """
 
         self._internal_list.remove(value)
 
     def clear(self) -> None:
-        """Clears the collection"""
+        """Clear all elements in the collection.
+        """
+
         self._internal_list.clear()
 
     def count(self, value: T) -> int:
-        """Return number of occurrences of value."""
+        """Returns the number of occurrences of the given value in the collection.
+
+        Args:
+            value (T): The value
+
+        Returns:
+            int: The number of occurrences of the given value in the collection.
+        """
 
         return self._internal_list.count(value)
 
-    def index(self, item, *args) -> int:
-        """Return first index of value.
+    def index(self, value: T, *args) -> int:
+        """Return the first index of the given value in the collection.
 
-        Raises ValueError if the value is not present.
+        Args:
+            value (T): The value
+        
+        Raises:
+            ValueError: if the value is not present.
+
+        Returns:
+            int: The first index of the given value in the collection.
         """
-        return self._internal_list.index(item, *args)
+
+        return self._internal_list.index(value, *args)
 
     def reverse(self) -> None:
-        """Reverses the order of the collection"""
+        """Reverse the order of the elements in the collection.
+        """
 
         self._internal_list.reverse()
 
-    def sort(self, /, *args, **kwds):
-        """Sort the list in ascending order and return None.
+    def sort(self, /, *args, **kwargs) -> None:
+        """Sort the elements in the collection in ascending order.
 
-        The sort is in-place (i.e. the list itself is modified)
+        The sort is in-place (i.e. the collection itself is modified)
         and stable (i.e. the order of two equal elements is maintained).
 
         If a key function is given, apply it once to each list
@@ -105,12 +154,13 @@ class TypeCollection(MutableSequence[T]):
 
         The reverse flag can be set to sort in descending order.
         """
-        self._internal_list.sort(*args, **kwds)
+        self._internal_list.sort(*args, **kwargs)
 
-    def extend(self: OC, values: Union[Iterable, OC]) -> None:
-        """Extend list by appending elements from the iterable."""
+    def extend(self, values: Iterable[T]) -> None:
+        """Extend the collection by appending elements from the given iterable.
 
-        if isinstance(values, TypeCollection) or issubclass(type(values), TypeCollection):
-            other = iter(values)
+        Args:
+            values (Iterable[T]): The iterable elements to append
+        """
 
         self._internal_list.extend(values)
