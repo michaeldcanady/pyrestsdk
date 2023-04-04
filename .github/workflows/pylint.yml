@@ -7,15 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-major-version: [3]
+        python-minor-version: [8, 9, 10, 11]
         poetry-version: ['1.4.1']
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
       uses: actions/setup-python@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
 
     - name: Install Poetry ${{ matrix.poetry-version }}
       uses: abatilo/actions-poetry@v2.1.6
@@ -31,9 +32,9 @@ jobs:
       run: echo ${{'3.10'}}
 
     - name: Analysing the code with pylint
-      if: ${{ matrix.python-version != 3.8 && matrix.python-version != 3.9 }}
+      if: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) != 3.8 && format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) != 3.9 }}
       run: poetry run pylint $(git ls-files '*.py')
     
     - name: Analysing the code with pylint
-      if: ${{ matrix.python-version < '3.10' }}
+      if: ${{ matrix.python-minor-version < 10 }}
       run: poetry run pylint $(git ls-files '*.py') --ignore _base_request310.py
