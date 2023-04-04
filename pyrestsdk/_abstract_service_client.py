@@ -10,7 +10,8 @@ from requests import Response, Session
 S = TypeVar("S", bound="AbstractServiceClient")
 
 class AbstractServiceClient(ABC):
-    """Abstract Service Client Type
+    """
+    A generic Service Client class that provides methods for sending HTTP requests.
     """
 
     def __new__(cls: Type[S], *args, **kwargs) -> S: #pylint: disable=unused-argument
@@ -112,10 +113,23 @@ class AbstractServiceClient(ABC):
         """
 
     @abstractmethod
-    def _instance_url(self, url: str) -> str:
+    def get_resolved_url(self, url: str) -> str:
         """Appends BASE_URL to user provided path
         
         :param url: user provided path
         
         :return: graph_url
         """
+
+    @staticmethod
+    @abstractmethod
+    def _initialize_session_and_base_url(*args, **kwargs) -> Session:
+        """Initialize the session and base URL for the ServiceClient.
+
+        Returns:
+            Session: The session
+        """
+
+        raise NotImplementedError(
+            "Derived classes must implement the _initialize_session_and_base_url method."
+        )

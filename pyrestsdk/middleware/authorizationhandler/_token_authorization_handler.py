@@ -7,4 +7,4 @@ class TokenAuthorizationHandler(AuthorizationHandler):
     """Token Authorization Handler Type"""
 
     def _get_auth_header(self) -> str:
-        return f"Bearer {self.credential.get_token().token}"
+        return f"Bearer {self.credential.get_token()}"
