@@ -59,9 +59,12 @@ class TestServiceClient(AbstractServiceClient):
 
     def options(self, *args, **kwargs):
         pass
-    
+
     @staticmethod
     def _initialize_session_and_base_url(*args, **kwargs):
+        pass
+
+    def get_resolved_url(self, url: str):
         pass
 
 
