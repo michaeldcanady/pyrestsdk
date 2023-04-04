@@ -27,14 +27,14 @@ class TestEntity(Entity):
     @staticmethod
     def from_json(entry):
         pass
-    
+
 
 class TestClient(ServiceClient):
     """
     Test Client
     """
 
-    def _get_session():
+    def _get_session(self): #pylint: disable=arguments-differ
         pass
 
 
