@@ -5,6 +5,7 @@ Tests Invoke Request
 from typing import Optional, Union, List
 
 from pyrestsdk.type.model import Entity
+from pyrestsdk import ServiceClient
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.request.supports_types._supports_base_invoke_request import (
     SupportsBaseInvokeRequest,
@@ -15,6 +16,26 @@ class TestEntity(Entity):
     """
     Test Entity
     """
+    @property
+    def as_dict(self):
+        pass
+
+    @property
+    def as_json(self):
+        pass
+
+    @staticmethod
+    def from_json(entry):
+        pass
+    
+
+class TestClient(ServiceClient):
+    """
+    Test Client
+    """
+
+    def _get_session():
+        pass
 
 
 class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[TestEntity]):
@@ -24,7 +45,7 @@ class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[TestEntity]):
 
     def __init__(self):
         super().__init__()
-        self._input_object = TestEntity() #pylint: disable=[no-value-for-parameter,abstract-class-instantiated]
+        self._input_object = TestEntity(TestClient())
         self._request_method = HttpsMethod.GET
 
     @property
