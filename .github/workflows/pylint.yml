@@ -10,13 +10,15 @@ jobs:
         python-major-version: [3]
         python-minor-version: [8, 9, 10, 11]
         poetry-version: ['1.4.1']
+    env:
+        python-version: ${{ python-version }}
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
+    - name: Set up Python ${{ python-version }}
       uses: actions/setup-python@v3
       with:
-        python-version: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
+        python-version: ${{ python-version }}
 
     - name: Install Poetry ${{ matrix.poetry-version }}
       uses: abatilo/actions-poetry@v2.1.6
@@ -32,7 +34,7 @@ jobs:
       run: echo ${{'3.10'}}
 
     - name: Analysing the code with pylint
-      if: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) != 3.8 && format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) != 3.9 }}
+      if: ${{ matrix.python-minor-version > 10 }}
       run: poetry run pylint $(git ls-files '*.py')
     
     - name: Analysing the code with pylint
