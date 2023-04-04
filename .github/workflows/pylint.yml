@@ -27,6 +27,9 @@ jobs:
         sudo apt install heimdal-dev
         poetry install --no-interaction --no-root --with lint
 
+    - name: Random
+      run: echo ${{matrix.python-version}}
+
     - name: Analysing the code with pylint
       if: ${{ matrix.python-version != 3.8 && matrix.python-version != 3.9 }}
       run: poetry run pylint $(git ls-files '*.py')
