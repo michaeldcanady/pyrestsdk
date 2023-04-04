@@ -1,16 +1,28 @@
-import pytest
+"""
+Authorzation Handler Tests
+==========================
+"""
+from unittest.mock import patch
+
 from requests import PreparedRequest, Response
-from unittest.mock import MagicMock, patch
 
 from pyrestsdk.credential import AbstractTokenCredential
 from pyrestsdk.middleware.authorizationhandler import TokenAuthorizationHandler
 from pyrestsdk.type.model.token import AccessToken
 
-class MockTokenCredential(AbstractTokenCredential):
-    def get_token(self, *args, **kwargs) -> AccessToken:
+class MockTokenCredential(AbstractTokenCredential): #pylint: disable=too-few-public-methods
+    """
+    Mock Token Credential for testing
+    """
+
+    def get_token(self, *args, **kwargs) -> AccessToken: #pylint: disable=[arguments-differ,unused-argument]
         return AccessToken("test_token")
 
 def test_token_authorization_handler():
+    """
+    Tests base implementation of authorization handler
+    """
+
     # Arrange
     credential = MockTokenCredential()
     handler = TokenAuthorizationHandler(credential)

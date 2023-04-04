@@ -23,7 +23,7 @@ def frozen(cls: Callable) -> Callable:
         co_name = caller.function
 
         # Allow assignments at the module level and during __init__
-        if co_name == "<module>" or co_name == "__init__":
+        if co_name in ["<module>", "__init__"]:
             original_setattr(self, name, value)
             return
 

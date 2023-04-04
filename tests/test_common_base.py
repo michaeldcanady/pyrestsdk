@@ -1,7 +1,13 @@
+"""
+Common Base Tests
+=================
+
+"""
+
 import pytest
 from pyrestsdk.type.model import CommonBase
 
-class TestCommonBase(CommonBase):
+class TestCommonBase(CommonBase): #pylint: disable=too-few-public-methods
     """
     Common Base for tetsing
     """

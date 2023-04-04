@@ -47,7 +47,7 @@ class GetGenericTypeMixin: #pylint: disable=too-few-public-methods
 
             print(type(base))
 
-            if isinstance(base, _GenericAlias) or isinstance(base, GenericAlias):
+            if isinstance(base, (GenericAlias, _GenericAlias)):
                 generic_type = get_args(base)[0]
                 break
 

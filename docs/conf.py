@@ -1,3 +1,4 @@
+#pylint: disable=missing-module-docstring
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -17,20 +18,26 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "PyRESTSDK"
-copyright = "2023, michaeldcanady"
-author = "michaeldcanady"
+project = "PyRESTSDK"  # pylint: disable=invalid-name
+copyright = "2023, michaeldcanady"  # pylint: disable=[invalid-name, redefined-builtin]
+author = "michaeldcanady"  # pylint: disable=invalid-name
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc", "sphinx.ext.autosummary", 'autoapi.extension']
+extensions = [
+    "sphinx.ext.todo",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "autoapi.extension",
+]
 
-autosummary_generate = True
+autosummary_generate = True  # pylint: disable=invalid-name
 
-autoapi_type = 'python'
+autoapi_type = "python"  # pylint: disable=invalid-name
 
-autoapi_dirs = ['../pyrestsdk']
+autoapi_dirs = ["../pyrestsdk"]
 
 autodoc_default_options = {
     "members": True,
@@ -49,5 +56,5 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "press"
+html_theme = "press"  # pylint: disable=invalid-name
 html_static_path = ["_static"]
