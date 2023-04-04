@@ -33,7 +33,7 @@ class SupportsInvokeRequest(SupportsBaseInvokeRequest[T], ABC):
             T: The single value return
         """
 
-        _return = self.send(self.input_object)
+        _return = self.send_request(self.input_object)
 
         if not isinstance(_return, self.generic_type) or _return is None:
             raise UnexpectedReturnType(type(_return), type(self.generic_type))

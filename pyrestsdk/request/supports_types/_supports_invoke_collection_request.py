@@ -31,7 +31,7 @@ class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest[T], ABC):
             List[T]: The list of value
         """
 
-        _return = self.send(self.input_object)
+        _return = self.send_request(self.input_object)
 
         if self.request_method in [HttpsMethod.POST, HttpsMethod.PUT]:
             return _return

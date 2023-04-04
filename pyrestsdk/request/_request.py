@@ -95,7 +95,7 @@ class Request( #pylint: disable=too-many-ancestors
 
         return url._replace(query="").geturl()
 
-    def send(
+    def send_request(
         self, value: Optional[Union[T, Dict[str, Any]]] = None
     ) -> Optional[Union[List[T], T]]:
         """Makes the desired request and returns the desired return type"""
