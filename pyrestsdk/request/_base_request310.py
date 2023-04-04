@@ -62,15 +62,15 @@ class BaseRequest(Request[T]): # pylint: disable=too-many-ancestors
             self.request_method.name,
         )
 
-        match self.request_method:
-            case HttpsMethod.GET:
+        match self.request_method: #pylint: disable=syntax-error
+            case HttpsMethod.GET: #pylint: disable=syntax-error
                 return self._client.get(**args)
-            case HttpsMethod.POST:
+            case HttpsMethod.POST: #pylint: disable=syntax-error
                 return self._client.post(**args)
-            case HttpsMethod.DELETE:
+            case HttpsMethod.DELETE: #pylint: disable=syntax-error
                 self._client.delete(**args)
                 return None
-            case HttpsMethod.PUT:
+            case HttpsMethod.PUT: #pylint: disable=syntax-error
                 return self._client.put(**args)
-            case _:
+            case _: #pylint: disable=syntax-error
                 raise TypeError(f"Unknown HTTPS method {self.request_method.name}")
