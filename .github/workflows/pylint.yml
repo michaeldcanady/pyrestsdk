@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-    run-name: build (${{python-version}}, ${{poetry-version}})
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -13,6 +12,8 @@ jobs:
         poetry-version: ['1.4.1']
     env:
         python-version: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
+
+    name: Python ${{python-version}} - Poetry ${{poetry-version}}
 
     steps:
     - uses: actions/checkout@v3
