@@ -28,4 +28,9 @@ jobs:
         poetry install --no-interaction --no-root --with lint
 
     - name: Analysing the code with pylint
+      if: matrix.python-version != "3.8" or "3.9"
       run: poetry run pylint $(git ls-files '*.py')
+    
+    - name: Analysing the code with pylint
+      if: matrix.python-version == "3.8" or "3.9"
+      run: poetry run pylint $(git ls-files '*.py') --ignore ./pyrestsdk/request/_base_request310.py
