@@ -13,7 +13,7 @@ jobs:
     env:
         python-version: ${{ format('{0}.{1}', matrix.python-major-version, matrix.python-minor-version) }}
 
-    name: Python ${{python-version}} - Poetry ${{poetry-version}}
+    name: Python ${{env.python-version}} - Poetry ${{poetry-version}}
 
     steps:
     - uses: actions/checkout@v3
