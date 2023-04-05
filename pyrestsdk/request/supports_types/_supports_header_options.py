@@ -33,4 +33,3 @@ class SupportsHeaderOptions(SupportTypes): #pylint: disable=too-few-public-metho
         """
 
         return self._header_options
-

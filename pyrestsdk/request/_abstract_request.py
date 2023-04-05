@@ -97,6 +97,14 @@ class AbstractRequest(
         """gets request arguments"""
 
     @abstractmethod
+    def _send_request(self, args):
+        """Sends request
+
+        Args:
+            args (_type_): _description_
+        """
+
+    @abstractmethod
     def append_segment_to_request_url(self, url_segment: str) -> str:
         """Gets a URL that is the request builder's request URL with the segment appended.
 

@@ -42,7 +42,7 @@ class TestClient(ServiceClient):
         pass
 
 
-class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[TestEntity]):
+class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[TestEntity]): #pylint: disable=too-many-ancestors
     """
     Test Supports Base Invoke Request
     """
@@ -57,17 +57,17 @@ class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[TestEntity]):
         return self._input_object
 
     @property
-    def request_method(self) -> HttpsMethod:
+    def request_method(self) -> HttpsMethod: #pylint: disable=missing-function-docstring
         return self._request_method
 
-    def send(
-        self, input_object: Optional[TestEntity] = None
+    def send_request(
+        self, value: Optional[TestEntity] = None
     ) -> Optional[Union[List[TestEntity], TestEntity]]:
-        return self._input_object
+        return value
 
     @property
     def invoke_request(self) -> Optional[Union[List[TestEntity], TestEntity]]:
-        return self.send()
+        return self.send_request(self._input_object)
 
 
 def test_input_object():

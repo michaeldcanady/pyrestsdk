@@ -137,7 +137,8 @@ class Request( #pylint: disable=too-many-ancestors
         """Makes the desired request and returns the desired return type
 
         Args:
-            value (Optional[Union[T, Dict[str, Any]]], optional): The value to send. Defaults to None.
+            value (Optional[Union[T, Dict[str, Any]]], optional):
+            The value to send. Defaults to None.
 
         Returns:
             Optional[Union[List[T], T]]: The parsed return value

@@ -10,8 +10,6 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from requests import Session
-
 from pyrestsdk import ServiceClient
 from pyrestsdk.requestbuilder._entity_request_builder import (
     EntityRequestBuilder as AbstractEntityRequestBuilder,
@@ -71,7 +69,7 @@ class MockBaseRequestBuilder(BaseRequestBuilder):
     """
 
 
-class MockSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]):
+class MockSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]): #pylint: disable=too-many-ancestors
     """
     Test Supports Base Invoke Request
     """
@@ -81,10 +79,10 @@ class MockSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]):
         pass
 
     @property
-    def request_method(self) -> HttpsMethod:
+    def request_method(self) -> HttpsMethod: #pylint: disable=missing-function-docstring
         pass
 
-    def send(self, input_object: Optional):  # pylint: disable=signature-differs
+    def send(self, input_object: Optional):  # pylint: disable=[signature-differs, missing-function-docstring]
         pass
 
     @property
