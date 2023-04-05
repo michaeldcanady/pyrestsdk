@@ -5,14 +5,14 @@ from typing import (
     TypeVar,
 )
 from abc import abstractmethod, ABC
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 from pyrestsdk.type.model import (
     QueryOption,
     HeaderOption,
 )
 
 B = TypeVar("B", bound="AbstractRequestBuilder")
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 O = TypeVar("O", QueryOption, HeaderOption)
 
 

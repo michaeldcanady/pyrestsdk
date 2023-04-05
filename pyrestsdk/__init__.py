@@ -1,4 +1,8 @@
-"""Py REST SDK
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from pyrestsdk._client import Client

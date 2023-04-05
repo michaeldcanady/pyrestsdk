@@ -1,4 +1,8 @@
-"""Houses Supports Invoke Collection Request
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import TypeVar, List
@@ -15,7 +19,9 @@ T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeCollectionRequest")
 
 class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest[T], ABC):
-    """Supports Invoke Request
+    """
+    Supports Invoke Request
+    =======================
     
     Request supports invokation at later time
     """

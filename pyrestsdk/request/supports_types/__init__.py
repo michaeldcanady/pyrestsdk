@@ -1,4 +1,9 @@
-"""Supports Types"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.request.supports_types._supports_base_invoke_request import (
     SupportsBaseInvokeRequest,

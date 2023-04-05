@@ -1,4 +1,9 @@
-"""Houses Abstract Request"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 from abc import abstractmethod, ABC
@@ -6,7 +11,7 @@ from typing import List, Union, TypeVar, Generic, Optional, Iterable, Dict, Any
 
 from requests import Response
 
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
 
@@ -19,7 +24,7 @@ from pyrestsdk.type.model import (
 )
 
 B = TypeVar("B", bound="AbstractRequest")
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
@@ -29,7 +34,11 @@ class AbstractRequest(
     Generic[T],
     ABC,
 ):
-    """Abstract Request Type"""
+    """
+    Abstract Request
+    ================
+    
+    """
 
     @abstractmethod
     def __init__(

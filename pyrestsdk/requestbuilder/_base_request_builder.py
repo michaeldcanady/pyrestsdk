@@ -4,11 +4,11 @@ from __future__ import annotations
 from typing import TypeVar
 from logging import getLogger
 
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 from pyrestsdk.requestbuilder._abstract_request_builder import AbstractRequestBuilder
 
 
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 B = TypeVar("B", bound="BaseRequestBuilder")
 T = TypeVar("T")
 

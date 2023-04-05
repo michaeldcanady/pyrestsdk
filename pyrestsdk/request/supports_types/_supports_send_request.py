@@ -1,4 +1,9 @@
-
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import TypeVar, Optional, Dict, Any, Union, List
 
@@ -11,7 +16,9 @@ T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeRequest")
 
 class SupportsSendRequest(SupportTypes, ABC):
-    """Supports Invoke Request
+    """
+    Supports Invoke Request
+    =======================
     
     Request supports invokation at later time
     """

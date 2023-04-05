@@ -1,7 +1,8 @@
 """
-Supports Invoke Request
-=======================
-Used to add `invoke_request` method to Request
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import TypeVar
@@ -16,8 +17,10 @@ from pyrestsdk.request.supports_types._supports_send_request import SupportsSend
 T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeRequest")
 
-class SupportsInvokeRequest(SupportsBaseInvokeRequest[T], SupportsSendRequest, ABC):
-    """Supports Invoke Request
+class SupportsInvokeRequest(SupportsBaseInvokeRequest[T], ABC):
+    """
+    Supports Invoke Request
+    =======================
     
     Request supports invokation at later time
     """
