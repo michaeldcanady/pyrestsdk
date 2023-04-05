@@ -93,7 +93,7 @@ def test_send():
     """
 
     test_instance = TestSupportsBaseInvokeRequest()
-    response = test_instance.send()
+    response = test_instance.send_request()
     assert isinstance(response, TestEntity)
 
 
