@@ -14,6 +14,7 @@ from pyrestsdk.credential._abstract_kerbrose_credential import (
 from pyrestsdk.credential._basic_credential import BasicCredential
 from pyrestsdk.credential._basic_token_credential import BasicTokenAuthenticator
 from pyrestsdk.credential._token_credential import TokenAuthenticator
+from pyrestsdk.credential._kerbrose_credential import KerberosCredential
 
 __all__ = [
     "AbstractBasicCredential",
@@ -23,4 +24,5 @@ __all__ = [
     "BasicCredential",
     "BasicTokenAuthenticator",
     "TokenAuthenticator",
+    "KerberosCredential",
 ]
