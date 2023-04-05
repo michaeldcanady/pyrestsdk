@@ -5,9 +5,9 @@ Licensed under the MIT License.
 ------------------------------------
 """
 
-from requests import Response, Session
+from pyrestsdk._client import Client
 
-class AuthenticatorClient:
+class AuthenticatorClient(Client):
     """
     Authenticator Client
     ====================
@@ -16,12 +16,4 @@ class AuthenticatorClient:
     """
 
     def __init__(self) -> None:
-        self._session = Session()
-
-    def post(self, url: str, params=None, data=None, headers=None) -> Response:
-        return self._session.post(
-            url=url,
-            data=data,
-            params=params,
-            headers=headers
-        )
+        super().__init__(None)
