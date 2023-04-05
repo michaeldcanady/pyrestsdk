@@ -5,7 +5,9 @@ Licensed under the MIT License.
 ------------------------------------
 """
 
-from pyrestsdk.middleware.authorizationhandler._base_authorization_handler import BaseAuthorizationHandler
+from pyrestsdk.middleware.authorizationhandler._base_authorization_handler import (
+    BaseAuthorizationHandler,
+)
 
 from pyrestsdk.middleware.authorizationhandler._basic_authorization_handler import (
     BasicAuthorizationHandler,
