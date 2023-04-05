@@ -1,7 +1,8 @@
 """
-Get Generic Type Mixin
-======================
-
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import (
@@ -17,6 +18,9 @@ OC = TypeVar("OC", bound="GetGenericTypeMixin")
 
 class GetGenericTypeMixin: #pylint: disable=too-few-public-methods
     """
+    Get Generic Type Mixin
+    ======================
+    
     Allows fetching of class provided generic type
     """
 

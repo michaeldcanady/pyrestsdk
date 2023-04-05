@@ -1,4 +1,9 @@
-"""Request Builder"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.requestbuilder._base_request_builder import BaseRequestBuilder
 from pyrestsdk.requestbuilder._entity_request_builder import EntityRequestBuilder

@@ -1,4 +1,9 @@
-"""Houses Kerbose Authorization Handler"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.middleware.authorizationhandler._authorization_handler import (
     AuthorizationHandler,
@@ -6,7 +11,11 @@ from pyrestsdk.middleware.authorizationhandler._authorization_handler import (
 
 
 class KerboseAuthorizationHandler(AuthorizationHandler):
-    """Kerbose Authorization Handler Type"""
+    """
+    Kerbose Authorization Handler
+    =============================
+    
+    """
 
     def _get_auth_header(self) -> str:
         from requests_kerberos import ( # pylint: disable=import-outside-toplevel

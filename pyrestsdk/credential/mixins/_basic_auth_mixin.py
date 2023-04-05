@@ -7,7 +7,7 @@ Licensed under the MIT License.
 
 import base64
 
-class BasicAuthMixin:
+class BasicAuthMixin: #pylint: disable=too-few-public-methods
     """
     Basic Authentication Mixin
     ==========================

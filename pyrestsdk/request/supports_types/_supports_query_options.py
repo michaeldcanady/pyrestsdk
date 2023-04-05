@@ -1,6 +1,8 @@
 """
-Supports Query Options
-======================
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from pyrestsdk.type.model import QueryOptionCollection
@@ -8,14 +10,19 @@ from pyrestsdk.request.supports_types._supports_types import SupportTypes
 from pyrestsdk.type.model import QueryOption
 
 class SupportsQueryOptions(SupportTypes): #pylint: disable=too-few-public-methods
-    """Supports Query Options Type"""
+    """
+    Supports Query Options
+    ======================
+    
+    Supports Query Options Type
+    """
 
     _query_options: QueryOptionCollection
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        self._query_options = QueryOptionCollection()
+        self.__query_options = QueryOptionCollection()
 
     @property
     def query_options(self) -> QueryOptionCollection:
@@ -25,7 +32,7 @@ class SupportsQueryOptions(SupportTypes): #pylint: disable=too-few-public-method
             QueryOptionCollection: The Query Options
         """
 
-        return self._query_options
+        return self.__query_options
 
     def _split_query_options(self, query_string: str) -> None:
         """Parses query options from the query string

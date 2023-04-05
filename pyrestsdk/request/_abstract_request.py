@@ -1,4 +1,9 @@
-"""Houses Abstract Request"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 from abc import abstractmethod, ABC
@@ -6,7 +11,7 @@ from typing import List, Union, TypeVar, Generic, Optional, Iterable, Dict, Any
 
 from requests import Response
 
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 
 from pyrestsdk.type.enum import HttpsMethod
 
@@ -19,7 +24,7 @@ from pyrestsdk.type.model import (
 )
 
 B = TypeVar("B", bound="AbstractRequest")
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 O = TypeVar("O", QueryOption, HeaderOption)
 T = TypeVar("T")
 
@@ -29,7 +34,11 @@ class AbstractRequest(
     Generic[T],
     ABC,
 ):
-    """Abstract Request Type"""
+    """
+    Abstract Request
+    ================
+    
+    """
 
     @abstractmethod
     def __init__(
@@ -76,26 +85,24 @@ class AbstractRequest(
         """Parses the query parameters from URL"""
 
     @abstractmethod
-    def send_request(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
-        """Makes the desired request and returns the desired return type"""
-
-    @abstractmethod
     def parse_response(
         self, _response: Optional[Response]
     ) -> Optional[Union[List[T], T]]:
         """Parses the response into the expected return"""
 
     @abstractmethod
-    def _send_request(
-        self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]
-    ) -> Optional[Response]:
-        """Makes the desired request and returns Response or None"""
-
-    @abstractmethod
     def _get_request_args(
         self, value: Optional[Union[T, Dict[str, Any], str]] = None
     ) -> Dict[str, Any]:
         """gets request arguments"""
+
+    @abstractmethod
+    def _send_request(self, args):
+        """Sends request
+
+        Args:
+            args (_type_): _description_
+        """
 
     @abstractmethod
     def append_segment_to_request_url(self, url_segment: str) -> str:

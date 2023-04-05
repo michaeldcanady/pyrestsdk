@@ -1,20 +1,38 @@
 """
-Authorization Handler
-=====================
-The base for all Authorization Handlers
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import Optional, TypeVar, Union, Tuple, Mapping
 from requests import PreparedRequest, Response
-from pyrestsdk.middleware.authorizationhandler._base_authorization_handler import BaseAuthorizationHandler
+from pyrestsdk.middleware.authorizationhandler._base_authorization_handler import (
+    BaseAuthorizationHandler,
+)
 from pyrestsdk.credential import AbstractCredential
 from pyrestsdk.type.enum import FeatureUsageFlag
 
 T = TypeVar("T", bound=AbstractCredential)
 A = TypeVar("A", bound="AuthorizationHandler")
 
+
 class AuthorizationHandler(BaseAuthorizationHandler):
-    """Common Authorization Handler Type"""
+    """
+    Authorization Handler
+    =====================
+    
+    The AuthorizationHandler class handles adding authorization headers
+    to a network request using the provided AbstractCredential.
+    The credential object should have the get_authorization_header
+    method implemented which returns the appropriate authorization header value.
+
+    Usage::
+        credential = MyCredential()
+        auth_handler = AuthorizationHandler(credential)
+        request = PreparedRequest()
+        response = auth_handler.send(request)
+    """
 
     credential: T
 

@@ -1,4 +1,8 @@
-"""Houses Request Type
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import TypeVar, List, Union, Optional, Iterable, Dict, Any
@@ -6,7 +10,7 @@ import logging
 from urllib.parse import urlparse
 import json
 
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import Entity, QueryOption, HeaderOption
 from pyrestsdk.request._abstract_request import AbstractRequest
@@ -14,10 +18,11 @@ from pyrestsdk.request.supports_types import (
     SupportsGenericType,
     SupportsQueryOptions,
     SupportsHeaderOptions,
+    SupportsSendRequest
 )
 
 T = TypeVar("T", bound=Entity)
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 
 Logger = logging.getLogger(__name__)
 
@@ -26,9 +31,14 @@ class Request( #pylint: disable=too-many-ancestors
     SupportsHeaderOptions,
     SupportsQueryOptions,
     SupportsGenericType,
+    SupportsSendRequest,
     AbstractRequest[T],
 ):
-    """Request Type"""
+    """
+    Request
+    =======
+    
+    """
 
     def __init__(
         self,
@@ -43,6 +53,17 @@ class Request( #pylint: disable=too-many-ancestors
         self._method: HttpsMethod = HttpsMethod.GET
         self._request_url: str = self._initialize_url(request_url)
         self._parse_options(options)
+        self._input_object = None
+
+    @property
+    def input_object(self) -> Optional[T]:
+        """Gets the input object
+
+        Returns:
+            Optional[T]: The input object
+        """
+
+        return self._input_object
 
     @property
     def request_method(self) -> HttpsMethod:
@@ -71,17 +92,32 @@ class Request( #pylint: disable=too-many-ancestors
 
     @request_url.setter
     def request_url(self, value: str) -> None:
+
         self._request_url = value
         Logger.info("%s.request_url: request URL set to %s", type(self).__name__, value)
 
     @property
     def client(self) -> S:
-        """Gets the Client"""
+        """Gets the request client
+
+        Returns:
+            S: The request client
+        """
 
         return self._client
 
     def _initialize_url(self, request_url: str) -> str:
-        """Parses the query parameters from URL"""
+        """Parses the query parameters from URL
+
+        Args:
+            request_url (str): The request URL to clean up
+
+        Raises:
+            TypeError: _description_
+
+        Returns:
+            str: The base URL
+        """
 
         Logger.info("%s._initialize_url: function called", type(self).__name__)
 
@@ -98,13 +134,21 @@ class Request( #pylint: disable=too-many-ancestors
     def send_request(
         self, value: Optional[Union[T, Dict[str, Any]]] = None
     ) -> Optional[Union[List[T], T]]:
-        """Makes the desired request and returns the desired return type"""
+        """Makes the desired request and returns the desired return type
+
+        Args:
+            value (Optional[Union[T, Dict[str, Any]]], optional):
+            The value to send. Defaults to None.
+
+        Returns:
+            Optional[Union[List[T], T]]: The parsed return value
+        """
 
         Logger.info("%s.Send: method called", type(self).__name__)
 
         args = self._get_request_args(value)
 
-        response = self._send_request(args, value)
+        response = self._send_request(args)
 
         if response is None:
             return None
@@ -137,6 +181,19 @@ class Request( #pylint: disable=too-many-ancestors
     def _get_request_args( #pylint: disable=arguments-renamed
         self, input_value: Optional[Union[T, Dict[str, Any], str]] = None
     ) -> Dict[str, Any]:
+        """Gets the request args
+
+        Args:
+            input_value (Optional[Union[T, Dict[str, Any], str]], optional):
+            The input. Defaults to None.
+
+        Raises:
+            ValueError: _description_
+
+        Returns:
+            Dict[str, Any]: The request args
+        """
+
         args = {
             "url": self.request_url,
             "headers": self.header_options.as_dict,

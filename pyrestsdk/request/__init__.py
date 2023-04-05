@@ -1,4 +1,10 @@
-"""Requests"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
+
 from sys import version_info
 from pyrestsdk.request._request import Request
 

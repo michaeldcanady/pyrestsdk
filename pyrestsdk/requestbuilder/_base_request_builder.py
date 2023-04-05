@@ -1,14 +1,19 @@
-"""Houses Base Request Builder"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 from typing import TypeVar
 from logging import getLogger
 
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 from pyrestsdk.requestbuilder._abstract_request_builder import AbstractRequestBuilder
 
 
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 B = TypeVar("B", bound="BaseRequestBuilder")
 T = TypeVar("T")
 
@@ -16,7 +21,11 @@ Logger = getLogger(__name__)
 
 
 class BaseRequestBuilder(AbstractRequestBuilder):
-    """Base Request Builder Type"""
+    """
+    Base Request Builder
+    ====================
+    
+    """
 
     def __init__(self: B, request_url: str, client: S) -> None:
         """

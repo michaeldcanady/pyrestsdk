@@ -18,6 +18,9 @@ class MockTokenCredential(AbstractTokenCredential): #pylint: disable=too-few-pub
     def get_token(self, *args, **kwargs) -> AccessToken: #pylint: disable=[arguments-differ,unused-argument]
         return AccessToken("test_token")
 
+    def parse_token(self, response):
+        pass
+
 def test_token_authorization_handler():
     """
     Tests base implementation of authorization handler

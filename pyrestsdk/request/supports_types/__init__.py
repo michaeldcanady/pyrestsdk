@@ -1,4 +1,9 @@
-"""Supports Types"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.request.supports_types._supports_base_invoke_request import (
     SupportsBaseInvokeRequest,
@@ -29,6 +34,7 @@ from pyrestsdk.request.supports_types._supports_header_options import (
     SupportsHeaderOptions,
 )
 from pyrestsdk.request.supports_types._supports_generic_type import SupportsGenericType
+from pyrestsdk.request.supports_types._supports_send_request import SupportsSendRequest
 
 __all__ = [
     "SupportsInvokeRequest",
@@ -41,4 +47,5 @@ __all__ = [
     "SupportsQueryOptions",
     "SupportsHeaderOptions",
     "SupportsGenericType",
+    "SupportsSendRequest",
 ]

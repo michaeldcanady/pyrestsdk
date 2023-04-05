@@ -1,4 +1,10 @@
-"""Houses Header Option Collection"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
+
 from typing import Optional, Dict
 
 from pyrestsdk.type.model._options_collection import OptionsCollection
@@ -6,7 +12,11 @@ from pyrestsdk.type.model._header_option import HeaderOption
 
 
 class HeaderOptionCollection(OptionsCollection[HeaderOption]):
-    """Header Option Collection Type"""
+    """
+    Header Option Collection
+    ========================
+    
+    """
 
     def __init__(self, headers: Optional[Dict[str, str]] = None) -> None:
         """Initializes a new Header Option Collection

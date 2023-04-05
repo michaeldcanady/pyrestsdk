@@ -1,8 +1,8 @@
 """
-Common Base
-===========
-The shared parent for all types, it's used to keep the
-user from mutating the class outside of being inherited.
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import Any, Callable
@@ -12,6 +12,9 @@ import inspect
 
 def frozen(cls: Callable) -> Callable:
     """
+    Frozen
+    ======
+    
     Decorator for freezing ability to set attributes outside of specific instances.
     """
     # Replace the class's __setattr__ method with the frozen version
@@ -53,7 +56,11 @@ def frozen(cls: Callable) -> Callable:
 
 @frozen
 class CommonBase:  # pylint: disable=too-few-public-methods
-    """Common Base Type"""
+    """
+    Common Base
+    ===========
+    
+    """
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

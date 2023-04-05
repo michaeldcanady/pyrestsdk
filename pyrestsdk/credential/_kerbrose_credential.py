@@ -7,10 +7,12 @@ Licensed under the MIT License.
 
 from pyrestsdk.credential._abstract_kerbrose_credential import AbstractKerbroseCredential
 
-class KerberosCredential(AbstractKerbroseCredential):
+class KerberosCredential(AbstractKerbroseCredential): #pylint: disable=too-few-public-methods
     """
     Kerberos Credential
     ===================
+    
+    
     """
 
     def __init__(self, username: str, password: str):

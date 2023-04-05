@@ -10,9 +10,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from requests import Session
-
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 from pyrestsdk.requestbuilder._entity_request_builder import (
     EntityRequestBuilder as AbstractEntityRequestBuilder,
 )
@@ -25,13 +23,10 @@ from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import Entity
 
 
-class TestServiceClient(AbstractServiceClient):
+class MockServiceClient(ServiceClient):
     """
     Service Client for testing
     """
-
-    def __init__(self):
-        self.session = Session()
 
     def _get_session(self):  # pylint: disable=arguments-differ
         return self.session
@@ -68,13 +63,13 @@ class TestServiceClient(AbstractServiceClient):
         pass
 
 
-class TestBaseRequestBuilder(BaseRequestBuilder):
+class MockBaseRequestBuilder(BaseRequestBuilder):
     """
     Test Base Request Builder
     """
 
 
-class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]):
+class MockSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]): #pylint: disable=too-many-ancestors
     """
     Test Supports Base Invoke Request
     """
@@ -84,10 +79,10 @@ class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]):
         pass
 
     @property
-    def request_method(self) -> HttpsMethod:
+    def request_method(self) -> HttpsMethod: #pylint: disable=missing-function-docstring
         pass
 
-    def send(self, input_object: Optional):  # pylint: disable=signature-differs
+    def send_request(self, value: Optional):  # pylint: disable=[signature-differs, missing-function-docstring]
         pass
 
     @property
@@ -95,7 +90,7 @@ class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]):
         pass
 
 
-class TestEntityRequestBuilder(AbstractEntityRequestBuilder):
+class MockEntityRequestBuilder(AbstractEntityRequestBuilder):
     """
     Test Entity Request Builder
     """
@@ -105,19 +100,19 @@ class TestEntityRequestBuilder(AbstractEntityRequestBuilder):
 
 
 @pytest.fixture
-def client() -> TestServiceClient:
+def client() -> MockServiceClient:
     """Gets the testing client
 
     Returns:
         TestServiceClient: The testing client
     """
-    return TestServiceClient()
+    return MockServiceClient()
 
 
 @pytest.fixture
 def entity_request_builder(
-    client: TestServiceClient,  # pylint: disable=redefined-outer-name
-) -> TestEntityRequestBuilder:
+    client: MockServiceClient,  # pylint: disable=redefined-outer-name
+) -> MockEntityRequestBuilder:
     """Gets the test entity request builder
 
     Args:
@@ -127,13 +122,13 @@ def entity_request_builder(
         TestEntityRequestBuilder: The test entity request builder
     """
 
-    return TestEntityRequestBuilder("https://example.com", client)
+    return MockEntityRequestBuilder("https://example.com", client)
 
 
 @pytest.fixture
 def base_request_builder(
-    client: TestServiceClient,  # pylint: disable=redefined-outer-name
-) -> TestBaseRequestBuilder:
+    client: MockServiceClient,  # pylint: disable=redefined-outer-name
+) -> MockBaseRequestBuilder:
     """Gets the test request builder
 
     Args:
@@ -143,22 +138,22 @@ def base_request_builder(
         TestBaseRequestBuilder: The test request builder
     """
 
-    return TestBaseRequestBuilder("https://example.com", client)
+    return MockBaseRequestBuilder("https://example.com", client)
 
 
 @pytest.fixture
-def supports_base_invoke_request() -> TestSupportsBaseInvokeRequest:
+def supports_base_invoke_request() -> MockSupportsBaseInvokeRequest:
     """Gets the test supports base invoke request
 
     Returns:
         TestSupportsBaseInvokeRequest: The test supports base invoke request
     """
 
-    return TestSupportsBaseInvokeRequest()
+    return MockSupportsBaseInvokeRequest()
 
 
 def test_request_property(
-    entity_request_builder: TestEntityRequestBuilder,
+    entity_request_builder: MockEntityRequestBuilder,
 ):  # pylint: disable=redefined-outer-name
     """Tests functionality of request
 
@@ -176,8 +171,8 @@ def test_request_property(
 
 
 def test_base_request_builder_properties(
-    base_request_builder: TestBaseRequestBuilder,  # pylint: disable=redefined-outer-name
-    client: TestServiceClient,  # pylint: disable=redefined-outer-name
+    base_request_builder: MockBaseRequestBuilder,  # pylint: disable=redefined-outer-name
+    client: MockServiceClient,  # pylint: disable=redefined-outer-name
 ):
     """Tests changing request builder properties
 
@@ -197,7 +192,7 @@ def test_base_request_builder_properties(
 
 
 def test_base_request_builder_append_segment_to_request_url(
-    base_request_builder: TestBaseRequestBuilder, # pylint: disable=redefined-outer-name
+    base_request_builder: MockBaseRequestBuilder, # pylint: disable=redefined-outer-name
 ):
     """Tests Bas Request Builder's Append Segment to request url
 
@@ -211,7 +206,7 @@ def test_base_request_builder_append_segment_to_request_url(
 
 
 def test_supports_base_invoke_request_generic_type(
-    supports_base_invoke_request: TestSupportsBaseInvokeRequest, # pylint: disable=redefined-outer-name
+    supports_base_invoke_request: MockSupportsBaseInvokeRequest, # pylint: disable=redefined-outer-name
 ):
     """Tests if the generic type is set properly
 

@@ -17,7 +17,7 @@ class BasicTokenAuthenticator(TokenAuthenticator, BasicAuthMixin):
     Base class for Basic token-based API authentication.
     """
 
-    def __init__(
+    def __init__( #pylint: disable=too-many-arguments
         self,
         instance: str,
         hostname: str,
