@@ -6,7 +6,7 @@ The base for all Authorization Handlers
 
 from typing import Optional, TypeVar, Union, Tuple, Mapping
 from requests import PreparedRequest, Response
-from pyrestsdk.middleware import BaseAuthorizationHandler
+from pyrestsdk.middleware.authorizationhandler._base_authorization_handler import BaseAuthorizationHandler
 from pyrestsdk.credential import AbstractCredential
 from pyrestsdk.type.enum import FeatureUsageFlag
 
