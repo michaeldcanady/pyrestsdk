@@ -1,4 +1,9 @@
-"""Houses Base Entity"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 
@@ -13,7 +18,11 @@ A = TypeVar("A", bound="ServiceClient")
 
 
 class Entity(AbstractEntity):
-    """Base Entity Type"""
+    """
+    Entity
+    ======
+    
+    """
 
     _client: A
 

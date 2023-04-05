@@ -1,4 +1,10 @@
-"""Houses Abstract HTTP Client Factory"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
+
 from typing import TypeVar, List
 from logging import getLogger
 from abc import ABC, abstractmethod
@@ -13,7 +19,11 @@ C = TypeVar("C", bound=AbstractBasicCredential)
 
 
 class AbstractHTTPClientFactory(ABC): #pylint: disable=too-few-public-methods
-    """Abstract HTTP Client Factory Type"""
+    """
+    Abstract HTTP Client Factory
+    ============================
+    
+    """
 
     session: Session
 

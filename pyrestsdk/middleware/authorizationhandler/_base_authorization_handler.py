@@ -1,4 +1,9 @@
-"""Houses Base Authorization Handler"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import TypeVar
 from pyrestsdk.credential import AbstractCredential
@@ -9,7 +14,11 @@ A = TypeVar("A", bound="BaseAuthorizationHandler")
 
 
 class BaseAuthorizationHandler(BaseMiddleware):
-    """Base Authorization Handler Type"""
+    """
+    Base Authorization Handler
+    ==========================
+    
+    """
 
     credential: C
     retry_count: int

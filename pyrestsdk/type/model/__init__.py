@@ -1,4 +1,9 @@
-"""Houses Models"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.type.model._entity import Entity
 from pyrestsdk.type.model._option import Option

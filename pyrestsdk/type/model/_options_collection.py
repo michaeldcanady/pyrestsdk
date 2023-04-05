@@ -1,4 +1,9 @@
-"""Houses Options Collection"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import (
     List,
@@ -23,7 +28,11 @@ OC = TypeVar("OC", bound="OptionsCollection")
 
 
 class OptionsCollection(GetGenericTypeMixin, TypeCollection[O]):
-    """Option Collection Type"""
+    """
+    Option Collection
+    =================
+    
+    """
 
     element_type: Type[O]
 

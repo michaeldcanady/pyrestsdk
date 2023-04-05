@@ -1,4 +1,9 @@
-"""Houses unexpected return"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import Type, TypeVar
 
@@ -7,7 +12,11 @@ E = TypeVar("E")
 
 
 class UnexpectedReturnType(Exception):
-    """Unexpected Return Type"""
+    """
+    Unexpected Return Type
+    ======================
+    
+    """
 
     def __init__(self, return_type: Type[R], expected_type: Type[E]) -> None:
         super().__init__(

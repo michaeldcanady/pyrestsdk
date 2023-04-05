@@ -1,4 +1,9 @@
-"""Authorization Handlers"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.middleware.authorizationhandler._base_authorization_handler import BaseAuthorizationHandler
 

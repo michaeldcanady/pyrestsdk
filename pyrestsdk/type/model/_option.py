@@ -1,11 +1,20 @@
-"""Houses Option"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import Any
 from dataclasses import dataclass, fields
 
 @dataclass
 class Option:
-    """Option Type"""
+    """
+    Option
+    ======
+    
+    """
 
     name: str
     value: Any

@@ -1,4 +1,9 @@
-"""Houses Abstract Request Builder"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 from typing import (
@@ -17,7 +22,11 @@ O = TypeVar("O", QueryOption, HeaderOption)
 
 
 class AbstractRequestBuilder(ABC):
-    """Abstract Request Type"""
+    """
+    Abstract Request Builder
+    ========================
+    
+    """
 
     _client: S
     _request_url: str

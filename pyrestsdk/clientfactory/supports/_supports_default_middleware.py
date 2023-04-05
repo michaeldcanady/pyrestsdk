@@ -1,4 +1,9 @@
-"""Houses Supports Default Middleware Type"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import List, TypeVar
 
@@ -12,7 +17,11 @@ B = TypeVar("B", bound=BaseMiddleware)
 
 
 class SupportsDefaultMiddleware(ABC): #pylint: disable=too-few-public-methods
-    """Supports Default Middleware Type"""
+    """
+    Supports Default Middleware
+    ===========================
+    
+    """
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

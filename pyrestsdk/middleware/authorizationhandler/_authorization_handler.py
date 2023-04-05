@@ -1,7 +1,8 @@
 """
-Authorization Handler
-=====================
-The base for all Authorization Handlers
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import Optional, TypeVar, Union, Tuple, Mapping
@@ -14,7 +15,11 @@ T = TypeVar("T", bound=AbstractCredential)
 A = TypeVar("A", bound="AuthorizationHandler")
 
 class AuthorizationHandler(BaseAuthorizationHandler):
-    """Common Authorization Handler Type"""
+    """
+    Authorization Handler
+    =====================
+    
+    """
 
     credential: T
 

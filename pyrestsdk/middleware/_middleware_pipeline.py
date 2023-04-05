@@ -1,4 +1,9 @@
-"""Houses Middleware Pipeline"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import TypeVar
 import json
@@ -13,7 +18,11 @@ B = TypeVar("B", bound=BaseMiddleware)
 
 
 class MiddlewarePipeline(HTTPAdapter):
-    """MiddlewarePipeline, entry point of middleware
+    """
+    Middleware Pipeline
+    ===================
+    
+    entry point of middleware
     The pipeline is implemented as a linked-list, read more about
     it here https://buffered.dev/middleware-python-requests/
     """

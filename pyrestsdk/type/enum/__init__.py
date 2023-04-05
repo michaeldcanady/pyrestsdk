@@ -1,4 +1,9 @@
-"""Houses enum types"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.type.enum._feature_usage_flag import FeatureUsageFlag
 from pyrestsdk.type.enum._https_method import HttpsMethod

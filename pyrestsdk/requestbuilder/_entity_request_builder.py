@@ -1,4 +1,9 @@
-"""Houses Entity Request Builder"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 
@@ -18,7 +23,11 @@ S = TypeVar("S", bound=ServiceClient)
 
 
 class EntityRequestBuilder(AbstractEntityRequestBuilder, BaseRequestBuilder):
-    """Entity Request Builder Type"""
+    """
+    Entity Request Builder
+    ======================
+    
+    """
 
     @property
     def request(self) -> R:

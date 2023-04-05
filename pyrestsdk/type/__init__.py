@@ -1,5 +1,6 @@
 """
-Python Rest SDK Types
-=====================
-Houses are types
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
