@@ -147,7 +147,7 @@ class Request( #pylint: disable=too-many-ancestors
 
         args = self._get_request_args(value)
 
-        response = self._send_request(args, value)
+        response = self._send_request(args)
 
         if response is None:
             return None

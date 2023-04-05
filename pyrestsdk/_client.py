@@ -38,9 +38,9 @@ class Client(ABC):
         response = example_client.get("/users/1")
     """
 
-    def __init__(self, session: Optional[Session] = Session()) -> None:
+    def __init__(self, session: Optional[Session] = None) -> None:
 
-        self._session = session
+        self._session = session or Session()
 
     @property
     def session(self) -> Session:
