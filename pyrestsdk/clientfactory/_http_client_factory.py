@@ -1,4 +1,10 @@
-"""Houses Client Factory"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
+
 from typing import TypeVar, List
 from logging import getLogger
 
@@ -16,7 +22,11 @@ C = TypeVar("C", bound=AbstractBasicCredential)
 
 
 class HTTPClientFactory(AbstractHTTPClientFactory): #pylint: disable=too-few-public-methods
-    """HTTP Client Factory"""
+    """
+    HTTP Client Factory
+    ===================
+    
+    """
 
     def __init__(
         self,

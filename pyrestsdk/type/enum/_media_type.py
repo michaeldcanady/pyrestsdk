@@ -1,14 +1,18 @@
 """
-MIME Types
-==========
-reference URL: https://www.iana.org/assignments/media-types/media-types.xhtml
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from enum import Enum, auto
 
 
 class MIMECategoryEnum(str, Enum):
-    """MIME Category Enum
+    """
+    MIME Category Enum
+    ==================
+    
     """
 
     def __new__(cls, value, *args, **kwargs):
@@ -32,7 +36,11 @@ class MIMECategoryEnum(str, Enum):
 
 
 class MimeType: #pylint: disable=too-few-public-methods
-    """MIME Type"""
+    """
+    MIME Type
+    =========
+    reference URL: https://www.iana.org/assignments/media-types/media-types.xhtml
+    """
 
     class Text(MIMECategoryEnum):
         """Text MIME Type"""

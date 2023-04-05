@@ -1,23 +1,32 @@
-"""Houses Abstract Request Builder"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 from typing import (
     TypeVar,
 )
 from abc import abstractmethod, ABC
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 from pyrestsdk.type.model import (
     QueryOption,
     HeaderOption,
 )
 
 B = TypeVar("B", bound="AbstractRequestBuilder")
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 O = TypeVar("O", QueryOption, HeaderOption)
 
 
 class AbstractRequestBuilder(ABC):
-    """Abstract Request Type"""
+    """
+    Abstract Request Builder
+    ========================
+    
+    """
 
     _client: S
     _request_url: str

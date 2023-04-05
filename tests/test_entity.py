@@ -19,6 +19,10 @@ class MockClient(ServiceClient):
     def _get_session(self): #pylint: disable=arguments-differ
         self._session = None
 
+    @staticmethod
+    def _initialize_session_and_base_url(*args, **kwargs):
+        pass
+
 class MockEntity(Entity):
     """
     Mock Entity for testing

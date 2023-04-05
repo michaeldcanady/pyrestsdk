@@ -1,4 +1,9 @@
-"""Houses Type Collection"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import MutableSequence, List, TypeVar, Iterator, Iterable
 
@@ -6,7 +11,12 @@ T = TypeVar("T")
 
 
 class TypeCollection(MutableSequence[T]):
-    """A collection type for storing elements with specific type constraints."""
+    """
+    Type Collection
+    ===============
+    
+    A collection type for storing elements with specific type constraints.
+    """
 
     def __init__(self) -> None:
         """Initialize an empty TypeCollection.

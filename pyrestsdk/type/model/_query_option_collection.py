@@ -1,4 +1,9 @@
-"""Houses Query Option Collection"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import Any
 
@@ -8,7 +13,11 @@ from pyrestsdk.type.model._options_collection import OptionsCollection
 from pyrestsdk.type.model._query_option import QueryOption
 
 class QueryOptionCollection(OptionsCollection[QueryOption]):
-    """Query Option Collection Type"""
+    """
+    Query Option Collection
+    =======================
+    
+    """
 
     def __str__(self) -> str:
 

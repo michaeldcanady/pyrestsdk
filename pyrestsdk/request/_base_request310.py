@@ -1,4 +1,9 @@
-"""Houses Base Request"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 
@@ -17,7 +22,11 @@ T = TypeVar("T", bound=Entity)
 
 
 class BaseRequest(Request[T]): # pylint: disable=too-many-ancestors
-    """The Base Request Type"""
+    """
+    Base Request
+    ============
+    
+    """
 
     def _parse_options(
         self, options: Optional[Iterable[Union[QueryOption, HeaderOption]]]
@@ -40,14 +49,11 @@ class BaseRequest(Request[T]): # pylint: disable=too-many-ancestors
                 )
         return None
 
-    def _send_request(
-        self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]
-    ) -> Optional[Response]:
+    def _send_request(self, args: Dict[str, Any]) -> Optional[Response]:
         """Sends request
 
         Args:
             args (Dict[str, Any]): _description_
-            value (Optional[Union[T, Dict[str, Any], str]]): _description_
 
         Raises:
             Exception: _description_

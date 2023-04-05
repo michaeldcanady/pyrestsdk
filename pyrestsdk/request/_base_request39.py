@@ -1,10 +1,14 @@
-"""Houses Base Request"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 
 from typing import (
     TypeVar,
-    Union,
     Optional,
     Iterable,
     Callable,
@@ -31,7 +35,11 @@ O = TypeVar("O", QueryOption, HeaderOption)
 
 
 class BaseRequest(Request[T]): #pylint: disable=too-many-ancestors
-    """The Base Request Type"""
+    """
+    Base Request
+    ============
+    
+    """
 
     def _parse_options(self, options: Optional[Iterable[O]]) -> None:
         """Parses the provided options into either header or query options"""
@@ -51,9 +59,7 @@ class BaseRequest(Request[T]): #pylint: disable=too-many-ancestors
 
         return None
 
-    def _send_request(
-        self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any]]] = None
-    ) -> Optional[Response]:
+    def _send_request(self, args: Dict[str, Any]) -> Optional[Response]:
         _request_dict: Dict[HttpsMethod, Callable] = {
             HttpsMethod.GET: self._client.get,
             HttpsMethod.POST: self._client.post,

@@ -1,4 +1,8 @@
-"""Houses Supports Invoke Collection Request
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import TypeVar, List
@@ -14,8 +18,10 @@ from pyrestsdk.type.enum import HttpsMethod
 T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeCollectionRequest")
 
-class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest[T], ABC):
-    """Supports Invoke Request
+class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest[T], ABC): #pylint: disable=too-many-ancestors
+    """
+    Supports Invoke Request
+    =======================
     
     Request supports invokation at later time
     """
@@ -31,9 +37,9 @@ class SupportsInvokeCollectionRequest(SupportsBaseInvokeRequest[T], ABC):
             List[T]: The list of value
         """
 
-        _return = self.send(self.input_object)
+        _return = self.send_request(self.input_object)
 
-        if self.request_method in [HttpsMethod.POST, HttpsMethod.PUT]:
+        if self.request_method in [HttpsMethod.POST, HttpsMethod.PUT]: #pylint: disable=no-member
             return _return
 
         if not isinstance(_return, list) or _return is None:

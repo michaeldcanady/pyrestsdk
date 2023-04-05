@@ -1,4 +1,9 @@
-"""Houses Options Collection"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import (
     List,
@@ -23,7 +28,11 @@ OC = TypeVar("OC", bound="OptionsCollection")
 
 
 class OptionsCollection(GetGenericTypeMixin, TypeCollection[O]):
-    """Option Collection Type"""
+    """
+    Option Collection
+    =================
+    
+    """
 
     element_type: Type[O]
 
@@ -102,9 +111,7 @@ class OptionsCollection(GetGenericTypeMixin, TypeCollection[O]):
             Dict[str, Any]: Object's dictionary representation
         """
 
-        print(self._internal_list)
-
-        return {option.name: option.value for option in self._internal_list}
+        return {str(option.name): str(option.value) for option in self._internal_list}
 
     def as_list(self) -> List[O]:
         """Gets the object as it's list representation"""

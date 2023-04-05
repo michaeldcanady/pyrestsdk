@@ -1,11 +1,20 @@
-"""Houses Request Context"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 import uuid
 from pyrestsdk import FeatureUsageFlag
 
 
 class RequestContext:
-    """A request context contains data that is persisted throughout the request and
+    """
+    Request Context
+    ===============
+    
+    A request context contains data that is persisted throughout the request and
     includes a ClientRequestId property, MiddlewareControl property to control behavior
     of middleware as well as a FeatureUsage  property to keep track of middleware used
     in making the request.

@@ -1,10 +1,19 @@
-"""Houses Base Token"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from dataclasses import dataclass
 
 @dataclass
 class BaseToken:
-    """Base Token Type"""
+    """
+    Base Token
+    ==========
+    
+    """
 
     _token: str
 

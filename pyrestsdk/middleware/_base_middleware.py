@@ -1,4 +1,9 @@
-"""Houses base Middleware"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import Optional, TypeVar, Union, Tuple, Mapping
 from requests import PreparedRequest, Response
@@ -8,7 +13,9 @@ B = TypeVar("B", bound="BaseMiddleware")
 
 
 class BaseMiddleware(HTTPAdapter):
-    """Base class for middleware
+    """
+    Base Middleware
+    ===============
 
     Handles moving a Request to the next middleware in the pipeline.
     If the current middleware is the last one in the pipeline, it

@@ -1,10 +1,19 @@
-"""Houses Basic Authorization Handler"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.middleware.authorizationhandler._authorization_handler import AuthorizationHandler
 
 
 class BasicAuthorizationHandler(AuthorizationHandler):
-    """Basic Authoziation Handler Type"""
+    """
+    Basic Authoziation Handler
+    ==========================
+    
+    """
 
     def _get_auth_header(self) -> str:
         return f"Basic {self.credential.get_basic()}"

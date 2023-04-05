@@ -1,4 +1,9 @@
-"""Houses Entity Request Builder"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 
@@ -10,15 +15,19 @@ from pyrestsdk.requestbuilder._abstract_entity_request import (
 )
 
 from pyrestsdk.request import BaseRequest
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 
 R = TypeVar("R", bound=BaseRequest)
 B = TypeVar("B", bound="AbstractEntityRequestBuilder")
-S = TypeVar("S", bound=AbstractServiceClient)
+S = TypeVar("S", bound=ServiceClient)
 
 
 class EntityRequestBuilder(AbstractEntityRequestBuilder, BaseRequestBuilder):
-    """Entity Request Builder Type"""
+    """
+    Entity Request Builder
+    ======================
+    
+    """
 
     @property
     def request(self) -> R:

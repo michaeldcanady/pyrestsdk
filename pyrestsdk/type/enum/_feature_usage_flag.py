@@ -1,10 +1,20 @@
-"""Houses Feature Usage Flag Enum"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from enum import IntEnum
 
 
 class FeatureUsageFlag(IntEnum):
-    """Enumerated list of values used to flag usage of specific middleware"""
+    """
+    Feature Usage Flag
+    ==================
+    
+    Enumerated list of values used to flag usage of specific middleware
+    """
 
     NONE = 0
     REDIRECT_HANDLER_ENABLED = 1

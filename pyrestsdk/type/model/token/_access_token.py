@@ -1,10 +1,19 @@
-"""Houses access token"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.type.model.token._base_token import BaseToken
 
 
 class AccessToken(BaseToken):
-    """Access Token Type"""
+    """
+    Access Token
+    ============
+    
+    """
 
     _expires_on: int
 

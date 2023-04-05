@@ -7,7 +7,7 @@ Common Base Tests
 import pytest
 from pyrestsdk.type.model import CommonBase
 
-class TestCommonBase(CommonBase): #pylint: disable=too-few-public-methods
+class MockCommonBase(CommonBase): #pylint: disable=too-few-public-methods
     """
     Common Base for tetsing
     """
@@ -31,7 +31,7 @@ def test_common_base_constructor():
     kwarg2 = "test_kwarg2"
 
     # Act
-    obj = TestCommonBase(arg1, arg2, kwarg1=kwarg1, kwarg2=kwarg2)
+    obj = MockCommonBase(arg1, arg2, kwarg1=kwarg1, kwarg2=kwarg2)
 
     # Assert
     assert obj.arg1 == arg1
@@ -45,7 +45,7 @@ def test_common_base_define_attribute():
     """
 
     # Arrange
-    obj = TestCommonBase("test_arg1", "test_arg2")
+    obj = MockCommonBase("test_arg1", "test_arg2")
 
     # Act/Assert
     with pytest.raises(AttributeError):

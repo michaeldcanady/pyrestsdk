@@ -1,4 +1,9 @@
-"""Houses Abstract Entity Type"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import Dict, Any, TypeVar, Type, TYPE_CHECKING
 
@@ -13,7 +18,11 @@ S = TypeVar("S", bound="AbstractEntity")
 A = TypeVar("A", bound="AbstractServiceClient")
 
 class AbstractEntity(CommonBase, ABC):
-    """Abstract Entity Type"""
+    """
+    Abstract Entity
+    ===============
+    
+    """
 
     _client: A
 

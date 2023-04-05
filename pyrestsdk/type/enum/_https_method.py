@@ -1,10 +1,19 @@
-"""Houses Https Method Enum"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from enum import IntEnum, auto
 
 
 class HttpsMethod(IntEnum):
-    """HTTPS Method enum"""
+    """
+    HTTPS Method
+    ============
+    
+    """
 
     GET = auto()
     POST = auto()

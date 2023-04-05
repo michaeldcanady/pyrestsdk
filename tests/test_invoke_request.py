@@ -12,7 +12,7 @@ from pyrestsdk.request.supports_types._supports_base_invoke_request import (
 )
 
 
-class TestEntity(Entity):
+class MockEntity(Entity):
     """
     Test Entity
     """
@@ -29,7 +29,7 @@ class TestEntity(Entity):
         pass
 
 
-class TestClient(ServiceClient):
+class MockClient(ServiceClient):
     """
     Test Client
     """
@@ -37,33 +37,37 @@ class TestClient(ServiceClient):
     def _get_session(self): #pylint: disable=arguments-differ
         pass
 
+    @staticmethod
+    def _initialize_session_and_base_url(*args, **kwargs):
+        pass
 
-class TestSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[TestEntity]):
+
+class MockSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[MockEntity]): #pylint: disable=too-many-ancestors
     """
     Test Supports Base Invoke Request
     """
 
     def __init__(self):
         super().__init__()
-        self._input_object = TestEntity(TestClient())
+        self._input_object = MockEntity(MockClient())
         self._request_method = HttpsMethod.GET
 
     @property
-    def input_object(self) -> Optional[TestEntity]:
+    def input_object(self) -> Optional[MockEntity]:
         return self._input_object
 
     @property
-    def request_method(self) -> HttpsMethod:
+    def request_method(self) -> HttpsMethod: #pylint: disable=missing-function-docstring
         return self._request_method
 
-    def send(
-        self, input_object: Optional[TestEntity] = None
-    ) -> Optional[Union[List[TestEntity], TestEntity]]:
-        return self._input_object
+    def send_request(
+        self, value: Optional[MockEntity] = None
+    ) -> Optional[Union[List[MockEntity], MockEntity]]:
+        return value
 
     @property
-    def invoke_request(self) -> Optional[Union[List[TestEntity], TestEntity]]:
-        return self.send()
+    def invoke_request(self) -> Optional[Union[List[MockEntity], MockEntity]]:
+        return self.send_request(self._input_object)
 
 
 def test_input_object():
@@ -71,15 +75,15 @@ def test_input_object():
     Tests if input object is set property
     """
 
-    test_instance = TestSupportsBaseInvokeRequest()
-    assert isinstance(test_instance.input_object, TestEntity)
+    test_instance = MockSupportsBaseInvokeRequest()
+    assert isinstance(test_instance.input_object, MockEntity)
 
 
 def test_request_method():
     """
     Tests if base request_method is GET
     """
-    test_instance = TestSupportsBaseInvokeRequest()
+    test_instance = MockSupportsBaseInvokeRequest()
     assert test_instance.request_method == HttpsMethod.GET
 
 
@@ -88,9 +92,9 @@ def test_send():
     Tests send with no object input
     """
 
-    test_instance = TestSupportsBaseInvokeRequest()
-    response = test_instance.send()
-    assert isinstance(response, TestEntity)
+    test_instance = MockSupportsBaseInvokeRequest()
+    response = test_instance.send_request()
+    assert isinstance(response, MockEntity)
 
 
 def test_invoke_request():
@@ -98,6 +102,8 @@ def test_invoke_request():
     Tests if invoke_request returns response
     """
 
-    test_instance = TestSupportsBaseInvokeRequest()
+    test_instance = MockSupportsBaseInvokeRequest()
     response = test_instance.invoke_request
-    assert isinstance(response, TestEntity)
+    assert isinstance(response, MockEntity)
+
+

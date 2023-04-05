@@ -1,11 +1,21 @@
-"""Houses Header Option"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
+
 from typing import Dict
 
 from pyrestsdk.type.model._option import Option
 
 
 class HeaderOption(Option):
-    """Header Option Type"""
+    """
+    Header Option
+    =============
+    
+    """
 
     @property
     def as_dict(self) -> Dict[str, str]:

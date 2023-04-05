@@ -1,4 +1,9 @@
-"""Houses Entity Request Builder"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from __future__ import annotations
 
@@ -15,7 +20,11 @@ O = TypeVar("O", bound=Option)
 
 
 class AbstractEntityRequestBuilder(AbstractRequestBuilder):
-    """Entity Request Builder Type"""
+    """
+    Abstract Entity Request Builder
+    ===============================
+    
+    """
 
     @property
     @abstractmethod

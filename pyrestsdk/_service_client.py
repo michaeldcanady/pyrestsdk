@@ -1,114 +1,51 @@
 """
-Service Client
-==============
-
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from abc import abstractmethod, ABC
 
-from requests import Session, Response
+from requests import Session
 
-from pyrestsdk._abstract_service_client import AbstractServiceClient
+from pyrestsdk._client import Client
 
-class ServiceClient(AbstractServiceClient, ABC):
+
+class ServiceClient(Client, ABC):
     """
-    Service Client Type
+    Service Client
+    ==============
+    
+    A base class for creating service-specific clients,
+    providing common functionality and enforcing a standard interface.
+
+    The ServiceClient class is intended to be subclassed by specific
+    service client implementations. By extending this class,
+    a service client will inherit common functionality for
+    handling HTTP requests and managing sessions while providing
+    a consistent interface to interact with various APIs.
+
+    Usage::
+
+        class ExampleServiceClient(ServiceClient):
+
+            def __init__(self):
+                super().__init__()
+
+            @staticmethod
+            def _get_session(*args, **kwargs) -> Session:
+                # Implementation for retrieving the session
+
+            @staticmethod
+            def _initialize_session_and_base_url(*args, **kwargs) -> Session:
+                # Implementation for initializing the session and base URL
+
+        # Usage of the ExampleServiceClient
+        example_client = ExampleServiceClient()
+        response = example_client.get("/endpoint")
+
     """
-
-    _session: Session = None
-
-    @property
-    def session(self) -> Session:
-        """Gets the current session
-
-        Returns:
-            Session: The current session
-        """
-
-        return self._session
-
-    def get(self, url: str, **kwargs) -> Response:
-        r"""Sends a GET request. Returns :class:`Response` object.
-        :param url: URL for the new :class:`Request` object.
-        :param \*\*kwargs: Optional arguments that ``request`` takes.
-        :rtype: requests.Response
-        """
-
-        return self.session.get(self._instance_url(url), **kwargs)
-
-    def options(self, url, **kwargs) -> Response:
-        r"""Sends a OPTIONS request. Returns :class:`Response` object.
-        :param url: URL for the new :class:`Request` object.
-        :param \*\*kwargs: Optional arguments that ``request`` takes.
-        :rtype: requests.Response
-        """
-
-        return self.session.options(self._instance_url(url), **kwargs)
-
-    def head(self, url, **kwargs) -> Response:
-        r"""Sends a HEAD request. Returns :class:`Response` object.
-        :param url: URL for the new :class:`Request` object.
-        :param \*\*kwargs: Optional arguments that ``request`` takes.
-        :rtype: requests.Response
-        """
-
-        return self.session.head(self._instance_url(url), **kwargs)
-
-    def post(self, url, data=None, json=None, **kwargs) -> Response:
-        r"""Sends a POST request. Returns :class:`Response` object.
-        :param url: URL for the new :class:`Request` object.
-        :param data: (optional) Dictionary, list of tuples, bytes, or file-like
-            object to send in the body of the :class:`Request`.
-        :param json: (optional) json to send in the body of the :class:`Request`.
-        :param \*\*kwargs: Optional arguments that ``request`` takes.
-        :rtype: requests.Response
-        """
-        return self.session.post(self._instance_url(url), data=data, json=json, **kwargs)
-
-    def put(self, url, data=None, **kwargs) -> Response:
-        r"""Sends a PUT request. Returns :class:`Response` object.
-        :param url: URL for the new :class:`Request` object.
-        :param data: (optional) Dictionary, list of tuples, bytes, or file-like
-            object to send in the body of the :class:`Request`.
-        :param \*\*kwargs: Optional arguments that ``request`` takes.
-        :rtype: requests.Response
-        """
-
-        return self.session.put(self._instance_url(url), data=data, **kwargs)
-
-    def patch(self, url, data=None, **kwargs) -> Response:
-        r"""Sends a PATCH request. Returns :class:`Response` object.
-        :param url: URL for the new :class:`Request` object.
-        :param data: (optional) Dictionary, list of tuples, bytes, or file-like
-            object to send in the body of the :class:`Request`.
-        :param \*\*kwargs: Optional arguments that ``request`` takes.
-        :rtype: requests.Response
-        """
-        return self.session.patch(self._instance_url(url), data=data, **kwargs)
-
-    def delete(self, url: str, **kwargs) -> Response:
-        r"""Sends a DELETE request.
-        
-        Args:
-            url (str): URL for the new :class:`Request` object.
-            \*\*kwargs: Optional arguments that ``request`` takes.
-        
-        Returns:
-            requests.Response: HTTP Response from request
-        """
-        return self.session.delete(self._instance_url(url), **kwargs)
-
-    def _instance_url(self, url: str) -> str:
-        """Joins session base URL with relative segement provided
-        
-        Args:
-            url (str): The relative url from the base URL `/*/*` or `*/*`
-        
-        Returns:
-            str: The Instance URL
-        """
-
-        return self.session.base_url + url if (url[0] == '/') else f"/{url}"  # type: ignore
 
     @staticmethod
     @abstractmethod
@@ -118,3 +55,16 @@ class ServiceClient(AbstractServiceClient, ABC):
         Returns:
             Session: The Session
         """
+
+    @staticmethod
+    @abstractmethod
+    def _initialize_session_and_base_url(*args, **kwargs) -> Session:
+        """Initialize the session and base URL for the ServiceClient.
+
+        Returns:
+            Session: The session
+        """
+
+        raise NotImplementedError(
+            "Derived classes must implement the _initialize_session_and_base_url method."
+        )
