@@ -76,20 +76,10 @@ class AbstractRequest(
         """Parses the query parameters from URL"""
 
     @abstractmethod
-    def send_request(self, value: Optional[T]) -> Optional[Union[List[T], T]]:
-        """Makes the desired request and returns the desired return type"""
-
-    @abstractmethod
     def parse_response(
         self, _response: Optional[Response]
     ) -> Optional[Union[List[T], T]]:
         """Parses the response into the expected return"""
-
-    @abstractmethod
-    def _send_request(
-        self, args: Dict[str, Any], value: Optional[Union[T, Dict[str, Any], str]]
-    ) -> Optional[Response]:
-        """Makes the desired request and returns Response or None"""
 
     @abstractmethod
     def _get_request_args(

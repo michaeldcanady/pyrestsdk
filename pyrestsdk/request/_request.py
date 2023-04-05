@@ -14,6 +14,7 @@ from pyrestsdk.request.supports_types import (
     SupportsGenericType,
     SupportsQueryOptions,
     SupportsHeaderOptions,
+    SupportsSendRequest
 )
 
 T = TypeVar("T", bound=Entity)
@@ -26,6 +27,7 @@ class Request( #pylint: disable=too-many-ancestors
     SupportsHeaderOptions,
     SupportsQueryOptions,
     SupportsGenericType,
+    SupportsSendRequest,
     AbstractRequest[T],
 ):
     """Request Type"""
@@ -43,6 +45,12 @@ class Request( #pylint: disable=too-many-ancestors
         self._method: HttpsMethod = HttpsMethod.GET
         self._request_url: str = self._initialize_url(request_url)
         self._parse_options(options)
+        self._input_object = None
+
+    @property
+    def input_object(self) -> Optional[T]:
+
+        return self._input_object
 
     @property
     def request_method(self) -> HttpsMethod:

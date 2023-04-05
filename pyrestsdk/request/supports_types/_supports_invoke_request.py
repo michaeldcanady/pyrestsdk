@@ -5,15 +5,18 @@ Used to add `invoke_request` method to Request
 """
 
 from typing import TypeVar
+
 from abc import ABC
+
 from pyrestsdk.type.model import Entity
 from pyrestsdk.type.exception import UnexpectedReturnType
 from pyrestsdk.request.supports_types._supports_base_invoke_request import SupportsBaseInvokeRequest
+from pyrestsdk.request.supports_types._supports_send_request import SupportsSendRequest
 
 T = TypeVar("T", bound=Entity)
 S = TypeVar("S", bound="SupportsInvokeRequest")
 
-class SupportsInvokeRequest(SupportsBaseInvokeRequest[T], ABC):
+class SupportsInvokeRequest(SupportsBaseInvokeRequest[T], SupportsSendRequest, ABC):
     """Supports Invoke Request
     
     Request supports invokation at later time
