@@ -9,18 +9,18 @@ from typing import Any
 
 from pyrestsdk.type.model import Option, OptionsCollection
 
-class TestOption(Option): #pylint: disable=too-few-public-methods
+class MockOption(Option): #pylint: disable=too-few-public-methods
     """
     Test Option
     """
 
-class TestOptionsCollection(OptionsCollection[TestOption]):
+class MockOptionsCollection(OptionsCollection[MockOption]):
     """
     Test Options Collection
     """
 
     def add(self, key: str, value: Any) -> None:
-        self.append(TestOption(key, value))
+        self.append(MockOption(key, value))
 
 def test_options_collection_create():
     """
@@ -28,11 +28,11 @@ def test_options_collection_create():
     """
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
-    options_list = [TestOption("key1", "value1"), TestOption("key2", "value2")]
+    options_list = [MockOption("key1", "value1"), MockOption("key2", "value2")]
 
     # Act
-    options_collection_1 = TestOptionsCollection(options_dict)
-    options_collection_2 = TestOptionsCollection(options_list)
+    options_collection_1 = MockOptionsCollection(options_dict)
+    options_collection_2 = MockOptionsCollection(options_list)
 
     # Assert
     assert options_collection_1.as_dict == options_dict
@@ -44,10 +44,10 @@ def test_options_collection_append():
     """
     # Arrange
     options_dict = {"key1": "value1"}
-    options_collection = TestOptionsCollection(options_dict)
+    options_collection = MockOptionsCollection(options_dict)
 
     # Act
-    options_collection.append(TestOption("key2", "value2"))
+    options_collection.append(MockOption("key2", "value2"))
 
     # Assert
     assert options_collection.as_dict == {"key1": "value1", "key2": "value2"}
@@ -58,7 +58,7 @@ def test_options_collection_clear():
     """
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
-    options_collection = TestOptionsCollection(options_dict)
+    options_collection = MockOptionsCollection(options_dict)
 
     # Act
     options_collection.clear()
@@ -72,7 +72,7 @@ def test_options_collection_extend_dict():
     """
     # Arrange
     options_dict = {"key1": "value1"}
-    options_collection = TestOptionsCollection()
+    options_collection = MockOptionsCollection()
 
     # Act
     options_collection.extend(options_dict)
@@ -86,9 +86,9 @@ def test_options_collection_extend_list():
     """
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
-    options_list = [TestOption("key1", "new_value1"), TestOption("key3", "value3")]
+    options_list = [MockOption("key1", "new_value1"), MockOption("key3", "value3")]
     expected_options_dict = {"key1": "new_value1", "key2": "value2", "key3": "value3"}
-    options_collection = TestOptionsCollection(options_dict)
+    options_collection = MockOptionsCollection(options_dict)
 
     # Act
     options_collection.extend(options_list)
@@ -103,7 +103,7 @@ def test_options_collection_remove():
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
     expected_options_dict = {"key1": "value1"}
-    options_collection = TestOptionsCollection(options_dict)
+    options_collection = MockOptionsCollection(options_dict)
 
     # Act
     options_collection.remove("key2")
@@ -118,14 +118,14 @@ def test_options_collection_get():
 
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
-    options_collection = TestOptionsCollection(options_dict)
+    options_collection = MockOptionsCollection(options_dict)
 
     # Act
     value = options_collection.get("key1")
 
     # Assert
     assert value == "value1"
-
+    
     # Output: {'key1': 'value1', 'key2': 'value2'}
 
 def test_options_collection_set():
@@ -136,7 +136,7 @@ def test_options_collection_set():
     # Arrange
     options_dict = {"key1": "value1", "key2": "value2"}
     expected_options_dict = {"key1": "new_value1", "key2": "value2"}
-    options_collection = TestOptionsCollection(options_dict)
+    options_collection = MockOptionsCollection(options_dict)
 
     # Act
     options_collection.set("key1", "new_value1")
