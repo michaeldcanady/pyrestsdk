@@ -1,7 +1,8 @@
 """
-Basic Credential
-================
-A basic example of how to implement the AbstractBasicCredential
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
 """
 
 from typing import Union

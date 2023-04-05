@@ -1,4 +1,9 @@
-"""House Abstract Basic Credential"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from typing import Union
 

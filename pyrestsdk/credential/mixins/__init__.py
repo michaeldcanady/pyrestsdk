@@ -5,8 +5,8 @@ Licensed under the MIT License.
 ------------------------------------
 """
 
-from abc import ABC
+from pyrestsdk.credential.mixins._basic_auth_mixin import BasicAuthMixin
 
-
-class AbstractCredential(ABC): #pylint: disable=too-few-public-methods
-    """Abstract Credential Type"""
+__all__ = [
+    "BasicAuthMixin",
+]

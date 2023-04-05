@@ -1,4 +1,9 @@
-"""Credentials"""
+"""
+------------------------------------
+Copyright (c) Michael Canady.
+Licensed under the MIT License.
+------------------------------------
+"""
 
 from pyrestsdk.credential._abstract_basic_credential import AbstractBasicCredential
 from pyrestsdk.credential._abstract_credential import AbstractCredential
