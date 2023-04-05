@@ -12,7 +12,7 @@ import pytest
 
 from requests import Session
 
-from pyrestsdk import AbstractServiceClient
+from pyrestsdk import ServiceClient
 from pyrestsdk.requestbuilder._entity_request_builder import (
     EntityRequestBuilder as AbstractEntityRequestBuilder,
 )
@@ -25,13 +25,10 @@ from pyrestsdk.type.enum import HttpsMethod
 from pyrestsdk.type.model import Entity
 
 
-class TestServiceClient(AbstractServiceClient):
+class TestServiceClient(ServiceClient):
     """
     Service Client for testing
     """
-
-    def __init__(self):
-        self.session = Session()
 
     def _get_session(self):  # pylint: disable=arguments-differ
         return self.session
