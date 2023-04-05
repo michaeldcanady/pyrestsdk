@@ -82,7 +82,7 @@ class MockSupportsBaseInvokeRequest(SupportsBaseInvokeRequest[Entity]): #pylint:
     def request_method(self) -> HttpsMethod: #pylint: disable=missing-function-docstring
         pass
 
-    def send(self, input_object: Optional):  # pylint: disable=[signature-differs, missing-function-docstring]
+    def send_request(self, value: Optional):  # pylint: disable=[signature-differs, missing-function-docstring]
         pass
 
     @property
