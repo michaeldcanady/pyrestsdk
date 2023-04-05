@@ -170,10 +170,9 @@ class Client(ABC):
         if self._is_complete_url(url):
             if input_url.host == proper_url.host:
                 return url
-            else:
-                raise ValueError(
-                    f"URL {url} doesn't start with the expected base URL {self.session.base_url}"
-                )
+            raise ValueError(
+                f"URL {url} doesn't start with the expected base URL {self.session.base_url}"
+            )
 
         # If the URL is a segment, use the append_segment_to_request_url method
         return self._append_segment_to_request_url(url)
